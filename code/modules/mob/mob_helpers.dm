@@ -632,7 +632,8 @@ proc/is_blind(A)
 /mob/proc/try_teleport(var/area/thearea)
 	if(!istype(thearea))
 		if(istype(thearea, /list))
-			thearea = thearea[1]
+			var/list/area_list = thearea
+			thearea = area_list[1]
 	var/list/L = list()
 	for(var/turf/T in get_area_turfs(thearea))
 		if(!T.density)

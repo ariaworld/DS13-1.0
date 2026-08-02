@@ -9,7 +9,7 @@
 	admin_levels = list(1)
 	empty_levels = list()
 	accessible_z_levels = list("2" = 1, "3" = 1, "4" = 1)
-	base_turf_by_z = list(
+	base_turf_by_z = alist(
 		1 = /turf/space,
 		2 = /turf/simulated/floor/asteroid/outside_ds,
 		3 = /turf/simulated/open,

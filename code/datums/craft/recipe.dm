@@ -73,7 +73,7 @@
 		if (skip > 0)
 			skip--
 			continue
-		var/obj/icontype_item = get_craft_item(CS.icon_type)
+		var/list/icontype_item = get_craft_item(CS.icon_type)
 		data += list(list("icon" = sheet.icon_tag(sanitizeFileName(icontype_item["name"])), "desc" = CS.desc))
 	return data
 

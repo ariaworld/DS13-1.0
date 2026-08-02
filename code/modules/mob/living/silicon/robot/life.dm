@@ -183,21 +183,20 @@
 					else
 						hud_used.healths.icon_state = "health6"
 			else
-				switch(health)
-					if(200 to INFINITY)
-						hud_used.healths.icon_state = "health0"
-					if(150 to 200)
-						hud_used.healths.icon_state = "health1"
-					if(100 to 150)
-						hud_used.healths.icon_state = "health2"
-					if(50 to 100)
-						hud_used.healths.icon_state = "health3"
-					if(0 to 50)
-						hud_used.healths.icon_state = "health4"
-					if(CONFIG_GET(number/health_threshold_dead) to 0)
-						hud_used.healths.icon_state = "health5"
-					else
-						hud_used.healths.icon_state = "health6"
+				if(health >= 200)
+					hud_used.healths.icon_state = "health0"
+				else if(health >= 150 && health <= 200)
+					hud_used.healths.icon_state = "health1"
+				else if(health >= 100 && health <= 150)
+					hud_used.healths.icon_state = "health2"
+				else if(health >= 50 && health <= 100)
+					hud_used.healths.icon_state = "health3"
+				else if(health >= 0 && health <= 50)
+					hud_used.healths.icon_state = "health4"
+				else if(health >= CONFIG_GET(number/health_threshold_dead) && health <= 0)
+					hud_used.healths.icon_state = "health5"
+				else
+					hud_used.healths.icon_state = "health6"
 		else
 			hud_used.healths.icon_state = "health7"
 	/*
