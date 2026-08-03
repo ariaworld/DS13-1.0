@@ -9,7 +9,7 @@
  * Render relay object assigned to a plane master to be able to relay it's render onto other planes that are not it's own
  */
 /atom/movable/render_plane_relay
-	screen_loc = "CENTER"
+	screen_loc = "SOUTHWEST" // was CENTER; 516 anchors the relayed plane's bottom-left to screen_loc, so CENTER offset the whole world render by half the view
 	layer = -1
 	plane = 0
 	appearance_flags = PASS_MOUSE | NO_CLIENT_COLOR | KEEP_TOGETHER
