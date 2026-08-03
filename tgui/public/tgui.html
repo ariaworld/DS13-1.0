@@ -43,7 +43,7 @@
   // Backwards compatibility
   window.__windowId__ = Byond.windowId;
 
-  // Trident engine version
+  // Trident engine version (IE webview, BYOND <= 514)
   Byond.TRIDENT = (function () {
     var groups = navigator.userAgent.match(/Trident\/(\d+).+?;/i);
     var majorVersion = groups && groups[1];
@@ -52,10 +52,19 @@
       : null;
   })();
 
-  // Basic checks to detect whether this page runs in BYOND
-  var isByond = (Byond.TRIDENT !== null || window.cef_to_byond)
+  // Blink engine version (WebView2 webview, BYOND 515+)
+  Byond.BLINK = (function () {
+    var groups = navigator.userAgent.match(/Chrome\/(\d+)\./);
+    var majorVersion = groups && groups[1];
+    return majorVersion
+      ? parseInt(majorVersion, 10)
+      : null;
+  })();
+
+  // Basic checks to detect whether this page runs in BYOND.
+  // No '/tmp' pathname check: 515+ doesn't serve browse() content from there.
+  var isByond = (Byond.TRIDENT !== null || Byond.BLINK !== null || window.cef_to_byond)
     && location.hostname === '127.0.0.1'
-    && location.pathname.indexOf('/tmp') === 0
     && location.search !== '?external';
 
   // Version constants
@@ -243,21 +252,12 @@
   var loadedAssetByUrl = {};
 
   var isStyleSheetLoaded = function (node, url) {
-    // Method #1 (works on IE10+)
+    // Only inspect the node's own sheet. Scanning document.styleSheets by href
+    // throws on Chromium: inline <style> blocks have a null href.
     var styleSheet = node.sheet;
     if (styleSheet) {
       return styleSheet.rules.length > 0;
     }
-    // Method #2
-    var styleSheets = document.styleSheets;
-    var len = styleSheets.length;
-    for (var i = 0; i < len; i++) {
-      var styleSheet = styleSheets[i];
-      if (styleSheet.href.indexOf(url) !== -1) {
-        return styleSheet.rules.length > 0;
-      }
-    }
-    // All methods failed
     return false;
   };
 
@@ -338,6 +338,17 @@
       if (!sync) {
         node.media = 'only x';
       }
+      var removeNodeAndRetry = function () {
+        node.parentNode.removeChild(node);
+        node = null;
+        retry();
+      };
+      // Chromium fires onerror (not onload) on a failed request; old IE only
+      // fires onload. Handle both so the retry chain never stalls.
+      node.onerror = function () {
+        node.onerror = null;
+        removeNodeAndRetry();
+      };
       node.onload = function () {
         node.onload = null;
         if (isStyleSheetLoaded(node, url)) {
@@ -346,9 +357,7 @@
           return;
         }
         // Try again
-        node.parentNode.removeChild(node);
-        node = null;
-        retry();
+        removeNodeAndRetry();
       };
       injectNode(node);
       return;
@@ -508,8 +517,8 @@ window.replaceHtml = function (inline_html) {
   );
 };
 
-// Signal tgui that we're ready to receive updates
-Byond.sendMessage('ready');
+// The 'ready' signal fires from the end of <body>, not here: on 515+ a
+// byond:// message sent mid-parse aborts document parsing and is dropped.
 </script>
 
 <style>
@@ -653,6 +662,12 @@ CEC (c) 2508
     <div>Please enable Javascript and restart the game.</div>
   </div>
 </noscript>
+
+<script type="text/javascript">
+// Signal tgui that we're ready to receive updates.
+// Must run after the document has parsed; see note in the head script.
+Byond.sendMessage('ready');
+</script>
 
 </body>
 </html>
