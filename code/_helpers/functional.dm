@@ -1,3 +1,12 @@
+//Reduces a proc path such as /mob/proc/Life or /obj/effect/vine/Process to its bare name ("Life",
+//"Process"), for use with call(Object, "ProcName")() which resolves subtype overrides properly.
+//BYOND 515+ made call(Object, ProcPath)() invoke that exact proc, skipping overrides, so any
+//system that stores proc references for later dynamic dispatch (signals, callbacks, processing
+//subsystems) converts them through this. Idempotent: bare name strings pass through unchanged.
+/proc/procpath_to_name(procpath)
+	var/full_path = "[procpath]"
+	return copytext(full_path, findlasttext(full_path, "/") + 1)
+
 /proc/all_predicates_true(var/list/input, var/list/predicates)
 	predicates = istype(predicates) ? predicates : list(predicates)
 

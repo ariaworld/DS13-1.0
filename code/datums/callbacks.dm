@@ -10,6 +10,11 @@
 	if (thingtocall)
 		object = thingtocall
 	delegate = proctocall
+	//Store object proc references by name: BYOND 515+ made call(Object, ProcPath)() invoke that
+	//exact proc, skipping subtype overrides. call(Object, "ProcName")() still resolves them.
+	//Global proc paths are kept intact - call(Path)() has no dispatch to resolve.
+	if (object != GLOBAL_PROC && !istext(delegate))
+		delegate = procpath_to_name(delegate)
 	if (length(args) > 2)
 		arguments = args.Copy(3)
 
@@ -24,7 +29,8 @@
 	if (thingtocall == GLOBAL_PROC)
 		call(proctocall)(arglist(calling_arguments))
 	else
-		call(thingtocall, proctocall)(arglist(calling_arguments))
+		//By name for override resolution, see /datum/callback/New
+		call(thingtocall, procpath_to_name(proctocall))(arglist(calling_arguments))
 
 /datum/callback/proc/Invoke(...)
 	if (!object)

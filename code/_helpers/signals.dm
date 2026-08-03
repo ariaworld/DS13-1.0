@@ -25,11 +25,12 @@
 		target.comp_lookup = lookup = list()
 
 	var/list/sig_types = islist(sig_type_or_types) ? sig_type_or_types : list(sig_type_or_types)
+	var/proc_name = procpath_to_name(proctype)
 	for(var/sig_type in sig_types)
 		if(!override && procs[target][sig_type])
 			crash_with("[sig_type] overridden. Use override = TRUE to suppress this warning")
 
-		procs[target][sig_type] = proctype
+		procs[target][sig_type] = proc_name
 
 		if(!lookup[sig_type]) // Nothing has registered here yet
 			lookup[sig_type] = src

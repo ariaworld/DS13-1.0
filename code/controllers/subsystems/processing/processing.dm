@@ -1,12 +1,5 @@
 //Used to process objects. Fires once every second.
 
-//Reduces a proc path such as /mob/proc/Life or /obj/effect/vine/Process to its bare name ("Life",
-//"Process"), for use with call(Object, "ProcName")() which resolves overrides properly. Passing the
-//path itself to call() would invoke that exact proc and skip any subtype override.
-/proc/procpath_to_name(procpath)
-	var/full_path = "[procpath]"
-	return copytext(full_path, findlasttext(full_path, "/") + 1)
-
 SUBSYSTEM_DEF(processing)
 	name = "Processing"
 	priority = SS_PRIORITY_PROCESSING

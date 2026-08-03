@@ -77,5 +77,7 @@ Use add_modclick_verb to add a verb,
 		return
 
 	for (var/datum/callback/C in CHM.verbs)
-		if (C.delegate == function)
+		//Object-bound callbacks store their delegate as a bare proc name (see /datum/callback/New),
+		//global-proc callbacks keep the full path - match either form.
+		if (C.delegate == function || C.delegate == procpath_to_name(function))
 			CHM.verbs.Remove(C)
