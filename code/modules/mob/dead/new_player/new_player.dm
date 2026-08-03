@@ -70,7 +70,7 @@
 
 	output += "</div>"
 
-	panel = new(src, "Welcome","Welcome", 210, 280, src)
+	panel = new(src, "Welcome","Welcome", 260, 350, src)
 	panel.set_window_options("can_close=0") //If you set this to titlebar=0 I will remove your legs
 	panel.set_content(output)
 	panel.open()

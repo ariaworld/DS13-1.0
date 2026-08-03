@@ -193,6 +193,11 @@ SUBSYSTEM_DEF(ticker)
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
+	//The lobby panel is static html, resend it so Ready/Not Ready becomes Join Game
+	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
+		if(player.client)
+			player.new_player_panel_proc()
+
 	CHECK_TICK
 	PostSetup()
 
