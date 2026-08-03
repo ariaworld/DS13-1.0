@@ -75,6 +75,9 @@
 	//This is partly for performance, and also partly for immersion. It'd be silly for the turret to instantly know when its target is dead.
 	//It will keep firing at a dead or moved-away target for a brief period
 
+	var/last_scan	=	0	//when we last ran a full view() scan for targets, see request_scan()
+	var/scan_delay = 0.5 SECONDS	//minimum time between those scans, they are expensive
+
 
 	//Initialized at runtime. Default targeting mode
 	var/datum/targeting_profile/targeting_profile = /datum/targeting_profile/turret/crew
@@ -610,7 +613,7 @@ var/list/turret_icons
 
 	if (!PM)
 		//Lets create a proximity tracker to detect people entering the vicinity
-		var/datum/proximity_trigger/view/PT = new (holder = src, on_turf_entered = /obj/machinery/turret/proc/nearby_movement, range = 10)
+		var/datum/proximity_trigger/view/PT = new (holder = src, on_turf_entered = /obj/machinery/turret/proc/nearby_movement, range = world.view)
 		PT.register_turfs()
 		PM = set_extension(src, /datum/extension/proximity_manager, PT)
 
@@ -637,7 +640,20 @@ var/list/turret_icons
 	if (!enabled || disabled)
 		return
 	if (!istype(AM, /obj/item/projectile))
+		request_scan()
+
+//Every step by anything near the turret lands here, so the view() scan in handle_targets() is
+//rate limited. Movement during the cooldown queues one trailing scan rather than being dropped,
+//so a mob that walks in and stands still is still noticed.
+/obj/machinery/turret/proc/request_scan()
+	if (!enabled || disabled)
+		return
+	var/next_scan = last_scan + scan_delay
+	if (world.time >= next_scan)
+		last_scan = world.time
 		handle_targets()
+	else
+		addtimer(CALLBACK(src, /obj/machinery/turret/proc/request_scan), next_scan - world.time, TIMER_UNIQUE | TIMER_NO_HASH_WAIT)
 
 
 /obj/machinery/turret/proc/handle_targets()
