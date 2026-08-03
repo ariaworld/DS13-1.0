@@ -1,5 +1,12 @@
 //Used to process objects. Fires once every second.
 
+//Reduces a proc path such as /mob/proc/Life or /obj/effect/vine/Process to its bare name ("Life",
+//"Process"), for use with call(Object, "ProcName")() which resolves overrides properly. Passing the
+//path itself to call() would invoke that exact proc and skip any subtype override.
+/proc/procpath_to_name(procpath)
+	var/full_path = "[procpath]"
+	return copytext(full_path, findlasttext(full_path, "/") + 1)
+
 SUBSYSTEM_DEF(processing)
 	name = "Processing"
 	priority = SS_PRIORITY_PROCESSING
@@ -25,6 +32,10 @@ SUBSYSTEM_DEF(processing)
 	var/list/current_run = src.current_run
 	var/wait = src.wait
 	var/times_fired = src.times_fired
+	//BYOND 515+ changed call(Object, ProcPath)() to invoke that exact proc rather than looking it up
+	//on the object, so passing a base path like /mob/proc/Life would call the empty base declaration
+	//instead of the subtype's override. call(Object, "ProcName")() still resolves normally.
+	var/process_proc_name = procpath_to_name(process_proc)
 
 	while(current_run.len)
 		var/datum/thing = current_run[current_run.len]
@@ -35,7 +46,7 @@ SUBSYSTEM_DEF(processing)
 
 		last_type = thing.type
 
-		if (call(thing, process_proc)(wait, times_fired, src) == PROCESS_KILL)
+		if (call(thing, process_proc_name)(wait, times_fired, src) == PROCESS_KILL)
 			if(thing)
 				thing.is_processing = null
 			processing -= thing
@@ -62,7 +73,7 @@ SUBSYSTEM_DEF(processing)
 	subsystem.debug_last_thing = src
 	var/start_tick = world.time
 	var/start_tick_usage = world.tick_usage
-	. = call(src, subsystem.debug_original_process_proc)(wait, times_fired)
+	. = call(src, procpath_to_name(subsystem.debug_original_process_proc))(wait, times_fired)
 
 	var/tick_time = world.time - start_tick
 	var/tick_use_limit = world.tick_usage - start_tick_usage - 100 // Current tick use - starting tick use - 100% (a full tick excess)
