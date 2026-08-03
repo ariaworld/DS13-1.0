@@ -183,15 +183,17 @@
 	duration = 5 SECONDS
 
 /datum/execution_stage/finisher/headspike/enter()
-	.=..()
 	var/armor = host.victim.getarmor(BP_HEAD, "melee")
 
 	//If the victim is wearing a tough helmet you can't stab them
+	//Checked before calling ..() (which marks the execution complete and non-interruptible),
+	//so a failed stab here still lets interrupt()/stop() run and clean up properly
 	if (prob(armor*2))
 		//TODO: Audio
 		host.user.visible_message(SPAN_EXECUTION("The [host.weapon] bounces harmlessly off [host.victim]'s armoured head!"))
 		return FALSE
 
+	.=..()
 	host.user.visible_message(SPAN_EXECUTION("[host.user] drives the [host.weapon] into [host.victim]'s forehead, with a sickening crunch."))
 
 	playsound(host.victim, "fracture", VOLUME_MID, TRUE)

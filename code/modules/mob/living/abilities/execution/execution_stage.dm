@@ -97,6 +97,7 @@
 */
 /datum/execution_stage/scream/enter()
 	host.user.do_shout(SOUND_SHOUT_LONG, FALSE)
+	.=..()
 
 
 //Retract a tether used as a weapon
@@ -104,6 +105,7 @@
 	var/obj/effect/projectile/tether/T = host.weapon
 	if (istype(T))
 		T.retract(duration)
+	.=..()
 
 
 
