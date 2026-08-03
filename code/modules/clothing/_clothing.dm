@@ -162,12 +162,12 @@
 	else
 		icon = initial(icon)
 
-/obj/item/clothing/get_examine_line()
+/obj/item/clothing/get_examine_line(mob/user)
 	. = ..()
 	var/list/ties = list()
 	for(var/obj/item/clothing/accessory/accessory in accessories)
 		if(accessory.high_visibility)
-			ties += "\a [accessory.get_examine_line()]"
+			ties += "\a [accessory.get_examine_line(user)]"
 	if(ties.len)
 		.+= " with [english_list(ties)] attached"
 	if(accessories.len > ties.len)

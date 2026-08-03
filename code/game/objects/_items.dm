@@ -857,11 +857,11 @@ THIS SCOPE CODE IS DEPRECATED, USE AIM MODES INSTEAD.
 		item_appearance.overlays += emissive_blocker(mob_icon, mob_state, alpha = item_appearance.alpha)
 	return item_appearance
 
-/obj/item/proc/get_examine_line()
+/obj/item/proc/get_examine_line(mob/user)
 	if(blood_DNA)
-		. = "<span class='warning'>\icon[src] [gender==PLURAL?"some":"a"] [(blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [src]</span>"
+		. = "<span class='warning'>[icon2html(src, user)] [gender==PLURAL?"some":"a"] [(blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [src]</span>"
 	else
-		. = "\icon[src] \a [src]"
+		. = "[icon2html(src, user)] \a [src]"
 	var/ID = GetIdCard()
 	if(ID)
 		. += "  <a href='?src=\ref[ID];look_at_id=1'>\[Look at ID\]</a>"
