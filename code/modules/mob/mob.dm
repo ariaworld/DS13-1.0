@@ -181,7 +181,7 @@
 		. += T.movement_delay
 
 	if ((drowsyness > 0) && !MOVING_DELIBERATELY(src))
-		. += 6
+		. += min(6, WALK_DELAY - RUN_DELAY) //Drowsy sprinting is clumsy, but should never end up slower than just walking
 
 	. += move_intent.move_delay
 	. += encumbrance() * (0.5 + 1.5 * (SKILL_MAX - get_skill_value(SKILL_HAULING))/(SKILL_MAX - SKILL_MIN)) //Varies between 0.5 and 2, depending on skill
