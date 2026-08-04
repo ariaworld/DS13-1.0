@@ -246,6 +246,7 @@
 	min_force = 15
 	max_health = 150
 	explosion_resistance = 10
+	open_layer = ABOVE_HUMAN_LAYER
 
 /obj/machinery/door/blast/shutters/open
 	begins_closed = FALSE
