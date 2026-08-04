@@ -216,12 +216,14 @@
 		if(!istype(S))
 			return
 		var/HTML = list()
+		HTML += "<html><body>"
 		HTML += "<h2>[S.name]</h2>"
 		HTML += "[S.desc]<br>"
 		var/i
 		for(i=SKILL_MIN, i <= SKILL_MAX, i++)
 			var/level_name = S.levels[i]
 			HTML +=	"<br><b>[level_name]</b>: [S.levels[level_name]]<br>"
+		HTML += "</body></html>"
 		show_browser(user, jointext(HTML, null), "window=\ref[user]skillinfo")
 
 	else if(href_list["job_info"])
