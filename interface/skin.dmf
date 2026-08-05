@@ -475,6 +475,9 @@ macro "hotkeymode"
 		name = "CTRL+A+REP"
 		command = ".moveleft"
 	elem
+		name = "B"
+		command = "Resist"
+	elem
 		name = "D+REP"
 		command = ".moveright"
 	elem
@@ -525,6 +528,9 @@ macro "hotkeymode"
 	elem
 		name = "T"
 		command = ".say"
+	elem
+		name = "V"
+		command = "Rest"
 	elem "w_key"
 		name = "W+REP"
 		command = ".moveup"
