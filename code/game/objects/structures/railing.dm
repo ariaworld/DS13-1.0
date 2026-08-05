@@ -286,11 +286,6 @@
 		climbers -= user
 		return
 
-	if(!turf_is_crowded())
-		to_chat(user, "<span class='warning'>You can't climb there, the way is blocked.</span>")
-		climbers -= user
-		return
-
 	if(get_turf(user) == get_turf(src))
 		user.forceMove(get_step(src, src.dir))
 	else

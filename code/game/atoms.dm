@@ -541,7 +541,7 @@ its easier to just keep the beam vertical.
 		to_chat(user, "<span class='danger'>You can't climb there, the way is blocked.</span>")
 		return FALSE
 
-	var/obj/occupied = turf_is_crowded()
+	var/obj/occupied = turf_is_crowded(user) // The climber standing on the tile doesn't block their own climb.
 	if(occupied)
 		to_chat(user, "<span class='danger'>There's \a [occupied] in the way.</span>")
 		return FALSE
@@ -562,11 +562,13 @@ its easier to just keep the beam vertical.
 		return FALSE
 	return TRUE
 
-/atom/proc/turf_is_crowded()
+/atom/proc/turf_is_crowded(var/atom/ignore)
 	var/turf/T = get_turf(src)
 	if(!T || !istype(T))
 		return FALSE
 	for(var/atom/A in T.contents)
+		if(ignore && ignore == A)
+			continue
 		if(A.atom_flags & ATOM_FLAG_CLIMBABLE)
 			continue
 		if(A.density && !(A.atom_flags & ATOM_FLAG_CHECKS_BORDER)) //ON_BORDER structures are handled by the Adjacent() check.
