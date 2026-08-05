@@ -344,7 +344,9 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/part_b_extra = ""
 		if(data == 3) // intercepted radio message
 			part_b_extra = " <i>(Intercepted)</i>"
-		var/part_a = "<span style='color: [channel_color]'>\icon[radio]<b>\[[freq_text]\][part_b_extra]</b> <span class='name'>" // goes in the actual output
+
+		var/list/hearing_mobs = heard_masked + heard_normal + heard_voice + heard_garbled + heard_gibberish
+		var/part_a = "<span style='color: [channel_color]'>[icon2html(radio, hearing_mobs)]<b>\[[freq_text]\][part_b_extra]</b> <span class='name'>" // goes in the actual output
 
 		// --- Some more pre-message formatting ---
 		var/part_b = "</span> <span class='message'>" // Tweaked for security headsets -- TLE
@@ -568,10 +570,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(data == 3) // intercepted radio message
 			part_b_extra = " <i>(Intercepted)</i>"
 
-		// Create a radio headset for the sole purpose of using its icon
-		var/obj/item/radio/headset/radio = new
-
-		var/part_b = "<b>\icon[radio]\[[freq_text]\][part_b_extra]</b> " // Tweaked for security headsets -- TLE
+		var/list/hearing_mobs = heard_normal + heard_garbled + heard_gibberish
+		var/part_b = "<b>[icon2html('icons/obj/radio.dmi', hearing_mobs, "headset")]\[[freq_text]\][part_b_extra]</b> " // Tweaked for security headsets -- TLE
 		var/part_blackbox_b = "<b> \[[freq_text]\]</b> " // Tweaked for security headsets -- TLE
 		var/part_c = "<span class='name'>[source]</span><span class='message'>" // goes in the actual output
 		var/part_d = "</span></span>"
