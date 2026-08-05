@@ -4,6 +4,17 @@
 	It is attached to the player datum, so it persists between relogs and mob transitions
 	Signal players gain energy while they're playing as a signal waiting to do things. Their energy gain is paused while controlling a necromorph. The stored energy persists though
 */
+
+GLOBAL_DATUM_INIT(tgui_psi_energy_state, /datum/ui_state/psi_energy_state, new)
+
+/datum/ui_state/psi_energy_state/can_use_topic(src_object, mob/user)
+	var/datum/extension/psi_energy/PE = src_object
+	if (user == PE.host.get_mob())
+		return UI_INTERACTIVE
+	if (user.client && check_rights(R_ADMIN|R_DEBUG, FALSE, user.client))
+		return UI_INTERACTIVE
+	return UI_CLOSE
+
 /datum/extension/psi_energy
 	flags = EXTENSION_FLAG_IMMEDIATE
 	base_type = /datum/extension/psi_energy
@@ -179,34 +190,58 @@
 	Abilities Menu
 ----------------------*/
 
-/datum/extension/psi_energy/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/list/data = content_data
+/datum/extension/psi_energy/ui_state(mob/user)
+	return GLOB.tgui_psi_energy_state
+
+/datum/extension/psi_energy/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if (!ui)
+		ui = new(user, src, "AbilitiesMenu", "Abilities Menu")
+		ui.open()
+
+/datum/extension/psi_energy/ui_data(mob/user)
+	var/list/data = list()
 	data["energy"] = energy
 	data["income"] = energy_per_tick
-	data["max_energy"]= max_energy
+	data["max_energy"] = max_energy
+
+	var/list/spells = list()
+	for (var/list/spell in content_data["abilities"])
+		var/list/entry = spell.Copy()
+		var/id = entry["id"]
+		var/datum/signal_ability/SA = GLOB.signal_abilities[id]
+		if (SA.cooldown)
+			var/next_allowed = abilities[id] + SA.cooldown
+			if (world.time < next_allowed)
+				entry["cooldown"] = next_allowed - world.time
+		SA.get_preview_icon()
+		if (SA.preview_icon)
+			entry["icon"] = icon2html(SA.preview_icon, user, SA.preview_icon_state, sourceonly = TRUE)
+		spells.Add(list(entry))
+	data["abilities"] = spells
+
 	if (selected_ability)
 		var/datum/signal_ability/SA = GLOB.signal_abilities[selected_ability]
 		data["current"] = list("name" = SA.name, "desc" = SA.get_long_description(), "id" = selected_ability)
+		SA.get_preview_icon()
+		if (SA.preview_icon)
+			data["current"]["icon"] = icon2html(SA.preview_icon, user, SA.preview_icon_state, sourceonly = TRUE)
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "signal_abilities.tmpl", "Abilities Menu", 600, 625, state = GLOB.interactive_state)
-		ui.set_initial_data(data)
-		ui.set_auto_update(TRUE)
-		ui.open()
+	return data
 
+/datum/extension/psi_energy/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	if (..())
+		return TRUE
+	switch(action)
+		if ("select")
+			if (params["select"] in abilities)
+				selected_ability = params["select"]
+			return TRUE
 
-/datum/extension/psi_energy/Topic(href, href_list)
-	if(..())
-		return
-	if (href_list["select"])
-		if  (href_list["select"] in abilities)
-			selected_ability = href_list["select"]
-
-	if (href_list["cast"])
-		cast_ability(href_list["cast"])
-
-	SSnano.update_uis(src)
+		if ("cast")
+			if (params["cast"])
+				cast_ability(params["cast"])
+			return TRUE
 
 
 /*

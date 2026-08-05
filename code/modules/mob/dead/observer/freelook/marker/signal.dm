@@ -455,7 +455,7 @@ GLOBAL_LIST_INIT(signal_sprites, list("markersignal-1",
 
 
 	var/datum/extension/psi_energy/PE	= get_energy_extension()
-	PE.ui_interact(src)
+	PE.tgui_interact(src)
 
 
 /*

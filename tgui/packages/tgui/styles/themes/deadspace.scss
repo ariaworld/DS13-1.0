@@ -1,0 +1,179 @@
+@use 'sass:color';
+@use 'sass:meta';
+
+$ds-void: #060605;
+$ds-panel: rgba(14, 12, 10, 0.86);
+$ds-steel: #37342c;
+$ds-amber: #ff7a1a;
+$ds-amber-dim: #6b3d16;
+$ds-blood: #a8181b;
+$ds-bone: #d8d3c4;
+
+@use '../colors.scss' with (
+  $primary: $ds-amber,
+  $fg-map-keys: (),
+  $bg-map-keys: (),
+);
+@use '../base.scss' with (
+  $color-fg: $ds-bone,
+  $color-bg: $ds-void,
+  $color-bg-grad-spread: 4%,
+  $border-radius: 0,
+);
+
+.theme-deadspace {
+  // Atomic classes
+  @include meta.load-css('../atomic/color.scss');
+
+  // Components
+  @include meta.load-css(
+    '../components/Button.scss',
+    $with: (
+      'color-default': #23201a,
+      'color-disabled': #262420,
+      'color-selected': $ds-amber-dim,
+      'color-caution': #7a5210,
+      'color-danger': $ds-blood,
+      'color-transparent-text': rgba($ds-bone, 0.6),
+      'border-radius': 0,
+    )
+  );
+  @include meta.load-css(
+    '../components/Input.scss',
+    $with: (
+      'background-color': rgba(0, 0, 0, 0.6),
+      'border-color': $ds-amber,
+      'border-radius': 0,
+    )
+  );
+  @include meta.load-css(
+    '../components/NoticeBox.scss',
+    $with: ('background-color': #4a3212)
+  );
+  @include meta.load-css(
+    '../components/NumberInput.scss',
+    $with: ('border-color': $ds-amber)
+  );
+  @include meta.load-css(
+    '../components/ProgressBar.scss',
+    $with: (
+      'color-default-fill': $ds-amber-dim,
+      'background-color': rgba(0, 0, 0, 0.55),
+      'border-radius': 0,
+    )
+  );
+  @include meta.load-css(
+    '../components/Section.scss',
+    $with: (
+      'background-color': $ds-panel,
+      'separator-color': $ds-amber,
+    )
+  );
+  @include meta.load-css(
+    '../components/Tabs.scss',
+    $with: ('color-default': $ds-amber)
+  );
+  @include meta.load-css(
+    '../components/Tooltip.scss',
+    $with: ('background-color': #1c1a16)
+  );
+  @include meta.load-css('../components/LabeledList.scss');
+  @include meta.load-css('../components/Divider.scss', $with: (
+    'color': rgba($ds-amber, 0.25),
+  ));
+
+  // Layouts
+  @include meta.load-css('../layouts/Layout.scss');
+  @include meta.load-css('../layouts/Window.scss');
+  @include meta.load-css(
+    '../layouts/TitleBar.scss',
+    $with: ('background-color': #17140f)
+  );
+
+  font-family: 'Segoe UI', 'Arial Narrow', Arial, sans-serif;
+  letter-spacing: 0.02em;
+
+  .Layout__content {
+    background-image:
+      repeating-linear-gradient(
+        180deg,
+        rgba(255, 122, 26, 0.025) 0px,
+        rgba(255, 122, 26, 0.025) 1px,
+        transparent 1px,
+        transparent 3px
+      ),
+      radial-gradient(
+        ellipse at 50% 0%,
+        rgba(255, 122, 26, 0.08) 0%,
+        rgba(0, 0, 0, 0) 60%
+      );
+  }
+
+  .ds-readout {
+    font-family: 'Consolas', 'Courier New', monospace;
+    letter-spacing: 0.03em;
+  }
+
+  .ds-icon {
+    vertical-align: middle;
+    margin-right: 0.4em;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba($ds-amber, 0.35);
+  }
+
+  .Section {
+    border: 1px solid rgba($ds-steel, 0.9);
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      pointer-events: none;
+      opacity: 0.85;
+    }
+
+    &::before {
+      top: -1px;
+      left: -1px;
+      border-top: 2px solid $ds-amber;
+      border-left: 2px solid $ds-amber;
+    }
+
+    &::after {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 2px solid $ds-amber;
+      border-right: 2px solid $ds-amber;
+    }
+  }
+
+  .Section__titleText {
+    text-transform: uppercase;
+    font-size: 0.95em;
+    letter-spacing: 0.08em;
+  }
+
+  .TitleBar {
+    border-bottom: 1px solid $ds-amber-dim;
+  }
+
+  .TitleBar__title {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .ds-blood {
+    color: color.scale($ds-blood, $lightness: 20%);
+  }
+
+  .ds-amber {
+    color: $ds-amber;
+  }
+
+  .ds-dim {
+    color: rgba($ds-bone, 0.45);
+  }
+}

@@ -85,6 +85,19 @@
 	//Does placement handler snap-to-grid?
 	var/placement_snap = TRUE
 
+	var/icon/preview_icon
+	var/preview_icon_state
+	var/preview_icon_computed = FALSE
+
+/datum/signal_ability/proc/get_preview_icon()
+	if (!preview_icon_computed)
+		preview_icon_computed = TRUE
+		if (placement_atom)
+			var/atom/A = new placement_atom()
+			preview_icon = A.icon
+			preview_icon_state = A.icon_state
+			qdel(A)
+
 
 
 

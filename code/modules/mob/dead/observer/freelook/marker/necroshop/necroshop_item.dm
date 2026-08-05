@@ -12,6 +12,9 @@
 	var/require_total_biomass = FALSE	//If true, this spawn requires reaching a target of total biomass and can be spawned for free when that target is reached
 	var/global_limit = 0	//If nonzero, a maximum number of these which can ever be spawned from markers
 
+	var/icon/icon
+	var/icon_state
+
 	/*
 		This is an associative list in the format: event_datum = quantity
 	*/

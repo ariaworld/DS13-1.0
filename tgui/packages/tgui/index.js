@@ -19,6 +19,7 @@ import './styles/themes/wizard.scss';
 import './styles/themes/admin.scss';
 import './styles/themes/rdconsole.scss';
 import './styles/themes/store.scss';
+import './styles/themes/deadspace.scss';
 
 
 import { perf } from 'common/perf';

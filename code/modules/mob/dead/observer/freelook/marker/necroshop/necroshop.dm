@@ -1,4 +1,12 @@
 
+GLOBAL_DATUM_INIT(tgui_necroshop_state, /datum/ui_state/necroshop_state, new)
+
+/datum/ui_state/necroshop_state/can_use_topic(src_object, mob/user)
+	var/datum/necroshop/N = src_object
+	if (N.authorised_to_view(user))
+		return UI_INTERACTIVE
+	return UI_CLOSE
+
 /datum/necroshop
 	var/obj/machinery/marker/host	//Where do we draw our biomass from?
 	var/datum/necroshop_item/current	//What do we currently have selected for spawning or more detailed viewing?
@@ -68,6 +76,8 @@
 		I.spawn_path = spath
 		I.queue_fill = FALSE
 		I.placement_type = N.placement_type
+		I.icon = N.icon
+		I.icon_state = N.icon_state
 
 		//And add it to the list
 		spawnable_structures[I.name] = I
@@ -82,12 +92,23 @@
 
 
 
-/datum/necroshop/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	if (!authorised_to_view(user))
-		return
+/datum/necroshop/ui_state(mob/user)
+	return GLOB.tgui_necroshop_state
+
+/datum/necroshop/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if (!ui)
+		ui = new(user, src, "NecroSpawnMenu", "Spawning Menu")
+		ui.open()
+
+/datum/necroshop/ui_data(mob/user)
 	var/list/data = content_data.Copy()
+	data["necromorphs"] = get_display_list(content_data["necromorphs"], spawnable_necromorphs, user)
+	data["structures"] = get_display_list(content_data["structures"], spawnable_structures, user)
 	if (current)
 		var/list/sublist = list("name" = current.name, "desc" = current.desc, "price" = current.price, "reqtotal" = current.require_total_biomass)
+		if (current.icon)
+			sublist["icon"] = icon2html(current.icon, user, current.icon_state, sourceonly = TRUE)
 
 		//Future TODO: Centralise this and properly support multiple concurrent events
 		if (current.event_spawns)
@@ -109,55 +130,70 @@
 	data["biomass"]	=	round(host.biomass, 0.1)
 	data["income"] = round(host.biomass_tick, 0.01)
 
-	data["spawn"] = list("name" = selected_spawn.name, "color" = selected_spawn.color, "x" = selected_spawn.spawnpoint.x, "y" = selected_spawn.spawnpoint.y, "z" = selected_spawn.spawnpoint.z)
+	data["spawn"] = list("id" = selected_spawn.id, "name" = selected_spawn.name, "color" = selected_spawn.color, "x" = selected_spawn.spawnpoint.x, "y" = selected_spawn.spawnpoint.y, "z" = selected_spawn.spawnpoint.z)
 	if (authorised_to_spawn(user))
 		data["authorised"] = TRUE
 
+	data["queue_fill"] = necroqueue_fill
 
-	if (necroqueue_fill)
-		data["queue"]	=	"checked"	//Used in html
+	data["waiting_num"] = SSnecromorph.necroqueue.len
+	data["waiting_names"] = list()
+	for (var/mob/dead/observer/signal/S in SSnecromorph.necroqueue)
+		data["waiting_names"] += "[S.key]"
 
+	data["spawnpoints"] = list()
+	for (var/datum/necrospawn/N in possible_spawnpoints)
+		var/turf/T = get_turf(N.spawnpoint)
+		data["spawnpoints"] += list(list("id" = N.id, "name" = N.name, "color" = N.color, "x" = T.x, "y" = T.y, "z" = T.z))
 
-	data["waiting_num"] = 0
-	if (SSnecromorph.necroqueue.len)
-		data["waiting_num"] = SSnecromorph.necroqueue.len
-		var/names = "Currently in necroqueue:"
-		for (var/mob/dead/observer/signal/S in SSnecromorph.necroqueue)
-			names += "\n[S.key]"
-		data["waiting_names"] = names
-	else
-		data["waiting_names"] = "There are no players currently in the necroqueue."
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "necroshop.tmpl", "Spawning Menu", 800, 700, state = GLOB.interactive_state)
-		ui.set_initial_data(data)
-		ui.set_auto_update(1)
-		ui.open()
+	return data
 
-/datum/necroshop/Topic(href, href_list)
-	if(..())
-		return
-	if (href_list["select"])
-		current = spawnable_necromorphs[href_list["select"]]
-		if (!current)
-			current = spawnable_structures[href_list["select"]]
+/datum/necroshop/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	if (..())
+		return TRUE
+	switch(action)
+		if ("select")
+			current = spawnable_necromorphs[params["select"]]
+			if (!current)
+				current = spawnable_structures[params["select"]]
+			return TRUE
 
+		if ("spawn")
+			if (authorised_to_spawn(usr))
+				start_spawn()
+			return TRUE
 
-	if (href_list["spawn"])
-		if (authorised_to_spawn(usr))
-			start_spawn()
-			return //Don't update the UIs
+		if ("toggle_queue")
+			necroqueue_fill = !necroqueue_fill
+			return TRUE
 
-	if (href_list["toggle-queue"])
-		necroqueue_fill = !necroqueue_fill
+		if ("select_spawn_point")
+			for (var/datum/necrospawn/N in possible_spawnpoints)
+				if (N.id == params["id"])
+					selected_spawn = N
+					break
+			return TRUE
 
-	if (href_list["select_spawn"])
-		var/datum/necrospawn_selector/NS = new (src)
-		NS.ui_interact(usr)
+		if ("jump")
+			var/mob/M = usr
+			var/canjump = M.can_jump_to_link()
+			if (!canjump && M.client && check_rights(R_ADMIN|R_MOD|R_DEBUG, FALSE, M.client))
+				canjump = TRUE
+			if (canjump)
+				var/turf/T = locate(text2num(params["x"]), text2num(params["y"]), text2num(params["z"]))
+				if (istype(T))
+					M.jumpTo(T)
+			return TRUE
 
-	SSnano.update_uis(src)
-
-
+/datum/necroshop/proc/get_display_list(var/list/source, var/list/items, var/mob/user)
+	var/list/result = list()
+	for (var/list/entry in source)
+		var/list/copy = entry.Copy()
+		var/datum/necroshop_item/I = items[copy["name"]]
+		if (I && I.icon)
+			copy["icon"] = icon2html(I.icon, user, I.icon_state, sourceonly = TRUE)
+		result += list(copy)
+	return result
 
 //Generate and cache the common data
 /datum/necroshop/proc/generate_content_data()

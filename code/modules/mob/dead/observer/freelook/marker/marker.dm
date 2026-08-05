@@ -91,7 +91,7 @@
 			make_active()
 
 /obj/machinery/marker/proc/open_shop(var/mob/user)
-	shop.ui_interact(user)
+	shop.tgui_interact(user)
 
 /*
 
