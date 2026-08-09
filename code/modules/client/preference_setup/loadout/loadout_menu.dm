@@ -302,6 +302,8 @@
 		pref.gear_list[pref.gear_slot] -= TG.display_name
 	else if (pref.loadout.add_gear(TG))
 		pref.gear_list[pref.gear_slot] += list(TG.display_name)
+	else if (user)
+		to_chat(user, "<span class='warning'>[pref.loadout.last_add_fail_reason || "Couldn't add [TG.display_name] to your loadout."]</span>")
 
 
 

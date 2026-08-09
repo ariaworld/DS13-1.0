@@ -44,6 +44,8 @@
 
 	var/list/gear_tags = list()
 
+	var/last_add_fail_reason	//Set by add_gear() when it fails so that UI can explain why to player
+
 	var/mob/living/carbon/human/H
 
 
@@ -201,26 +203,34 @@
 */
 //This takes a gear item into our list, after checking it for validity
 /datum/extension/loadout/proc/add_gear(var/datum/gear/G)
+	last_add_fail_reason = null
+
 	if (!G)
+		last_add_fail_reason = "That item doesn't exist. How did this happen?!"
 		return FALSE
 
 	if (G.exclusion_tags?.len)
 		var/list/shared = G.exclusion_tags & gear_tags
 		if (shared && shared.len)
+			last_add_fail_reason = "You already have an item in your loadout that conflicts with [G.display_name]."
 			return FALSE	//We have one of the tags which excludes it
 
 	if (G.required_tags?.len)
 		var/list/shared = G.required_tags & gear_tags
 		if (!shared || shared.len != G.required_tags.len)
+			last_add_fail_reason = "[G.display_name] requires other gear to be selected first (for example, a RIG frame for a RIG module)."
 			return FALSE
 
 	if (G.key_whitelist && !(prefs.get_key() in G.key_whitelist ))
+		last_add_fail_reason = "[G.display_name] is not available to you."
 		return FALSE
 
 	if (points < G.cost)
+		last_add_fail_reason = "You don't have enough loadout points for [G.display_name] ([G.cost] needed, [points] available)."
 		return FALSE
 
 	if (G.patron_only && !is_patron)
+		last_add_fail_reason = "[G.display_name] is a patron-only item."
 		return FALSE
 	//TODO: Safety Checks
 
