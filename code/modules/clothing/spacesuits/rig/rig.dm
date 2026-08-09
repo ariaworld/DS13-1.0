@@ -247,6 +247,19 @@
 		return FALSE
 	return TRUE
 
+
+/obj/item/rig/proc/force_unseal()
+	if (canremove && !active && !sealing)
+		return //Already unsealed, nothing to do
+
+	sealing = FALSE
+	active = FALSE
+	for(var/obj/item/rig_module/module in installed_modules)
+		module.deactivate()
+	reset()
+	if(airtight)
+		update_component_sealed()
+
 /obj/item/rig/proc/reset()
 	canremove = 1
 	if(istype(chest))
@@ -591,6 +604,7 @@
 		if (M.wearing_rig == src)
 			M.wearing_rig = null
 		wearer = null
+		force_unseal()
 
 		for(var/obj/item/rig_module/module in installed_modules)
 			module.rig_unequipped(M, slot)
@@ -711,6 +725,7 @@
 
 /obj/item/rig/dropped(mob/user)
 	..()
+	force_unseal()
 	for(var/piece in list("helmet","gauntlets","chest","boots"))
 		toggle_piece(piece, user, ONLY_RETRACT)
 	if(wearer)
