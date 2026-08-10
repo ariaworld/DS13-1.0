@@ -18,8 +18,8 @@
 	path = /obj/item/tool/saw/plasma
 	cost = 3
 
-/datum/gear/tool/laserpick
-	display_name = "laser pick"
+/datum/gear/tool/rocksaw
+	display_name = "rock saw"
 	subcategory =SUBCATEGORY_DANGEROUS_TOOLS
 	path = /obj/item/tool/pickaxe/laser
 	cost = 3
