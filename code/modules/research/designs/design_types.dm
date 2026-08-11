@@ -52,9 +52,8 @@ Medical:
 +	advanced reagent scanner
 +	nanopaste
 +	hypospray
-+	Basic Laser Scalpel
-+	Improved Laser Scalpel
-+	Advanced Laser Scalpel
++	Advanced Scalpel
++	Laser Scalpel
 +	Incision Management System
 Beaker:
 +	beaker
@@ -516,25 +515,17 @@ Botany:
 	category = "Medical"
 
 /datum/design/item/surgery/scalpel_laser1
-	name = "Basic Laser Scalpel"
-	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks basic and could be improved."
+	name = "Advanced Scalpel"
+	desc = "Made of more expensive materials, sharper and generally more reliable."
 	id = "scalpel_laser1"
 	materials = list(MATERIAL_STEEL = 12500, MATERIAL_GLASS = 7500)
 	build_path = /obj/item/tool/scalpel/advanced
 	price = 750
 
 /datum/design/item/surgery/scalpel_laser2
-	name = "Basic Laser Scalpel"
-	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks basic and could be improved."
+	name = "Laser Scalpel"
+	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field."
 	id = "scalpel_laser2"
-	materials = list(MATERIAL_STEEL = 12500, MATERIAL_GLASS = 7500)
-	build_path = /obj/item/tool/scalpel/laser
-	price = 750
-
-/datum/design/item/surgery/scalpel_laser3
-	name = "Advanced Laser Scalpel"
-	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks to be the pinnacle of precision energy cutlery!"
-	id = "scalpel_laser3"
 	materials = list(MATERIAL_STEEL = 12500, MATERIAL_GLASS = 7500, MATERIAL_SILVER = 2000, MATERIAL_GOLD = 1500)
 	build_path = /obj/item/tool/scalpel/laser
 	price = 1500

@@ -184,7 +184,7 @@
 	required_technologies = list("adv_add_med_tools")
 	cost = 2000
 
-	unlocks_designs = list("chemical_dispenser", "chem_master", "scalpel_laser3")
+	unlocks_designs = list("chemical_dispenser", "chem_master")
 
 /datum/technology/bio/hypospray
 	name = "Hypospray"
