@@ -177,11 +177,11 @@ var/savefile/Banlist
 		count++
 		Banlist.cd = "/base/[A]"
 		var/ref		= "\ref[src]"
-		var/key		= html_encode(Banlist["key"])
-		var/id		= html_encode(Banlist["id"])
-		var/ip		= html_encode(Banlist["ip"])
-		var/reason	= html_encode(Banlist["reason"])
-		var/by		= html_encode(Banlist["bannedby"])
+		var/key		= Banlist["key"]
+		var/id		= Banlist["id"]
+		var/ip		= Banlist["ip"]
+		var/reason	= Banlist["reason"]
+		var/by		= Banlist["bannedby"]
 		var/expiry
 		if(Banlist["temp"])
 			expiry = GetExp(Banlist["minutes"])
