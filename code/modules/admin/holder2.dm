@@ -12,6 +12,8 @@ GLOBAL_LIST_EMPTY(admin_datums)
 
 	var/datum/weakref/marked_datum_weak
 
+	var/deadminned = FALSE
+
 	var/admincaster_screen = 0	//See newscaster.dm under machinery for a full description
 	var/datum/feed_message/admincaster_feed_message = new /datum/feed_message   //These two will act as holders.
 	var/datum/feed_channel/admincaster_feed_channel = new /datum/feed_channel
@@ -41,6 +43,7 @@ GLOBAL_LIST_EMPTY(admin_datums)
 		owner.holder = src
 		owner.add_admin_verbs()	//TODO
 		GLOB.admins |= C
+		deadminned = FALSE
 
 /datum/admins/proc/disassociate()
 	if(owner)
@@ -48,6 +51,7 @@ GLOBAL_LIST_EMPTY(admin_datums)
 		owner.remove_admin_verbs()
 		owner.deadmin_holder = owner.holder
 		owner.holder = null
+		deadminned = TRUE
 
 /datum/admins/proc/reassociate()
 	if(owner)
@@ -55,6 +59,7 @@ GLOBAL_LIST_EMPTY(admin_datums)
 		owner.holder = src
 		owner.deadmin_holder = null
 		owner.add_admin_verbs()
+		deadminned = FALSE
 
 /*
 checks if usr is an admin with at least ONE of the flags in rights_required. (Note, they don't need all the flags)

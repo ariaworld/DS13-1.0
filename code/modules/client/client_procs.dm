@@ -182,8 +182,13 @@
 	//Admin Authorisation
 	holder = GLOB.admin_datums[ckey]
 	if(holder)
-		GLOB.admins |= src
 		holder.owner = src
+		if(holder.deadminned)
+			deadmin_holder = holder
+			holder = null
+			add_verb(src, /client/proc/readmin_self)
+		else
+			GLOB.admins |= src
 
 	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
 	log_access("Login: [key_name(src)] from [address ? address : "localhost"]-[computer_id] || BYOND v[full_version]")
