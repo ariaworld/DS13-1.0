@@ -15,6 +15,13 @@ Basics, the most important.
 	if(.)
 		world.update_hub_visibility(config_entry_value)
 
+/datum/config_entry/string/hub_address	//overrides world.internet_address, forcing the IP the hub advertises (for servers behind NAT/a reverse proxy)
+
+/datum/config_entry/string/hub_address/ValidateAndSet(str_val)
+	. = ..()
+	if(.)
+		world.internet_address = config_entry_value
+
 /datum/config_entry/flag/log_ooc    //log OOC channel
 
 /datum/config_entry/flag/log_looc	//log LOOC channel
