@@ -10,7 +10,7 @@
     	"**/.pnp.*": true
 	},
 	"workbench.editorAssociations": {
-		"*.dmi": "imagePreview.previewEditor"
+		"*.dmi": "dmiEditor.dmiEditor"
 	},
 	"files.eol": "\n",
 	"gitlens.advanced.blame.customArguments": ["-w"],
