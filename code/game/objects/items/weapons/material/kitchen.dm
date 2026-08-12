@@ -29,7 +29,7 @@
 
 	if(user.a_intent != I_HELP)
 		var/zone = get_zone_sel(user, TRUE)
-		if(zone == BP_HEAD || zone == BP_EYES)
+		if(zone == BP_EYES)
 			if((CLUMSY in user.mutations) && prob(50))
 				M = user
 			return eyestab(M,user)

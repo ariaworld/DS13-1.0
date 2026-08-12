@@ -45,7 +45,7 @@
 	if(!istype(M) || user.a_intent == "help")
 		return ..()
 	var/zone = get_zone_sel(user, TRUE)
-	if(zone != BP_EYES && zone != BP_HEAD)
+	if(zone != BP_EYES)
 		return ..()
 	if((CLUMSY in user.mutations) && prob(50))
 		M = user
