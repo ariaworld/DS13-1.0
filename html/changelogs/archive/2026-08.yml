@@ -40,3 +40,4 @@
   - bugfix: Corruption nodes (minigrowth/construction) can now actually be hit/clicked.
   - admin: De-admining yourself now persists through a rejoin.
   - bugfix: Fixed the names and designs of the laser and advanced scalpels.
+  - rscadd: Aiming for the head with screwdrivers/kitchen knives will no longer hit the eyes.
