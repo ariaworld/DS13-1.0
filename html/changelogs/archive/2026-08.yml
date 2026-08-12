@@ -18,7 +18,7 @@
   - code_imp: Optimized turret performance.
 2026-08-05:
   Aria:
-  - qol: Added keybinds: B for resisting, V for resting.
+  - qol: "Added keybinds: B for resisting, V for resting."
   - bugfix: Made the sleeper UI scrollable.
   - rscadd: Added a TGUI interface for Necromorph signal/marker abilities and the spawning menu.
   - bugfix: Fixed the tank dispenser UI.
