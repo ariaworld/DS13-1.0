@@ -133,10 +133,12 @@
 
 /obj/structure/foamedmetal/New()
 	..()
+	set_opacity(1)
 	update_nearby_tiles(1)
 
 /obj/structure/foamedmetal/Destroy()
 	set_density(0)
+	set_opacity(0)
 	update_nearby_tiles(1)
 	.=..()
 
