@@ -91,6 +91,9 @@
 	if(type == "telemetry")
 		analyze_telemetry(payload)
 		return TRUE
+	if(type == "set_theme")
+		client.stat_panel.send_message("set_theme", payload)
+		return TRUE
 
 /**
  * public

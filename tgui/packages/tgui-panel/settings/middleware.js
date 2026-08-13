@@ -25,7 +25,7 @@ const setGlobalFontFamily = (fontFamily) => {
 export const settingsMiddleware = (store) => {
   let initialized = false;
   return (next) => (action) => {
-    const { type, payload } = action;
+    const { type } = action;
     if (!initialized) {
       initialized = true;
       storage.get('panel-settings').then((settings) => {
@@ -33,14 +33,11 @@ export const settingsMiddleware = (store) => {
       });
     }
     if (type === updateSettings.type || type === loadSettings.type) {
-      // Set client theme
-      const theme = payload?.theme;
-      if (theme) {
-        setClientTheme(theme);
-      }
       // Pass action to get an updated state
       next(action);
       const settings = selectSettings(store.getState());
+      // Set client theme
+      setClientTheme(settings.theme);
       // Update global UI font size
       setGlobalFontSize(settings.fontSize);
       setGlobalFontFamily(settings.fontFamily);

@@ -711,3 +711,7 @@ Byond.subscribeTo('remove_listedturf', remove_listedturf);
 Byond.subscribeTo('remove_mc', remove_mc);
 
 Byond.subscribeTo('add_verb_list', add_verb_list);
+
+Byond.subscribeTo('set_theme', function (payload) {
+	set_theme(payload);
+});
