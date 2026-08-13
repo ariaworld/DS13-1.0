@@ -45,6 +45,8 @@
 //		else
 //			t1 = "-------"	Speaker: [src.listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>
 	var/dat = {"
+		<html>
+		<body>
 		<TT>
 
 		<A href='byond://?src=\ref[src];send=1'>Send Signal</A><BR>
@@ -63,7 +65,10 @@
 		<A href='byond://?src=\ref[src];code=1'>+</A>
 		<A href='byond://?src=\ref[src];code=5'>+</A><BR>
 		[t1]
-		</TT>"}
+		</TT>
+
+		</body>
+		</html>"}
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
 	return
