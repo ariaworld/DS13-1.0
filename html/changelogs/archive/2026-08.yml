@@ -41,3 +41,7 @@
   - admin: De-admining yourself now persists through a rejoin.
   - bugfix: Fixed the names and designs of the laser and advanced scalpels.
   - rscadd: Aiming for the head with screwdrivers/kitchen knives will no longer hit the eyes.
+2026-08-13:
+  Aria:
+  - rscadd: Foamed metal now has lighting/opacity.
+  - code_imp: Made default theme dark, fixed stat panel theme race condition.
