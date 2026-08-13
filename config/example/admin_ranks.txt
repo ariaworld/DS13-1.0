@@ -31,10 +31,10 @@
 
 RetiredAdmin +DEFAULT
 
+Mentor		+DEFAULT +MENTOR
+
 Moderator       +DEFAULT +MOD
 TrialModerator  +DEFAULT +MOD
-
-Mentor		+DEFAULT +MENTOR  
 TrialAdmin      +@ +ADMIN +STEALTH +SPAWN +REJUV +VAREDIT +BAN +SERVER
 GameAdmin       +@ +RUNTIMES +DEBUG +FUN +POSSESS +BUILDMODE +SOUND +PERMISSIONS
 SeniorAdmin     +@
