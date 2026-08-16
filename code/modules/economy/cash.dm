@@ -157,17 +157,15 @@
 
 
 /proc/spawn_miner_money(sum, spawnloc, mob/living/carbon/human/H)
+	if(sum <= 0)
+		return
+	var/obj/item/spacecash/minercash/M = locate(/obj/item/spacecash/minercash) in spawnloc
+	if(M)
+		M.worth += sum
+		M.update_icon()
+		return
+	M = new(spawnloc)
+	M.worth = sum
+	M.update_icon()
 	if(istype(H) && !H.get_active_hand())
-		var/obj/item/spacecash/minercash/S = new(spawnloc)
-		S.worth = sum
-		S.update_icon()
-		H.put_in_hands(S)
-	else
-		var/obj/item/spacecash/minercash/cash = locate(/obj/item/spacecash/minercash)
-		if(cash)
-			cash.worth += sum
-			cash.update_icon()
-		else
-			var/obj/item/spacecash/minercash/S = new(spawnloc)
-			S.worth = sum
-			S.update_icon()
+		H.put_in_hands(M)
