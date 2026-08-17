@@ -45,3 +45,6 @@
   Aria:
   - rscadd: Foamed metal now has lighting/opacity.
   - code_imp: Made default theme dark, fixed stat panel theme race condition.
+2026-08-16:
+  Aria:
+  - bugfix: Mining merits will now spawn separately instead of all in one global stack.
