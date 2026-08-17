@@ -69,6 +69,8 @@
 	if(check_rights(R_ADMIN))
 		return
 	entries_by_type.Cut()
+	QDEL_LIST_ASSOC_VAL(entries)
+	entries = null
 	QDEL_LIST_ASSOC_VAL(maplist)
 	maplist = null
 	QDEL_NULL(defaultmap)
