@@ -51,3 +51,4 @@
 2026-08-19:
   Aria:
   - bugfix: Fixed firemodes, for example full auto, remote for disc ripper, etc.
+  - bugfix: Fixed seeker rifle aim.
