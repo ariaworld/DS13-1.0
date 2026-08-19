@@ -12,7 +12,7 @@
 
 /datum/click_handler/gun/proc/start_firing()
 	if (start_proc)
-		call(reciever, start_proc)()
+		call(reciever, "start_firing")()
 
 /datum/click_handler/gun/proc/fire()
 	if (fire_proc)
@@ -20,7 +20,7 @@
 
 /datum/click_handler/gun/proc/stop_firing()
 	if (stop_proc)
-		call(reciever, stop_proc)()
+		call(reciever, "stop_firing")()
 
 /datum/click_handler/gun/proc/is_firing()
 	if (get_firing_proc)
@@ -28,7 +28,7 @@
 
 /datum/click_handler/gun/proc/set_target(var/atom/newtarget)
 	if (change_target_proc)
-		call(reciever, change_target_proc)(newtarget)
+		call(reciever, "set_target")(newtarget)
 
 /datum/click_handler/gun/proc/update_clickparams(var/clickparams)
 	last_clickparams = clickparams

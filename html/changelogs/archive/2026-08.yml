@@ -48,3 +48,6 @@
 2026-08-16:
   Aria:
   - bugfix: Mining merits will now spawn separately instead of all in one global stack.
+2026-08-19:
+  Aria:
+  - bugfix: Fixed firemodes, for example full auto, remote for disc ripper, etc.
