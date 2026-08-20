@@ -12,23 +12,23 @@
 
 /datum/click_handler/gun/proc/start_firing()
 	if (start_proc)
-		call(reciever, "start_firing")()
+		call(reciever, procpath_to_name(start_proc))()
 
 /datum/click_handler/gun/proc/fire()
 	if (fire_proc)
-		call(reciever, fire_proc)()
+		call(reciever, procpath_to_name(fire_proc))()
 
 /datum/click_handler/gun/proc/stop_firing()
 	if (stop_proc)
-		call(reciever, "stop_firing")()
+		call(reciever, procpath_to_name(stop_proc))()
 
 /datum/click_handler/gun/proc/is_firing()
 	if (get_firing_proc)
-		return call(reciever, get_firing_proc)()
+		return call(reciever, procpath_to_name(get_firing_proc))()
 
 /datum/click_handler/gun/proc/set_target(var/atom/newtarget)
 	if (change_target_proc)
-		call(reciever, "set_target")(newtarget)
+		call(reciever, procpath_to_name(change_target_proc))(newtarget)
 
 /datum/click_handler/gun/proc/update_clickparams(var/clickparams)
 	last_clickparams = clickparams
