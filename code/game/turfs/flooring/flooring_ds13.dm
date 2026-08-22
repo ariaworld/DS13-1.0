@@ -162,14 +162,14 @@
 	has_base_range = 6
 
 /decl/flooring/complex/tiling_ds/golf_gray
-	name = " gray golf plating"
+	name = "gray golf plating"
 	desc = "Rickety, noisy plating that dents relatively easy despite being made by a dense alloy."
 	icon_base = "golf_gray"
 	build_type = null
 	has_base_range = 6
 
 /decl/flooring/complex/tiling_ds/golf_brown
-	name = " brown golf plating"
+	name = "brown golf plating"
 	desc = "Rickety, noisy plating that dents relatively easy despite being made by a dense alloy."
 	icon_base = "golf_brown"
 	build_type = null
