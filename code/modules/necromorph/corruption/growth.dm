@@ -1,3 +1,4 @@
+GLOBAL_LIST_EMPTY(growth_corruption_nodes)
 /obj/structure/corruption_node/growth
 	name = "propagator"
 	desc = "Corruption spreads out in all directions from this horrible mass."
@@ -10,6 +11,21 @@
 	var/speed = 1.5
 	var/falloff = 0.1
 	var/limit = null	//Maximum number of tiles it can support
+	var/initially_hidden = FALSE
+
+/obj/structure/corruption_node/growth/Initialize()
+	. = ..()
+	if(!initially_hidden)
+		return
+	GLOB.growth_corruption_nodes += src
+	var/datum/game_mode/marker/GM = SSticker.mode
+	if(GM && GM.nodes_hidden)
+		src.invisibility = INVISIBILITY_MARKER
+
+/obj/structure/corruption_node/growth/Destroy()
+	GLOB.growth_corruption_nodes -= src
+	return ..()
+
 
 /obj/structure/corruption_node/growth/debug
 	name = "debug propagator"
@@ -53,6 +69,7 @@
 	speed = 1
 	falloff = 0.15
 	randpixel = 4
+	initially_hidden = TRUE
 
 /obj/structure/corruption_node/growth/branch/enhanced
 	name = "Bulging Growth"
@@ -62,6 +79,7 @@
 	range = 5
 	speed = 3
 	limit = 36
+	initially_hidden = TRUE
 
 /obj/structure/corruption_node/growth/branch/get_blurb()
 	. = "This node acts as a smaller source for corruption spread, allowing it to extend out up to [range] tiles in all directions from the node. It must be placed on existing corruption from another propagator node, or from the marker."
@@ -100,6 +118,7 @@
 	falloff = 0.025
 	limit = 60
 	randpixel = 4
+	initially_hidden = TRUE
 
 
 /obj/structure/corruption_node/growth/root/get_blurb()
@@ -129,6 +148,7 @@
 	falloff = 0.025
 	limit = 4
 	randpixel = 4
+	initially_hidden = TRUE
 
 /obj/structure/corruption_node/growth/mini/enhanced
 	range = 4

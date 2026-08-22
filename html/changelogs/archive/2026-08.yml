@@ -52,3 +52,6 @@
   Aria:
   - bugfix: Fixed firemodes, for example full auto, remote for disc ripper, etc.
   - bugfix: Fixed seeker rifle aim.
+2026-08-23:
+  Aria:
+  - rscadd: Growth corruption nodes will now be hidden for 20 minutes after the marker activates. (Excluding Propagators)

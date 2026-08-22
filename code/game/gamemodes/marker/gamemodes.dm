@@ -48,6 +48,7 @@ GLOBAL_DATUM_INIT(shipsystem, /datum/ship_subsystems, new)
 	require_all_templates = FALSE
 	votable = FALSE
 	var/marker_active = FALSE
+	var/nodes_hidden = TRUE // By default, let's hide the corruption growth nodes for a certain time
 	antag_scaling_coeff = 8
 
 	//Auto End condition stuff. To make the round auto end when necromorphs kill everyone
@@ -115,7 +116,15 @@ GLOBAL_DATUM_INIT(shipsystem, /datum/ship_subsystems, new)
 	SSnecromorph.marker.make_active() //Allow controlling
 	pick_marker_player()
 	marker_active = TRUE
+	addtimer(CALLBACK(src, .proc/reveal_nodes), 20 MINUTES)
 	return TRUE
+
+/datum/game_mode/marker/proc/reveal_nodes()
+	nodes_hidden = FALSE
+	for(var/obj/structure/corruption_node/growth/node in GLOB.growth_corruption_nodes)
+		node.invisibility = initial(node.invisibility)
+		playsound(node, "sound/effects/squelch2.ogg", VOLUME_MID)
+		node.animate_fade_in()
 
 /client/proc/activate_marker()
 	set name = "Activate Marker"
