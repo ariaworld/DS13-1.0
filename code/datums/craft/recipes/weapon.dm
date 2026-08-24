@@ -195,6 +195,15 @@
 	list(CRAFT_STACK, /obj/item/stack/power_node, 1)
 	)
 
+/datum/craft_recipe/weapon/plasmacutter/spawn_result(obj/item/craft/C, mob/living/user)
+	var/was_bladed = FALSE
+	for(var/obj/item/gun/energy/cutter/old_cutter in C)
+		was_bladed = old_cutter.bladed
+		break
+	. = ..()
+	if(was_bladed)
+		carry_over_cutter_blades(.)
+
 /datum/craft_recipe/weapon/rendingcutter
 	name = "Rending Cutter"
 	result = /obj/item/gun/energy/cutter/rending
@@ -204,6 +213,21 @@
 	list(CRAFT_OBJECT, /obj/item/gun/energy/cutter/plasma, WORKTIME_NORMAL, FALSE, /obj/item/gun/energy/cutter/rending),
 	list(CRAFT_STACK, /obj/item/stack/special_node/cutter, 1)
 	)
+
+/datum/craft_recipe/weapon/rendingcutter/spawn_result(obj/item/craft/C, mob/living/user)
+	var/was_bladed = FALSE
+	for(var/obj/item/gun/energy/cutter/old_cutter in C)
+		was_bladed = old_cutter.bladed
+		break
+	. = ..()
+	if(was_bladed)
+		carry_over_cutter_blades(.)
+
+/datum/craft_recipe/proc/carry_over_cutter_blades(obj/item/gun/energy/cutter/new_cutter)
+	new_cutter.bladed = TRUE
+	new_cutter.force = 12
+	new_cutter.desc += "\nIt seems to be fitted with a set of weighted blades."
+	new_cutter.update_icon()
 
 /datum/craft_recipe/weapon/rendingdivet
 	name = "Rending Divet"

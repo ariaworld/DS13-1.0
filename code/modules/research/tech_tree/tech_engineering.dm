@@ -207,7 +207,7 @@ Add ore smelting machines here. They should be connected to consoles so I decide
 	required_technologies = list("basic_mining", "recharger")
 	cost = 2000
 
-	unlocks_designs = list("mining drill head", "mining drill brace", "linecutter", "contactbeam", "forcegun")
+	unlocks_designs = list("mining drill head", "mining drill brace", "linecutter", "contactbeam", "forcegun", "weighted_blades")
 
 /datum/technology/engineering/mining_ammo
 	name = "Mining Ammuntion"

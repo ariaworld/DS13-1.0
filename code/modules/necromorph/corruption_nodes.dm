@@ -2,6 +2,7 @@
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER	//Make sure nodes draw ontop of corruption
 	icon = 'icons/effects/corruption.dmi'
+	hitsound = "fracture" // Fleshy-crunchy noise when hitting corruption structures
 	var/marker_spawnable = TRUE	//When true, this automatically shows in the necroshop
 	biomass = 10
 	var/biomass_reclamation = 0.9

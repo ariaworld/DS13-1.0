@@ -53,6 +53,7 @@
 	qdel(C)
 	if(! (flags & CRAFT_ON_FLOOR) && (slot in list(slot_r_hand, slot_l_hand)))
 		user.put_in_hands(M)
+	return M
 
 
 /datum/craft_recipe/proc/get_description()

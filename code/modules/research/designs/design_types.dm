@@ -415,6 +415,14 @@ Botany:
 	materials = list(MATERIAL_STEEL = 3000, MATERIAL_GLASS = 1000, MATERIAL_DIAMOND = 3750)
 	build_path = /obj/item/tool/pickaxe/xeno/excavationdrill/adv
 
+/datum/design/item/mining/weighted_blades
+	name = "Weighted Blades"
+	desc = "A set of heavy and reinforced blades made to be attached in front of a plasma cutter."
+	id = "weighted_blades"
+	materials = list(MATERIAL_STEEL = 1500, MATERIAL_PLASTEEL = 750)
+	build_path = /obj/item/weighted_blades
+	price = 2500
+
 /datum/design/item/mining/depth_scanner
 	name = "depth scanner"
 	desc = "Used to check spatial depth and density of rock outcroppings."

@@ -3,7 +3,7 @@
 	desc = "A medium-power mining tool capable of splitting dense material with only a few directed blasts. Unsurprisingly, it is also an extremely deadly tool and should be handled with the utmost care. "
 	charge_meter = 0
 	icon = 'icons/obj/tools.dmi'
-	icon_state = "plasmacutter"
+	icon_state = "miningcutter"
 	item_state = "plasmacutter"
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
 	w_class = ITEM_SIZE_SMALL
@@ -22,6 +22,19 @@
 	removeable_cell = TRUE
 
 	safety_state = 1	//This thing is too dangerous to lack safety
+	var/bladed = FALSE
+	var/icon_base = "miningcutter"
+
+// Make in hand sprite dark for mining cutter
+/obj/item/gun/energy/cutter/get_mob_overlay(mob/user_mob, slot)
+	. = ..()
+	if(!bladed && type == /obj/item/gun/energy/cutter && (slot == slot_l_hand_str || slot == slot_r_hand_str))
+		var/mutable_appearance/item_appearance = .
+		item_appearance.filters = list(filter(type="color", space=FILTER_COLOR_HSV, color=list(
+			1,0,0,
+			0,0.35,0,
+			0,0,0.35,
+			0,0,0)))
 
 /obj/item/gun/energy/cutter/empty
 	cell_type = null
@@ -30,11 +43,31 @@
 	name = "211-V Plasma Cutter"
 	desc = "A high power plasma cutter designed to cut through tungsten reinforced bulkheads during engineering works. Also a rather hazardous improvised weapon, capable of severing limbs in a few shots."
 	projectile_type = /obj/item/projectile/beam/cutter/plasma
+	icon_base = "plasmacutter"
+
+/obj/item/gun/energy/cutter/update_icon()
+	icon_state = bladed ? "[icon_base]_blades" : icon_base
+	item_state = bladed ? "plasmacutter_blades" : "plasmacutter"
+
+/obj/item/gun/energy/cutter/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/weighted_blades) && !bladed)
+		user.visible_message(SPAN_NOTICE("[user] starts applying the [W] to [src]"), SPAN_NOTICE("You start applying the [W] to [src]."))
+		if(!use_tool(user = user, target = W, base_time = WORKTIME_NORMAL, required_quality = null, fail_chance = FAILCHANCE_EASY, required_stat = "construction", forced_sound = WORKSOUND_WRENCHING))
+			return FALSE
+		to_chat(user, SPAN_NOTICE("You have successfully installed [W] in [src]."))
+		src.force = 12
+		bladed = TRUE
+		desc += "\nIt seems to be fitted with a set of weighted blades."
+		update_icon()
+		qdel(W)
+		return TRUE
+	return ..()
 
 /obj/item/gun/energy/cutter/rending
 	name = "211-S Plasma Cutter"
 	desc = "An illegally modified plasma cutter designed to cut through bone. For some reason, flesh seems to absorb part of the impact."
 	color = "#e97f83"
+	icon_base = "plasmacutter"
 	projectile_type = /obj/item/projectile/beam/cutter/rending
 	charge_cost = 200
 
@@ -108,3 +141,14 @@
 /obj/item/cell/plasmacutter/update_icon()
 	return
 
+/*--------------------------
+	Attachments
+---------------------------*/
+
+/obj/item/weighted_blades
+	name = "weighted blades"
+	desc = "A set of heavy and reinforced blades made to be attached in front of a plasma cutter, often used to avoid accidental damage to the tool. While not actually sharp, being struck by these would be painful."
+	icon = 'icons/obj/weapons/weapon_modifications.dmi'
+	icon_state = "weighted_blades"
+	w_class = ITEM_SIZE_SMALL
+	force = WEAPON_FORCE_WEAK

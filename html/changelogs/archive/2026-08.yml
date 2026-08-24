@@ -55,3 +55,8 @@
 2026-08-23:
   Aria:
   - rscadd: Growth corruption nodes will now be hidden for 20 minutes after the marker activates. (Excluding Propagators)
+2026-08-24:
+  Aria:
+  - rscadd: Hitting necromorph corruption will now cause a fleshy/crunchy noise.
+  - rscadd: Added Weighted Blades attachment for mining cutters/plasma cutters.
+  - imageadd: Added new Mining Cutter and Bladed Mining/Plasma Cutter sprites.
