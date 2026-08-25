@@ -417,7 +417,6 @@ Botany:
 
 /datum/design/item/mining/weighted_blades
 	name = "Weighted Blades"
-	desc = "A set of heavy and reinforced blades made to be attached in front of a plasma cutter."
 	id = "weighted_blades"
 	materials = list(MATERIAL_STEEL = 1500, MATERIAL_PLASTEEL = 750)
 	build_path = /obj/item/weighted_blades
