@@ -119,7 +119,7 @@ var/global/list/sparring_attack_cache = list()
 
 		var/stun_chance = rand(0, 100)
 		if (strike.blocker)
-			stun_chance *= 0.5	//Attacks which are blocked are much less likely to have special effects
+			stun_chance *= 2	//Attacks which are blocked are much less likely to have special effects
 
 		if(attack_damage >= 5 && strike.blocked < 100 && !(H == user) && stun_chance <= attack_damage * 5) // 25% standard chance
 			switch(strike.target_zone) // strong punches can have effects depending on where they hit
