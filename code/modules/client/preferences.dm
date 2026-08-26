@@ -50,10 +50,7 @@
 		client = C
 		client_ckey = C.ckey
 		SScharacter_setup.preferences_datums[C.ckey] = src
-		if(SScharacter_setup.initialized)
-			setup()
-		else
-			SScharacter_setup.prefs_awaiting_setup += src
+		setup()
 	..()
 
 /datum/preferences/proc/setup()
@@ -68,7 +65,15 @@
 	if(client && !IsGuestKey(client.key))
 		load_path(client.ckey)
 		load_preferences()
-		load_and_update_character()
+		if(!SScharacter_setup.initialized)
+			SScharacter_setup.queue_load_character(src)
+			return
+		lateload_character()
+		return
+	sanitize_preferences()
+
+/datum/preferences/proc/lateload_character()
+	load_and_update_character()
 	sanitize_preferences()
 
 /datum/preferences/proc/reset_gear_list()
@@ -88,6 +93,8 @@
 		return
 	if(!user || !user.client)
 		return
+	if(!player_setup)
+		setup()
 
 	var/dat = "<html><body><center>"
 
@@ -156,6 +163,8 @@
 	return 1
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, is_preview_copy = FALSE)
+	if(!player_setup)
+		setup()
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
 	character.set_species(species)
