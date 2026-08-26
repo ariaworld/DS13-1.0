@@ -60,3 +60,6 @@
   - rscadd: Hitting necromorph corruption will now cause a fleshy/crunchy noise.
   - rscadd: Added Weighted Blades attachment for mining cutters/plasma cutters.
   - imageadd: Added new Mining Cutter and Bladed Mining/Plasma Cutter sprites.
+2026-08-26:
+  Aria:
+  - bugfix: Blocking an attack will no longer double the chance of getting a critical hit. (It now halves it as intended originally)
