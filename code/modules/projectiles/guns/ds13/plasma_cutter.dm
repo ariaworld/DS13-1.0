@@ -24,7 +24,7 @@
 	safety_state = 1	//This thing is too dangerous to lack safety
 	var/bladed = FALSE
 	var/icon_base = "miningcutter"
-	var/bladed_icon = "miningcutter_blades"
+	var/bladed_icon = "plasmacutter_blades"
 
 /obj/item/gun/energy/cutter/empty
 	cell_type = null
