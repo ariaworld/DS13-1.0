@@ -9,7 +9,7 @@
 
 /obj/item/gun/energy/forcegun
 	name = "Handheld Graviton Accelerator"
-	desc = "A basic energy-based gun."
+	desc = "A kinetic booster device, often used for quickly clearing loose debris or breaking up larger ore deposits. However, due to the graviton acceleration functions, overclocking can cause a dangerous gravitational reaction, causing debris and nearby operators to be pulled in."
 	icon = 'icons/obj/weapons/ds13guns48x32.dmi'
 	icon_state = "forcegun"
 	item_state = "forcegun"

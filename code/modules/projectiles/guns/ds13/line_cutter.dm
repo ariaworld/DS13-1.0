@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/linecutter
 	name = "IM-822 Handheld Ore Cutter Line Gun"
-	desc = "A basic energy-based gun."
+	desc = "Though similar to the Plasma Cutter, the Line Gun is a larger model suitable for use against harder minerals. It can also deploy laser-targeting survey charges. Operators should notify those around them to avoid charges being set off prematurely."
 	icon = 'icons/obj/weapons/ds13guns48x32.dmi'
 	icon_state = "linecutter"
 	item_state = "linecutter"

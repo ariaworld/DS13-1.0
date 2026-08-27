@@ -63,3 +63,6 @@
 2026-08-26:
   Aria:
   - bugfix: Blocking an attack will no longer double the chance of getting a critical hit. (It now halves it as intended originally)
+2026-08-28:
+  Aria:
+  - rscadd: Added descriptions to Ore Cutter Line Gun and Graviton Accellerator.
