@@ -24,6 +24,7 @@
 	safety_state = 1	//This thing is too dangerous to lack safety
 	var/bladed = FALSE
 	var/icon_base = "miningcutter"
+	var/bladed_icon = "miningcutter_blades"
 
 /obj/item/gun/energy/cutter/empty
 	cell_type = null
@@ -33,10 +34,11 @@
 	desc = "A high power plasma cutter designed to cut through tungsten reinforced bulkheads during engineering works. Also a rather hazardous improvised weapon, capable of severing limbs in a few shots."
 	projectile_type = /obj/item/projectile/beam/cutter/plasma
 	icon_base = "plasmacutter"
+	bladed_icon = "plasmacutter_blades"
 
 /obj/item/gun/energy/cutter/update_icon()
-	icon_state = bladed ? "[icon_base]_blades" : icon_base
-	item_state = bladed ? "[icon_base]_blades" : icon_base
+	icon_state = bladed ? bladed_icon : icon_base
+	item_state = bladed ? bladed_icon : icon_base
 
 /obj/item/gun/energy/cutter/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weighted_blades) && !bladed)
@@ -57,6 +59,7 @@
 	desc = "An illegally modified plasma cutter designed to cut through bone. For some reason, flesh seems to absorb part of the impact."
 	color = "#e97f83"
 	icon_base = "plasmacutter"
+	bladed_icon = "plasmacutter_blades"
 	projectile_type = /obj/item/projectile/beam/cutter/rending
 	charge_cost = 200
 
