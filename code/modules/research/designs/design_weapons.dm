@@ -128,8 +128,8 @@ S	fuel tank (hydrazine)
 /datum/design/item/weapon/ripper
 	name = "RC-DS Remote Control Disc Ripper"
 	id = "ripper"
-	build_path = /obj/item/gun/projectile/ripper
-	materials = list(MATERIAL_STEEL = 2000, MATERIAL_GLASS = 500, MATERIAL_GOLD = 2000, MATERIAL_SILVER = 2000)
+	build_path = /obj/item/gun/projectile/ripper/loaded
+	materials = list(MATERIAL_STEEL = 7000, MATERIAL_GLASS = 500, MATERIAL_GOLD = 2000, MATERIAL_SILVER = 2000)
 	price = 8500
 
 /datum/design/item/weapon/linecutter
