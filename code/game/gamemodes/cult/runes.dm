@@ -12,7 +12,7 @@
 	var/strokes = 2 // IF YOU EVER SET THIS TO MORE THAN TEN, EVERYTHING WILL BREAK
 	var/cultname = ""
 
-/obj/effect/rune/New(var/loc, var/blcolor = "#c80000", var/nblood = "blood")
+/obj/effect/rune/New(var/loc, var/blcolor = COLOR_BLOOD_HUMAN, var/nblood = "blood")
 	..()
 	bcolor = blcolor
 	blood = nblood
