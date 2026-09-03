@@ -38,6 +38,8 @@
 		if (!user)
 			user = source.loc
 		source.instant_unequip()
+		//After dropping source, store it in dump
+		dump.store_item(source)
 
 
 	//Primary pool to hold modules
@@ -94,7 +96,10 @@
 				failed += result
 
 			//Otherwise, result is true, it went in without problems
-
+	//Make sure if we don't have a source rig where they came from, instead of dropping modules on floor due to attempt_install, they're put in dump
+	else
+		for(var/obj/item/rig_module/RM in secondary)
+			failed += RM
 	//Cleanup time,
 
 	//any failed modules are stored in the dump site

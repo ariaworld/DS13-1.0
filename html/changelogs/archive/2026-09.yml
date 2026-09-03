@@ -4,3 +4,4 @@
 2026-09-03:
   Aria:
   - bugfix: Buy and Transfer option will now work for RIG modules.
+  - code_imp: RIGs and RIG modules that are replaced via Buy and Transfer option will now be put in the Store Kiosk's deposit box.
