@@ -132,6 +132,12 @@
 	if(R) //If they bought a module, R will be null and it'll just attempt to install all the modules from the deposit box
 		start_transfer(R)
 		things -= R
+	else
+		for(var/i in things)
+			store_or_drop(i)
+		if(occupant.wearing_rig)
+			start_transfer(null)
+		return
 	for(var/i in things)
 		store_or_drop(i)
 

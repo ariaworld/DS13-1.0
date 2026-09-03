@@ -220,7 +220,7 @@
 
 	var/list/replaced
 	if (!RM.can_install(src, null))
-		RM.resolve_installation_upgrade(src, FALSE, force)
+		replaced = RM.resolve_installation_upgrade(src, FALSE, force)
 
 		//If force is enabled, we check again with conflict detection turned off
 		if (!RM.can_install(src, null, !force))

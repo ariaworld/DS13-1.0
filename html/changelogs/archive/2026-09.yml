@@ -1,3 +1,6 @@
 2026-09-01:
   Aria:
   - tweak: Changed necromorph runes color to be darker, like human blood.
+2026-09-03:
+  Aria:
+  - bugfix: Buy and Transfer option will now work for RIG modules.
