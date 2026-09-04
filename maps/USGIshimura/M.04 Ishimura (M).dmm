@@ -11589,8 +11589,8 @@
 /obj/machinery/light,
 /obj/structure/table/standard,
 /obj/effect/floor_decal/corner/grey/mono,
-/obj/item/auto_cpr,
-/obj/item/auto_cpr,
+/obj/item/defibrillator/compact/loaded,
+/obj/item/defibrillator/compact/loaded,
 /obj/machinery/recharger,
 /turf/simulated/floor/tiled/white/monotile,
 /area/ishimura/upper/medical)
