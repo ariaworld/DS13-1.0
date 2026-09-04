@@ -459,12 +459,12 @@ Botany:
 	build_path = /obj/item/adv_health_analyzer
 	price = 1500
 
-/datum/design/item/medical/defibrillators_back
-	name = "Defibrillators"
-	desc = "Defibrillators to revive people."
-	id = "defibrillators_back"
+/datum/design/item/medical/auto_cpr
+	name = "Auto-Compressor"
+	desc = "An automatic cardiac compressor to maintain circulation in arrested patients."
+	id = "auto_cpr"
 	materials = list(MATERIAL_STEEL = 2000, MATERIAL_GLASS = 50)
-	build_path = /obj/item/defibrillator
+	build_path = /obj/item/auto_cpr
 
 /datum/design/item/medical/defibrillators_belt
 	name = "Compact Defibrillators"

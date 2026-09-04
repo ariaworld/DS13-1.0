@@ -23,7 +23,7 @@
 
 /obj/structure/closet/crate/med_crate/burn/WillContain()
 	return list(
-		/obj/item/defibrillator/loaded,
+		/obj/item/defibrillator/compact/loaded,
 		/obj/item/stack/medical/advanced/ointment = 10,
 		/obj/item/storage/pill_bottle/kelotane,
 		/obj/item/storage/pill_bottle/tramadol = 2,

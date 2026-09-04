@@ -27556,8 +27556,8 @@
 /obj/effect/floor_decal/dank/border,
 /obj/structure/table/standard,
 /obj/machinery/recharger,
-/obj/item/defibrillator/loaded,
-/obj/item/defibrillator/loaded,
+/obj/item/auto_cpr,
+/obj/item/auto_cpr,
 /obj/item/computer_hardware/hard_drive/portable/autorun/manual/surgery{
 	pixel_y = 10
 	},

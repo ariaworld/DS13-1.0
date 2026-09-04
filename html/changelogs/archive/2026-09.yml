@@ -5,3 +5,8 @@
   Aria:
   - bugfix: Buy and Transfer option will now work for RIG modules.
   - code_imp: RIGs and RIG modules that are replaced via Buy and Transfer option will now be put in the Store Kiosk's deposit box.
+2026-09-04:
+  Aria:
+  - rscadd: CPR changes. It now will help with blood circulation even if it fails to restart the heart, so there's a reason to do it (especially on higher levels). Fake circulation lasts 20 seconds and is better with Anatomy/Medicine skill (highest).
+  - rscadd: Adds auto-CPR device. Goes into victim's suit slot. It won't do mouth-to-mouth or resuscitate them, but it will help with circulation. Needs Basic Anatomy and Medicine skills to use, or risk rib fracture. Basically continuously applies circulation part of CPR. Mapped bunch of them in medbay
+  - tweak: Replaced back-slot defibrillator in vending machines/tech nodes with auto-CPR device.
