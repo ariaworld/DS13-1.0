@@ -435,7 +435,7 @@ var/global/list/sparring_attack_cache = list()
 			shake_camera(user, 3, 1)
 			var/turf/T = get_turf(target)
 			T.shake_animation(30)
-			target.apply_damage(4, def_zone=strike.target_zone) //Stomping already deals extra damage, but lets make necros get more
+			target.apply_damage(WEAPON_FORCE_NORMAL, def_zone=strike.target_zone) //Stomping already deals extra damage, but lets make necros get more
 
 /datum/unarmed_attack/light_strike
 	deal_halloss = 3
