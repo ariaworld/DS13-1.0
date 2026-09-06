@@ -379,6 +379,7 @@
 			P.info += "[generate_printing_text()]"
 			P.info += "<br><br><b>Notes:</b><br>"
 			P.name = "Body Scan - [name] ([station_time_timestamp()])"
+			P.update_icon()
 		else
 			return FALSE
 
