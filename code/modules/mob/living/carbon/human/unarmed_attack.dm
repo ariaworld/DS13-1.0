@@ -424,6 +424,18 @@ var/global/list/sparring_attack_cache = list()
 	var/obj/item/clothing/shoes = user.shoes
 	return .=..() + (shoes ? shoes.force : 0)
 
+/datum/unarmed_attack/stomp/apply_effects(var/datum/strike/strike)
+	. = ..()
+	if(ishuman(strike.user) && istype(strike.target, /mob/living/carbon/human/necromorph))
+		var/mob/living/target = strike.target
+		var/mob/living/carbon/human/user = strike.user
+		if(user.shoes.force >= 3) //At this time, this is deactivated magboots
+			target.shake_animation(30)
+			shake_camera(target, 6, 1.5)
+			shake_camera(user, 3, 1)
+			var/turf/T = get_turf(target)
+			T.shake_animation(30)
+			target.apply_damage(4, def_zone=strike.target_zone) //Stomping already deals extra damage, but lets make necros get more
 
 /datum/unarmed_attack/light_strike
 	deal_halloss = 3
