@@ -73,7 +73,7 @@
 
 	inherent_verbs = list(/atom/movable/proc/slasher_charge, /mob/living/proc/slasher_dodge, /mob/living/proc/slasher_fend, /mob/proc/shout)
 	modifier_verbs = list(KEY_CTRLALT = list(/atom/movable/proc/slasher_charge),
-	KEY_ALT = list(/mob/living/proc/slasher_dodge),
+	KEY_ALT = list(/mob/living/proc/slasher_fend),
 	KEY_MIDDLE = list(/mob/living/proc/slasher_dodge))
 
 
@@ -165,9 +165,10 @@
 
 	limb_health_factor = 1.5
 
-	inherent_verbs = list(/atom/movable/proc/slasher_charge_enhanced, /mob/living/proc/slasher_dodge_enhanced, /mob/proc/shout, /mob/proc/shout_long)
+	inherent_verbs = list(/atom/movable/proc/slasher_charge_enhanced, /mob/living/proc/slasher_dodge_enhanced, /mob/living/proc/slasher_fend, /mob/proc/shout, /mob/proc/shout_long)
 	modifier_verbs = list(KEY_CTRLALT = list(/atom/movable/proc/slasher_charge_enhanced),
-	KEY_ALT = list(/mob/living/proc/slasher_dodge_enhanced))
+	KEY_ALT = list(/mob/living/proc/slasher_fend),
+	KEY_MIDDLE = list(/mob/living/proc/slasher_dodge_enhanced))
 
 
 	override_limb_types = list(
