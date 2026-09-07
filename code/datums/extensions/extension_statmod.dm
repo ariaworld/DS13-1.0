@@ -58,7 +58,7 @@ STATMOD_HEALTH_MULTIPLICATIVE	=	list(/datum/proc/update_max_health)
 	for (var/modtype in statmods)
 		var/list/data = GLOB.statmods[modtype]
 		var/update_proc = data[1]
-		call(M, update_proc)()
+		call(M, procpath_to_name(update_proc))()
 
 /datum/extension/proc/register_statmod(var/modtype, var/update = TRUE)
 	//Currently only supported for mobs
@@ -78,7 +78,7 @@ STATMOD_HEALTH_MULTIPLICATIVE	=	list(/datum/proc/update_max_health)
 	if (update)
 		var/list/data = GLOB.statmods[modtype]
 		var/update_proc = data[1]
-		call(M, update_proc)()//And call it
+		call(M, procpath_to_name(update_proc))()//And call it
 
 /datum/extension/proc/unregister_statmod(var/modtype)
 	//Currently only supported for mobs
@@ -96,7 +96,7 @@ STATMOD_HEALTH_MULTIPLICATIVE	=	list(/datum/proc/update_max_health)
 	//Now lets make them update
 	var/list/data = GLOB.statmods[modtype]
 	var/update_proc = data[1]
-	call(M, update_proc)()//And call it
+	call(M, procpath_to_name(update_proc))()//And call it
 
 
 /datum/extension/proc/get_statmod(var/modtype)
