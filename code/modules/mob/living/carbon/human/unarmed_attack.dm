@@ -429,13 +429,16 @@ var/global/list/sparring_attack_cache = list()
 	if(ishuman(strike.user) && istype(strike.target, /mob/living/carbon/human/necromorph))
 		var/mob/living/target = strike.target
 		var/mob/living/carbon/human/user = strike.user
-		if(user.shoes.force >= 3) //At this time, this is deactivated magboots
-			target.shake_animation(30)
-			shake_camera(target, 6, 1.5)
-			shake_camera(user, 3, 1)
-			var/turf/T = get_turf(target)
-			T.shake_animation(30)
-			target.apply_damage(WEAPON_FORCE_NORMAL, def_zone=strike.target_zone) //Stomping already deals extra damage, but lets make necros get more
+		target.shake_animation(30)
+		shake_camera(target, 6, 1.5)
+		shake_camera(user, 3, 1)
+		var/turf/T = get_turf(target)
+		T.shake_animation(30)
+		var/bonus = WEAPON_FORCE_NORMAL
+		if(target.species && target.species.total_health > 0 && target.species.total_health < 1000)
+			bonus = max(WEAPON_FORCE_NORMAL, round(target.species.total_health * 0.05))
+		target.apply_damage(bonus, def_zone=strike.target_zone) //Stomping a necromorph deals bonus damage scaled to its size
+
 
 /datum/unarmed_attack/light_strike
 	deal_halloss = 3

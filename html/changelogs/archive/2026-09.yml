@@ -12,5 +12,5 @@
   - tweak: Replaced back-slot defibrillator in vending machines/tech nodes with auto-CPR device.
 2026-09-06:
   Aria:
-  - rscadd: Cool new effect and more damage for stomping on necromorphs with RIG boots.
+  - rscadd: New cool effect for stomping on Necromorphs, with damage that scales with their max health.
   - bugfix: Fixed Slasher necromorph keybinds.
