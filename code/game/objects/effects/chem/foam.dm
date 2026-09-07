@@ -135,6 +135,8 @@
 	..()
 	set_opacity(1)
 	update_nearby_tiles(1)
+	var/matrix/M = matrix()
+	transform = turn(M, pick(-90, 90, 180, 0))
 
 /obj/structure/foamedmetal/Destroy()
 	set_density(0)

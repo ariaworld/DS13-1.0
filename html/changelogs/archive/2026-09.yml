@@ -15,3 +15,6 @@
   - rscadd: New cool effect for stomping on Necromorphs, with damage that scales with their max health.
   - bugfix: Fixed Slasher necromorph keybinds.
   - bugfix: FIXED ALL NECROMORPH STAT-BUFFING ABILITIES (gallop, fend, taunt, etc.)
+2026-09-07:
+  Aria:
+  - rscadd: Metal foam now looks scary.
