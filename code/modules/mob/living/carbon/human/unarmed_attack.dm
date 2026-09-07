@@ -427,7 +427,7 @@ var/global/list/sparring_attack_cache = list()
 /datum/unarmed_attack/stomp/apply_effects(var/datum/strike/strike)
 	. = ..()
 	if(ishuman(strike.user) && istype(strike.target, /mob/living/carbon/human/necromorph))
-		var/mob/living/target = strike.target
+		var/mob/living/carbon/human/target = strike.target
 		var/mob/living/carbon/human/user = strike.user
 		target.shake_animation(30)
 		shake_camera(target, 6, 1.5)
