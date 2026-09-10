@@ -286,7 +286,7 @@
 	siemens_coefficient = 0.7
 	starting_accessories = list(/obj/item/clothing/accessory/armguards/ballistic, /obj/item/clothing/accessory/legguards/ballistic)
 
-/obj/item/clothing/suit/armor/bulletproof/vest //because apparently some map uses this somewhere and I'm too lazy to go looking for and replacing it.
+/obj/item/clothing/suit/armor/ballistic/vest //because apparently some map uses this somewhere and I'm too lazy to go looking for and replacing it.
 	starting_accessories = null
 
 /obj/item/clothing/suit/armor/laserproof

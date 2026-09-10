@@ -55,7 +55,7 @@
 /decl/hierarchy/supply_pack/security/armor_ballistic
 	name = "T1 Armor Kit - Ballistic"
 	contains = list(/obj/item/clothing/head/helmet/ballistic = 4,
-					/obj/item/clothing/suit/armor/bulletproof = 4)
+					/obj/item/clothing/suit/armor/ballistic = 4)
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure
 	containername = "\improper ballistic armor kit crate"
