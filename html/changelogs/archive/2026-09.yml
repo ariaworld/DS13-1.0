@@ -21,3 +21,5 @@
 2026-09-10:
   Aria:
   - bugfix: Fixed ballistic chest armor not existing.
+  - bugfix: Fixed cargo animal crates not spawning animals.
+  - tweak: Picked a different icon for animal crates.

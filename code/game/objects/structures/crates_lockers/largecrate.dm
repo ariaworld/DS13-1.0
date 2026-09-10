@@ -60,7 +60,8 @@
 
 
 /obj/structure/largecrate/animal
-	icon_state = "mulecrate"
+	icon_state = "lisacrate"
+	held_count = 1
 
 /obj/structure/largecrate/animal/mulebot
 	name = "Mulebot crate"

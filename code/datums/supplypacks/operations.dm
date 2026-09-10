@@ -1,12 +1,14 @@
 /decl/hierarchy/supply_pack/operations
 	name = "Operations"
 
+/*
 /decl/hierarchy/supply_pack/operations/mule
 	name = "MULEbot Crate"
 	contains = list()
 	cost = 20
 	containertype = /obj/structure/largecrate/animal/mulebot
 	containername = "Mulebot Crate"
+*/
 
 /decl/hierarchy/supply_pack/operations/cargotrain
 	name = "Cargo Train Tug"
