@@ -35,7 +35,7 @@
 	name = "NanoTrasen Commander"
 	mask = /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
 	uniform = /obj/item/clothing/under/rank/centcom_captain
-	suit = /obj/item/clothing/suit/armor/bulletproof
+	suit = /obj/item/clothing/suit/armor/ballistic
 	gloves = /obj/item/clothing/gloves/thick/swat
 	l_ear =  /obj/item/radio/headset/heads/captain
 	glasses = /obj/item/clothing/glasses/eyepatch
