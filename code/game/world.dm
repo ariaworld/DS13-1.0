@@ -627,11 +627,14 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	var/discord_url = CONFIG_GET(string/discord_url)
 	var/mapname = GLOB.using_map?.full_name
+	var/direct_ip = CONFIG_GET(string/hub_address)
 
 	var/new_status = ""
 	new_status += "<b><a href='[discord_url ? discord_url : "#"]'>[server_name] &#8212; [mapname]</a></b>"
 	new_status += "<br>Mode: <b>[SSticker.mode ? SSticker.mode.name : "Lobby"]</b>"
 	new_status += "<br>Round time: <b>[gameTimestamp("hh:mm")]</b>"
+	if(direct_ip)
+		new_status += "<br><b><a href='[direct_ip]'>PRESS HERE TO PLAY, JOIN BUTTON DOES NOT WORK!</a></b>"
 
 	// Finally set the new status
 	status = new_status
