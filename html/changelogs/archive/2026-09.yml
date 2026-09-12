@@ -27,3 +27,4 @@
   Aria:
   - bugfix: Fixed Bola crafting recipe.
   - bugfix: Fixed natural passive healing for having multiple minor wounds.
+  - code_imp: Growth tanks will no longer show biomass warning if organ has already formed and ready.

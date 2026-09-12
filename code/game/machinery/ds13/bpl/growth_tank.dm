@@ -64,24 +64,22 @@
 			var/remaining_time = total_time * (1 - growth_progress)
 			to_chat(user, "Estimated time remaining is [time2text(remaining_time, "mm:ss")]")
 
-
-		var/biomass_percent = get_stored_biomass() / max_biomass
-		if (biomass_percent <= 0.6)
-			if (biomass_percent > 0.3)
-				to_chat(user, SPAN_WARNING("The yellow warning light indicates biomass is below 60% and should be replenished."))
-			else if (biomass_percent > 0)
-				to_chat(user, SPAN_WARNING("The orange warning light indicates biomass is below 30% and must be replenished urgently."))
-			else
-				//The blinking red light appears when biomass has completely run out. At this point, the contained atom takes damage until it starves to death
-				to_chat(user, SPAN_DANGER("The red warning light indicates there is no biomass remaining, the organ inside is starving to death and will lose viability soon."))
-		else
-			//If biomass is fine, then lets show some other lights
-			if (istype(current_growth_atom, /obj/item/organ/forming))
+		if(istype(current_growth_atom, /obj/item/organ/forming))
+			var/biomass_percent = get_stored_biomass() / max_biomass
+			if (biomass_percent <= 0.6)
+				if (biomass_percent > 0.3)
+					to_chat(user, SPAN_WARNING("The yellow warning light indicates biomass is below 60% and should be replenished."))
+				else if (biomass_percent > 0)
+					to_chat(user, SPAN_WARNING("The orange warning light indicates biomass is below 30% and must be replenished urgently."))
+				else
+					//The blinking red light appears when biomass has completely run out. At this point, the contained atom takes damage until it starves to death
+					to_chat(user, SPAN_DANGER("The red warning light indicates there is no biomass remaining, the organ inside is starving to death and will lose viability soon."))
+			else	//If biomass is fine, then lets show some other lights
 				//If the current growth thing is not done growing, then lets display a non-attention-grabbing still green light
 				to_chat(user, "The green light indicates it is functioning normally, no action needed.")
-			else
-				//Its finished growing, lets have a flashy light to attract attention
-				to_chat(user, SPAN_NOTICE("The flashing green light indicates that growth is complete, the organ within is ready for harvesting or implantation"))
+		else
+			//Its finished growing, lets have a flashy light to attract attention
+			to_chat(user, SPAN_NOTICE("The flashing green light indicates that growth is complete, the organ within is ready for harvesting or implantation"))
 	else
 		to_chat(user, "The light is off, it is not currently operating.")
 
@@ -207,24 +205,23 @@
 		underlays += I
 
 
-		//First of all, biomass warning lights
-		if (biomass_percent <= 0.6)
-			if (biomass_percent > 0.3)
-				overlays += image(icon, src, "light_yellow")
-			else if (biomass_percent > 0)
-				overlays += image(icon, src, "light_orange")
-			else
-				//The blinking red light appears when biomass has completely run out. At this point, the contained atom takes damage until it starves to death
-				overlays += image(icon, src, "light_red")
-				playsound(src, 'sound/machines/tankdanger.ogg', VOLUME_MID)
-		else
-			//If biomass is fine, then lets show some other lights
-			if (istype(current_growth_atom, /obj/item/organ/forming))
+		if(istype(current_growth_atom, /obj/item/organ/forming))
+			//First of all, biomass warning lights
+			if (biomass_percent <= 0.6)
+				if (biomass_percent > 0.3)
+					overlays += image(icon, src, "light_yellow")
+				else if (biomass_percent > 0)
+					overlays += image(icon, src, "light_orange")
+				else
+					//The blinking red light appears when biomass has completely run out. At this point, the contained atom takes damage until it starves to death
+					overlays += image(icon, src, "light_red")
+					playsound(src, 'sound/machines/tankdanger.ogg', VOLUME_MID)
+			else	//If biomass is fine, then lets show some other lights
 				//If the current growth thing is not done growing, then lets display a non-attention-grabbing still green light
 				overlays += image(icon, src, "light_green")
-			else
-				//Its finished growing, lets have a flashy light to attract attention
-				overlays += image(icon, src, "light_green_flashing")
+		else
+			//Its finished growing, lets have a flashy light to attract attention
+			overlays += image(icon, src, "light_green_flashing")
 	else
 		//Nothing currently growing, the light turns off
 		overlays += image(icon, src, "light_off")
