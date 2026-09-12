@@ -23,3 +23,6 @@
   - bugfix: Fixed ballistic chest armor not existing.
   - bugfix: Fixed cargo animal crates not spawning animals.
   - tweak: Picked a different icon for animal crates.
+2026-09-12:
+  Aria:
+  - bugfix: Fixed Bola crafting recipe.

@@ -122,7 +122,7 @@
 
 /datum/craft_recipe/weapon/bola
 	name = "bola"
-	result = /obj/item/projectile/bullet/shotgun/bola
+	result = /obj/item/legcuffs/bola
 	steps = list(
 		list(CRAFT_OBJECT, /obj/item/handcuffs/cable, 60),
 		list(CRAFT_MATERIAL, MATERIAL_STEEL, 6),
