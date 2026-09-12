@@ -26,3 +26,4 @@
 2026-09-12:
   Aria:
   - bugfix: Fixed Bola crafting recipe.
+  - bugfix: Fixed natural passive healing for having multiple minor wounds.
