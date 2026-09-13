@@ -861,11 +861,6 @@
 			global_clickpoint.CopyTo(target)
 
 			update_origins()
-			var/vector2/itemloc = subject.get_global_pixel_loc() //Make it follow the item instead of where we aim
-			tether.set_ends(usercurrentloc, itemloc)
-
-			//The tether copies the values into itself, we can dispense with the originals
-			release_vector(itemloc)
 			at_rest = FALSE
 
 	else
