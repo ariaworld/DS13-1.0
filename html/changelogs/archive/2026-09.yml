@@ -28,3 +28,6 @@
   - bugfix: Fixed Bola crafting recipe.
   - bugfix: Fixed natural passive healing for having multiple minor wounds.
   - code_imp: Growth tanks will no longer show biomass warning if organ has already formed and ready.
+2026-09-13:
+  Aria:
+  - code_imp: Kinesis now follows the user while moving, and the blue tether is attached to the object instead of the mouse.
