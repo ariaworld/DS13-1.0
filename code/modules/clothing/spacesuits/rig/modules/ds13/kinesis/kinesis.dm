@@ -55,6 +55,8 @@
 	//The gravity tether, a beam of lightning which connects gun and blade
 	var/obj/effect/projectile/tether/tether = null
 
+	var/vector2/usercurrentloc = null
+
 
 
 //Data:
@@ -361,12 +363,20 @@
 	if (!target)
 		target = subject.get_global_pixel_loc()
 
+	//Establish a baseline user position so the first movement after gripping
+	//has something to diff against in update_origins()
+	if (usercurrentloc)
+		release_vector(usercurrentloc)
+	if (holder && holder.wearer)
+		usercurrentloc = holder.wearer.get_global_pixel_loc()
 
 	release_type = RELEASE_DROP
 
 	//We need to register some listeners
 	RegisterSignal(subject, COMSIG_PARENT_QDELETING, .proc/release_grip)
 	RegisterSignal(subject, COMSIG_MOVABLE_BUMP, .proc/subject_collision)
+	if(holder.wearer)
+		RegisterSignal(holder.wearer, COMSIG_MOVABLE_MOVED, .proc/update_origins)
 
 	START_PROCESSING(SSfastprocess, src)
 
@@ -426,6 +436,10 @@
 	bumped_atoms = list()
 	if (CHK.firing)
 		CHK.stop_firing()
+	if(usercurrentloc)
+		release_vector(usercurrentloc)
+	if(holder.wearer)
+		UnregisterSignal(holder.wearer, COMSIG_MOVABLE_MOVED)
 
 
 //The default entrypoint, a wrapper for release
@@ -742,6 +756,14 @@
 
 	release_vector(position_delta)
 
+	// Keep tether visuals synchronized every tick
+	if (tether && holder && holder.wearer)
+		var/vector2/userloc = holder.wearer.get_global_pixel_loc()
+		var/vector2/itemloc = subject.get_global_pixel_loc()
+		tether.set_ends(userloc, itemloc)
+		release_vector(userloc)
+		release_vector(itemloc)
+
 
 //We collide with a thing
 /obj/item/rig_module/kinesis/proc/subject_collision(var/atom/movable/mover, var/atom/obstacle)
@@ -806,6 +828,27 @@
 	global clickpoint: Where the user clicked in world pixel coords
 */
 
+//Fires whenever the wearer moves (COMSIG_MOVABLE_MOVED). Keeps the drag target
+//glued to the player by shifting it the same amount the player just moved, and
+//refreshes usercurrentloc as the new baseline for next time.
+/obj/item/rig_module/kinesis/proc/update_origins()
+	SIGNAL_HANDLER
+	if(!subject || !holder || !holder.wearer)
+		return
+
+	var/vector2/new_loc = holder.wearer.get_global_pixel_loc()
+
+	if(usercurrentloc && target)
+		var/vector2/delta = new_loc - usercurrentloc
+		target.SelfAdd(delta)
+		release_vector(delta)
+
+	if(usercurrentloc)
+		release_vector(usercurrentloc)
+	usercurrentloc = new_loc
+
+	at_rest = FALSE
+
 
 /obj/item/rig_module/kinesis/proc/update(var/atom/A, mob/living/user, adjacent, params, var/vector2/global_clickpoint)
 
@@ -817,15 +860,12 @@
 			//It has! Set the new target, and if we were at rest, we start moving again
 			global_clickpoint.CopyTo(target)
 
-			var/vector2/userloc = holder.wearer.get_global_pixel_loc()
-			var/vector2/tether_end = global_clickpoint - userloc	//Cant use selfsubtract here, need to make a new vector
-			tether_end.SelfClampMag(1, drop_range*WORLD_ICON_SIZE)
-			tether_end.SelfAdd(userloc)
-			tether.set_ends(userloc, tether_end)
+			update_origins()
+			var/vector2/itemloc = subject.get_global_pixel_loc() //Make it follow the item instead of where we aim
+			tether.set_ends(usercurrentloc, itemloc)
 
 			//The tether copies the values into itself, we can dispense with the originals
-			release_vector(userloc)
-			release_vector(tether_end)
+			release_vector(itemloc)
 			at_rest = FALSE
 
 	else
