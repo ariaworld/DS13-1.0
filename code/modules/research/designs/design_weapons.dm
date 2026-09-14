@@ -151,7 +151,7 @@ S	fuel tank (hydrazine)
 	id = "flamethrower"
 	build_path = /obj/item/gun/spray/hydrazine_torch
 	materials = list(MATERIAL_STEEL = 2500, MATERIAL_GLASS = 100, MATERIAL_GOLD = 4000, MATERIAL_SILVER = 4000)
-	price = 13000
+	price = 10000 //Due to spawning without a fuel tank
 
 /datum/design/item/weapon/seeker
 	name = "Seeker Rifle"

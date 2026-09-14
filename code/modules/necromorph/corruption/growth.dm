@@ -75,7 +75,7 @@ GLOBAL_LIST_EMPTY(growth_corruption_nodes)
 	name = "Bulging Growth"
 
 	icon_state = "enhanced"
-	max_health = 550 // 8/2/2023
+	max_health = 180
 	range = 5
 	speed = 3
 	limit = 36
@@ -107,9 +107,9 @@ GLOBAL_LIST_EMPTY(growth_corruption_nodes)
 /obj/structure/corruption_node/growth/root
 	name = "root"
 	desc = "The root of all evil"
-	max_health = 210 // 8/2/2023
+	max_health = 90
 	resistance = 6
-	icon_state = "minigrowth"
+	icon_state = "root"
 	density = FALSE
 	marker_spawnable = FALSE
 
