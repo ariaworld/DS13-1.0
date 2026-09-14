@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(growth_corruption_nodes)
 	id = "branch_enhanced"
 	desc = "Can be used to quickly reinforce an area with a strong growth, on a long cooldown."
 	energy_cost = 60
-	cooldown = 10 MINUTES
+	cooldown = 5 MINUTES
 	placement_atom = /obj/structure/corruption_node/growth/branch/enhanced
 
 
