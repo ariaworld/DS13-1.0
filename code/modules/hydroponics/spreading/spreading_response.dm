@@ -94,7 +94,8 @@
 	var/damage = get_fire_damage(exposed_temperature, CORRUPTION_FIRE_DAMAGE_FACTOR*multiplier)
 
 	var/datum/extension/scorched_earth/SE = get_extension(loc, /datum/extension/scorched_earth)
-	if (!SE)
+	//No scorching tiles which contain nodes
+	if (!SE && !locate(/obj/structure/corruption_node) in loc)
 		set_extension(loc, /datum/extension/scorched_earth)
 
 	if (damage > 0)

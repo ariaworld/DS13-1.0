@@ -8,12 +8,7 @@
 
 
 /datum/extension/scorched_earth/New(var/turf/simulated/floor/earth)
-
-	//No scorching tiles which contain nodes
-	if (locate(/obj/structure/corruption_node) in earth)
-		qdel(src)
-
-	.=..()
+	. = ..()
 	src.earth = earth
 	src.scorched_until = scorched_until
 	addtimer(CALLBACK(src, /datum/extension/proc/remove_self), wait = CORRUPTION_SCORCH_DURATION)
