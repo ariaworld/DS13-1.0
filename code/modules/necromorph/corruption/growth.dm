@@ -67,19 +67,24 @@ GLOBAL_LIST_EMPTY(growth_corruption_nodes)
 	randpixel = 4
 	initially_hidden = TRUE
 
+/obj/structure/corruption_node/growth/branch/get_blurb()
+	. = "This node acts as a smaller source for corruption spread, allowing it to extend out up to [range] tiles in all directions from the node. It must be placed on existing corruption from another propagator node, or from the marker."
+
+
 /obj/structure/corruption_node/growth/branch/enhanced
 	name = "Bulging Growth"
 
 	icon_state = "enhanced"
-	max_health = 180
+	max_health = 225
 	range = 5
 	speed = 3
 	limit = 36
 	initially_hidden = TRUE
 
-/obj/structure/corruption_node/growth/branch/get_blurb()
-	. = "This node acts as a smaller source for corruption spread, allowing it to extend out up to [range] tiles in all directions from the node. It must be placed on existing corruption from another propagator node, or from the marker."
-
+/obj/structure/corruption_node/growth/branch/enhanced/get_blurb()
+	. = "This node acts as a tough and resistant source for corruption spread, it has a radius of [range] tiles, and grows [speed] times as fast as normal.<br>\
+	However, it has a limit of [limit] on the number of corruption tiles it can support, which is far less than other nodes would normally get. <br>\
+	<br>\
 
 /datum/signal_ability/placement/corruption/branch
 	name = "Branch"
@@ -95,6 +100,8 @@ GLOBAL_LIST_EMPTY(growth_corruption_nodes)
 	energy_cost = 60
 	cooldown = 5 MINUTES
 	placement_atom = /obj/structure/corruption_node/growth/branch/enhanced
+
+
 
 
 /*

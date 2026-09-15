@@ -34,6 +34,6 @@
 2026-09-14:
   Aria:
   - balance: "Changed Root health: 210 -> 90."
-  - balance: "Changed Enhanced Branch health: 550 -> 180."
+  - balance: "Changed Enhanced Branch health: 550 -> 225."
   - balance: "Changed Enhanced Branch cooldown: 10 Minutes -> 5 Minutes."
   - balance: "Changed PFM-100 Industrial Torch store price: 13000 -> 10000. (Due to spawning with an empty fuel tank)"
