@@ -105,7 +105,7 @@ GLOBAL_LIST_EMPTY(growth_corruption_nodes)
 	desc = "The root of all evil"
 	max_health = 90
 	resistance = 6
-	icon_state = "root"
+	icon_state = "minigrowth"
 	density = FALSE
 	marker_spawnable = FALSE
 
