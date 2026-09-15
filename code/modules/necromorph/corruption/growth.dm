@@ -22,11 +22,6 @@ GLOBAL_LIST_EMPTY(growth_corruption_nodes)
 	if(GM && GM.nodes_hidden)
 		src.invisibility = INVISIBILITY_MARKER
 
-/obj/structure/corruption_node/growth/Destroy()
-	GLOB.growth_corruption_nodes -= src
-	return ..()
-
-
 /obj/structure/corruption_node/growth/debug
 	name = "debug propagator"
 	desc = "you shouldn't see this"
@@ -50,6 +45,7 @@ GLOBAL_LIST_EMPTY(growth_corruption_nodes)
 	. = "This node acts as a heart for corruption spread, allowing it to extend out up to [range] tiles in all directions from the node. It must be placed on existing corruption from another propagator node, or from the marker."
 
 /obj/structure/corruption_node/growth/Destroy()
+	GLOB.growth_corruption_nodes -= src
 	remove_extension(src, /datum/extension/corruption_source)
 	.=..()
 
