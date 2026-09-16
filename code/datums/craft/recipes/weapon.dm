@@ -220,12 +220,16 @@
 
 /datum/craft_recipe/weapon/rendingcutter/spawn_result(obj/item/craft/C, mob/living/user)
 	var/was_bladed = FALSE
+	var/was_efficiency = FALSE
 	for(var/obj/item/gun/energy/cutter/old_cutter in C)
 		was_bladed = old_cutter.bladed
+		was_efficiency = old_cutter.efficiency_upgraded
 		break
 	. = ..()
 	if(was_bladed)
 		carry_over_cutter_blades(.)
+	if(was_efficiency)
+		carry_over_efficiency(.)
 
 /datum/craft_recipe/proc/carry_over_cutter_blades(obj/item/gun/energy/cutter/new_cutter)
 	new_cutter.bladed = TRUE
