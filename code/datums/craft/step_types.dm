@@ -14,7 +14,11 @@
 
 /datum/craft_step/object/load_params(var/list/params)
 	//The second var either contains a list of types or a single type
-	valid_types = list(params[2]) //If its a type, add it to our list
+	var/input = params[2] //If its a type, add it to our list
+	if (islist(input))
+		valid_types = input
+	else
+		valid_types = list(input)
 
 	//Todo: Show icons for everything in valid types list, rather than just the first
 	icon_type = valid_types[1]

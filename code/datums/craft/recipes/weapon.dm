@@ -197,12 +197,16 @@
 
 /datum/craft_recipe/weapon/plasmacutter/spawn_result(obj/item/craft/C, mob/living/user)
 	var/was_bladed = FALSE
+	var/was_efficiency = FALSE
 	for(var/obj/item/gun/energy/cutter/old_cutter in C)
 		was_bladed = old_cutter.bladed
+		was_efficiency = old_cutter.efficiency_upgraded
 		break
 	. = ..()
 	if(was_bladed)
 		carry_over_cutter_blades(.)
+	if(was_efficiency)
+		carry_over_efficiency(.)
 
 /datum/craft_recipe/weapon/rendingcutter
 	name = "Rending Cutter"
@@ -225,9 +229,87 @@
 
 /datum/craft_recipe/proc/carry_over_cutter_blades(obj/item/gun/energy/cutter/new_cutter)
 	new_cutter.bladed = TRUE
-	new_cutter.force = 12
-	new_cutter.desc += "\nIt seems to be fitted with a set of weighted blades."
+	new_cutter.force = WEAPON_FORCE_DANGEROUS
+	new_cutter.desc += "<br><span class='notice'>It seems to be fitted with a set of weighted blades.</span>"
 	new_cutter.update_icon()
+
+/datum/craft_recipe/proc/carry_over_efficiency(obj/item/gun/energy/cutter/new_cutter)
+	new_cutter.efficiency_upgraded = TRUE
+	if(istype(new_cutter, /obj/item/gun/energy/cutter/rending))
+		new_cutter.charge_cost = 145 // 17 Shots
+	else
+		new_cutter.charge_cost = 165 // 15 Shots
+	new_cutter.desc += "\n<span class='notice'>Its plasma cartridge rack seems to be augmented with a power node.</span>"
+
+/datum/craft_recipe/weapon/cutter_efficiency
+	name = "Cutter Efficiency Upgrade"
+	desc = "Augment a cutter with a power node, improving its ammunition efficiency and output."
+	result = /obj/item/gun/energy/cutter/plasma
+	flags = CRAFT_ON_WORKBENCH
+	time = 200
+	steps = list(
+	list(CRAFT_OBJECT, list(/obj/item/gun/energy/cutter, /obj/item/gun/energy/cutter/plasma, /obj/item/gun/energy/cutter/rending) , WORKTIME_NORMAL, FALSE),
+	list(CRAFT_STACK, /obj/item/stack/power_node, 1)
+	)
+
+/datum/craft_recipe/weapon/cutter_efficiency/try_build(mob/living/user)
+	if(!can_build(user, get_turf(user)))
+		return
+	var/datum/craft_step/CS = steps[1]
+	var/obj/item/I = CS.find_item(user, null)
+	if(istype(I, /obj/item/gun/energy/cutter))
+		var/obj/item/gun/energy/cutter/the_cutter = I
+		if(the_cutter.efficiency_upgraded)
+			to_chat(user, SPAN_DANGER("\The [the_cutter] has already been augmented with a power node."))
+			return
+	.=..()
+
+/datum/craft_recipe/weapon/cutter_efficiency/spawn_result(obj/item/craft/C, mob/living/user)
+	var/obj/item/gun/energy/cutter/the_cutter = locate() in C
+	if (!the_cutter || the_cutter.efficiency_upgraded)
+		return FALSE
+	carry_over_efficiency(the_cutter)
+	var/slot = user.get_inventory_slot(C)
+	if(! (flags & CRAFT_ON_FLOOR) && (slot in list(slot_r_hand, slot_l_hand)))
+		user.put_in_hands(the_cutter)
+	else
+		the_cutter.forceMove(get_turf(C))
+	qdel(C)
+
+/datum/craft_recipe/weapon/cutter_blades
+	name = "Weighted Cutter Blades"
+	desc = "Fit a cutter with a set of weighted blades, letting it double as a dangerous melee weapon."
+	result = /obj/item/gun/energy/cutter/plasma
+	flags = CRAFT_ON_WORKBENCH
+	time = 200
+	steps = list(
+	list(CRAFT_OBJECT, list(/obj/item/gun/energy/cutter, /obj/item/gun/energy/cutter/plasma, /obj/item/gun/energy/cutter/rending) , WORKTIME_NORMAL, FALSE),
+	list(CRAFT_OBJECT, /obj/item/weighted_blades)
+	)
+
+/datum/craft_recipe/weapon/cutter_blades/try_build(mob/living/user)
+	if(!can_build(user, get_turf(user)))
+		return
+	var/datum/craft_step/CS = steps[1]
+	var/obj/item/I = CS.find_item(user, null)
+	if(istype(I, /obj/item/gun/energy/cutter))
+		var/obj/item/gun/energy/cutter/the_cutter = I
+		if(the_cutter.bladed)
+			to_chat(user, SPAN_DANGER("\The [the_cutter] already has weighted blades fitted."))
+			return
+	.=..()
+
+/datum/craft_recipe/weapon/cutter_blades/spawn_result(obj/item/craft/C, mob/living/user)
+	var/obj/item/gun/energy/cutter/the_cutter = locate() in C
+	if (!the_cutter || the_cutter.bladed)
+		return FALSE
+	carry_over_cutter_blades(the_cutter)
+	var/slot = user.get_inventory_slot(C)
+	if(! (flags & CRAFT_ON_FLOOR) && (slot in list(slot_r_hand, slot_l_hand)))
+		user.put_in_hands(the_cutter)
+	else
+		the_cutter.forceMove(get_turf(C))
+	qdel(C)
 
 /datum/craft_recipe/weapon/rendingdivet
 	name = "Rending Divet"

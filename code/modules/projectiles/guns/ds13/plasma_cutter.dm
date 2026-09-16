@@ -23,6 +23,7 @@
 
 	safety_state = 1	//This thing is too dangerous to lack safety
 	var/bladed = FALSE
+	var/efficiency_upgraded = FALSE
 	var/icon_base = "miningcutter"
 	var/bladed_icon = "plasmacutter_blades"
 
@@ -39,20 +40,6 @@
 /obj/item/gun/energy/cutter/update_icon()
 	icon_state = bladed ? bladed_icon : icon_base
 	item_state = bladed ? bladed_icon : icon_base
-
-/obj/item/gun/energy/cutter/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weighted_blades) && !bladed)
-		user.visible_message(SPAN_NOTICE("[user] starts applying the [W] to [src]"), SPAN_NOTICE("You start applying the [W] to [src]."))
-		if(!use_tool(user = user, target = W, base_time = WORKTIME_NORMAL, required_quality = null, fail_chance = FAILCHANCE_EASY, required_stat = "construction", forced_sound = WORKSOUND_WRENCHING))
-			return FALSE
-		to_chat(user, SPAN_NOTICE("You have successfully installed [W] in [src]."))
-		src.force = 12
-		bladed = TRUE
-		desc += "\nIt seems to be fitted with a set of weighted blades."
-		update_icon()
-		qdel(W)
-		return TRUE
-	return ..()
 
 /obj/item/gun/energy/cutter/rending
 	name = "211-S Plasma Cutter"
