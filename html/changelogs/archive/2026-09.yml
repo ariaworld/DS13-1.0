@@ -39,4 +39,4 @@
   - balance: "Changed PFM-100 Industrial Torch store price: 13000 -> 10000. (Due to spawning with an empty fuel tank)"
 2026-09-16:
   Aria:
-  - rscadd: Plasma cutters can now be upgraded with a power node to increase their maximum ammunition.
+  - rscadd: Plasma cutters can be upgraded with a power node to increase their maximum ammo.
