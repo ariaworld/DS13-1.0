@@ -83,8 +83,7 @@ GLOBAL_LIST_EMPTY(growth_corruption_nodes)
 
 /obj/structure/corruption_node/growth/branch/enhanced/get_blurb()
 	. = "This node acts as a tough and resistant source for corruption spread, it has a radius of [range] tiles, and grows [speed] times as fast as normal.<br>\
-	However, it has a limit of [limit] on the number of corruption tiles it can support, which is far less than other nodes would normally get. <br>\
-	<br>\
+	However, it has a limit of [limit] on the number of corruption tiles it can support, which is far less than other nodes would normally get."
 
 /datum/signal_ability/placement/corruption/branch
 	name = "Branch"
