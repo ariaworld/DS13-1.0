@@ -150,15 +150,18 @@
 	else
 		icon_state = "ironfoam"
 
+/*
 /obj/structure/foamedmetal/ex_act(severity)
 	if(atom_flags & ATOM_FLAG_INDESTRUCTIBLE)
 		return
 	qdel(src)
+*/
 
 /obj/structure/foamedmetal/bullet_act()
 	if(metal == 1 || prob(50))
 		qdel(src)
 
+/*
 /obj/structure/foamedmetal/attack_hand(var/mob/user)
 	if ((HULK in user.mutations) || (prob(75 - metal * 25)))
 		user.visible_message("<span class='warning'>[user] smashes through the foamed metal.</span>", "<span class='notice'>You smash through the metal foam wall.</span>")
@@ -166,6 +169,7 @@
 	else
 		to_chat(user, "<span class='notice'>You hit the metal foam but bounce off it.</span>")
 	return
+
 
 /obj/structure/foamedmetal/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/grab))
@@ -181,6 +185,7 @@
 		qdel(src)
 	else
 		to_chat(user, "<span class='notice'>You hit the metal foam to no effect.</span>")
+*/
 
 /obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
 	if(air_group)
