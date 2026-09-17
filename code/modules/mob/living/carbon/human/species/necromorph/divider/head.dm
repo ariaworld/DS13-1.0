@@ -419,7 +419,8 @@
 		return EXECUTION_CANCEL
 
 	//The target must have a head for us to rip off
-	if (!target.get_organ(BP_HEAD))
+	var/obj/item/organ/external/E = target.get_organ(BP_HEAD)
+	if (!E || E.is_stump())
 		return EXECUTION_CANCEL
 
 	//The target must be standing
@@ -444,7 +445,8 @@
 	//Now in addition
 
 	//If the target's head has been removed since we started, then we win! Decapitating them is our goal
-	if (!target.get_organ(BP_HEAD))
+	var/obj/item/organ/external/E = target.get_organ(BP_HEAD)
+	if (!E || E.is_stump())
 		return EXECUTION_SUCCESS
 
 	//If the target died from anything other than losing their head, we have failed
