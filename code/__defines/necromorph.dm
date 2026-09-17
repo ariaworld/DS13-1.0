@@ -2,6 +2,34 @@
 #define SPAWN_POINT		1	//The thing is spawned in a random clear tile around a specified spawnpoint
 #define SPAWN_PLACE		2	//The thing is manually placed by the user on a viable corruption tile
 
+#define DIVIDER_COMPONENTS 	"<h2>Components:</h2><br>\
+On death, dismemberment or manual splitting, the divider seperates into five smaller creatures. Two arms, two legs, and one head. <br>\
+All of these have a basic attack and a leap ability, though the leap is quite different for each.<br>\
+The goal of the head is to find a new host body to support itself. The arms and legs are servants, they exist to distract and weaken victims to draw attention from the head."
+
+#define DIVIDER_ARM_DESC 	"<h2>Arm</h2><br>\
+<h3>Basic Attack: Scratch: 2-4 dmg </h3><br>\
+<h3>Passive: Wallrun</h3><br>\
+<h3>Leap Ability: Parasite Grip (Alt+Click)</h3><br>\
+The arm's leap ability will cause it to cling onto any human it hits, and start repeatedly attacking them. Each attack deals minor damage, and heals itself, though not targeting any specific bodypart.<br>\
+In addition, each attack causes the victim to stagger around, disrupting their aim and view. Makes a great distraction!"
+
+#define DIVIDER_LEG_DESC 	"<h2>Leg</h2><br>\
+<h3>Basic Attack: Kick: 3-6 dmg </h3><br>\
+<h3>Passive: Faster movespeed and lower leap cooldown</h3><br>\
+<h3>Leap Ability: Dropkick (Alt+Click)</h3><br>\
+The leg's leap ability hits hard, staggering the victim and dealing 15 damage. The leg bounces off the victim, allowing it to quickly circle around for another hit. This can be aimed, and it's possible to smash limbs off your victim."
+
+#define DIVIDER_HEAD_DESC 	"<h2>Head</h2><br>\
+<h3>Basic Attack: Whip: 4-6 dmg </h3><br>\
+<br>\
+<h3>Leap Ability: Hostile Takeover (Alt+Click)</h3><br>\
+Requires a standing, live human victim. The head's leap starts an execution move, slowly strangling the victim until their neck is completely severed. Then it will wrap its tentacles around the spine and take control of the new host body.<br>\
+Hostile Takeover cannot be cancelled once started, it's do or die.<br>\
+If successful, the marker is awarded bonus biomass!<br>\
+<h3>Alternate Ability: Reanimate (Ctrl+Alt+Click)</h3><br>\
+Reanimate can be used to take control of any already-headless corpse on the ground. This is safe and easy, but does not give any extra rewards"
+
 #define NECROMORPH_ACID_POWER	0.7	//Damage per unit of necromorph organic acid, used by many things
 #define NECROMORPH_FRIENDLY_FIRE_FACTOR	0.5	//All damage dealt by necromorphs TO necromorphs, is multiplied by this
 #define NECROMORPH_ACID_COLOR	"#946b36"

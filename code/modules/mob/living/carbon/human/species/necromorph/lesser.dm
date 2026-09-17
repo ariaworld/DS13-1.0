@@ -40,6 +40,7 @@
 /mob/living/simple_animal/necromorph/Initialize()
 	.=..()
 	SSnecromorph.minor_vessels |= src
+	add_verb(src, list(/mob/proc/necro_evacuate, /mob/proc/prey_sightings, /datum/proc/help))
 	if (get_biomass())
 		add_massive_atom(src)
 	if (lifespan)

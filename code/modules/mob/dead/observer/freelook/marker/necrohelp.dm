@@ -18,6 +18,22 @@
 		content_data["desc"] = N.get_long_description()
 		title = N.name
 
+	else if (istype(holder, /mob/living/simple_animal/necromorph/divider_component))
+		var/mob/living/simple_animal/necromorph/divider_component/component = holder
+		content_data["name"] = "Divider [capitalize(component.name)]"
+		content_data["desc"] = component.get_component_description()
+		title = "Divider [capitalize(component.name)]"
+
+/mob/living/simple_animal/necromorph/divider_component/proc/get_component_description()
+	var/desc = DIVIDER_COMPONENTS
+	if (istype(src, /mob/living/simple_animal/necromorph/divider_component/head))
+		desc += DIVIDER_HEAD_DESC
+	else if (istype(src, /mob/living/simple_animal/necromorph/divider_component/arm))
+		desc += DIVIDER_ARM_DESC
+	else if (istype(src, /mob/living/simple_animal/necromorph/divider_component/leg))
+		desc += DIVIDER_LEG_DESC
+	return desc
+
 
 
 /datum/proc/help()

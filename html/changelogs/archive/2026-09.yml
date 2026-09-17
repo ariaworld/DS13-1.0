@@ -40,3 +40,4 @@
 2026-09-16:
   Aria:
   - rscadd: Plasma cutters can be upgraded with a power node to increase their maximum ammo.
+  - bugfix: Divider limbs get necromorph abilities (evacuate, help, sightings, etc.) tabs too.

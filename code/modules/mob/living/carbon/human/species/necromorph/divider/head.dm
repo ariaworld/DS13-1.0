@@ -31,6 +31,7 @@
 
 /mob/living/simple_animal/necromorph/divider_component/head/Initialize()
 	.=..()
+	add_verb(src, /mob/living/simple_animal/necromorph/divider_component/head/proc/takeover_verb)
 	add_modclick_verb(KEY_CTRLALT, /mob/living/simple_animal/necromorph/divider_component/head/proc/takeover_verb)
 
 /mob/living/simple_animal/necromorph/divider_component/head/get_controlling_player(var/fetch = FALSE)
@@ -43,6 +44,9 @@
 //Inhabits the corpse of a headless human
 //This normal version is used on an already dead corpse on the ground
 /mob/living/simple_animal/necromorph/divider_component/head/proc/takeover_verb(var/mob/living/carbon/human/H)
+	set name = "Reanimate Corpse"
+	set category = "Abilities"
+	set desc = "Slithers into the neck of a headless corpse and takes control of it"
 	if (QDELETED(src) || !isturf(loc) || incapacitated(INCAPACITATION_FORCELYING))
 		return //Prevent some edge cases
 

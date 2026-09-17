@@ -46,6 +46,7 @@
 	.=..()
 	dna = new()
 	dna.species = SPECIES_NECROMORPH_DIVIDER
+	add_verb(src, /mob/living/simple_animal/necromorph/divider_component/proc/leap)
 	add_modclick_verb(KEY_ALT, /mob/living/simple_animal/necromorph/divider_component/proc/leap)
 	get_controlling_player()
 	AddComponent(/datum/component/clickbox, x_offset = -pixel_x, min_scale = 1.2)
