@@ -26,6 +26,7 @@
 
 /mob/living/simple_animal/necromorph/divider_component/proc/get_component_description()
 	var/desc = DIVIDER_COMPONENTS
+	desc += "<hr>"
 	if (istype(src, /mob/living/simple_animal/necromorph/divider_component/head))
 		desc += DIVIDER_HEAD_DESC
 	else if (istype(src, /mob/living/simple_animal/necromorph/divider_component/arm))

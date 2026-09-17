@@ -22,6 +22,7 @@ SUBSYSTEM_DEF(necromorph)
 
 	//Players
 	var/list/necromorph_players = list()	//This is a list of keys and mobs of players on the necromorph team
+	var/list/shamblers = list()	//Current divider puppets, tracked so allied necromorphs can be shown a HUD indicator for them
 
 	//Sightings of prey. See  code/modules/necromorph/corruption/eye.dm
 	var/list/sightings = list()

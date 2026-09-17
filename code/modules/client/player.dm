@@ -109,5 +109,6 @@
 		P.is_necromorph = state
 		if (P.is_necromorph())
 			SSnecromorph.necromorph_players[ckey] = P
+			refresh_shambler_indicators(src)
 		else
 			SSnecromorph.necromorph_players -= ckey

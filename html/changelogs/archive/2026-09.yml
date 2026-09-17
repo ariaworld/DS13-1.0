@@ -25,8 +25,8 @@
   - tweak: Picked a different icon for animal crates.
 2026-09-12:
   Aria:
-  - bugfix: Fixed Bola crafting recipe.
-  - bugfix: Fixed natural passive healing for having multiple minor wounds.
+  - bugfix: Fixed Bola crafting recipe creating nothing.
+  - bugfix: Fixed natural passive healing not working when having more than one wound.
   - code_imp: Growth tanks will no longer show biomass warning if organ has already formed and ready.
 2026-09-13:
   Aria:
@@ -40,4 +40,5 @@
 2026-09-16:
   Aria:
   - rscadd: Plasma cutters can be upgraded with a power node to increase their maximum ammo.
-  - bugfix: Divider limbs get necromorph abilities (evacuate, help, sightings, etc.) tabs too.
+  - bugfix: Divider limbs get necromorph abilities tabs (evacuate, help, sightings, etc.).
+  - rscadd: Divider puppets (shamblers) show a special icon to necromorphs to avoid friendly fire.

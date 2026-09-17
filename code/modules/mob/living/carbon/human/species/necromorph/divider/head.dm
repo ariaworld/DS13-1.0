@@ -133,6 +133,9 @@
 	//Wake me up inside
 	H.resurrect(200)
 
+	//Let allied necromorphs know who the new shambler is
+	update_shambler_indicator(H, TRUE)
+
 	//Delete this mob
 	qdel(src)
 
@@ -231,6 +234,12 @@
 	H.mutations.Add(CLUMSY)
 	RegisterSignal(H, COMSIG_MOVABLE_MOVED, .proc/holder_moved)
 	RegisterSignal(H, COMSIG_MOVABLE_BUMP, .proc/holder_bump)
+	RegisterSignal(H, list(COMSIG_LIVING_DEATH, COMSIG_PARENT_QDELETING), .proc/holder_deleted)
+
+/datum/extension/divider_puppet/proc/holder_deleted()
+	SIGNAL_HANDLER
+	SSnecromorph.shamblers -= H
+	update_shambler_indicator(H, FALSE)
 
 /datum/extension/divider_puppet/proc/holder_moved()
 	SIGNAL_HANDLER
