@@ -7,6 +7,7 @@
 	mute_setting = MUTE_OOC
 	message_type = MESSAGE_TYPE_OOC
 	show_preference_setting = /datum/client_preference/show_ooc
+	var/restrict_to_lobby = TRUE
 
 /decl/communication_channel/ooc/can_communicate(var/A, var/message)
 	. = ..()
@@ -15,6 +16,9 @@
 	if (isclient(A))
 		var/client/C = A
 		if(!C.holder)
+			if(restrict_to_lobby && !istype(C.mob, /mob/dead/new_player))
+				to_chat(C, "<span class='danger'>OOC is only available while in the lobby.</span>")
+				return FALSE
 			if(!CONFIG_GET(flag/dooc_allowed) && (C.mob.stat == DEAD))
 				to_chat(C, "<span class='danger'>[name] for dead mobs has been turned off.</span>")
 				return FALSE
@@ -55,3 +59,10 @@
 			receive_communication(A, target, "<span class='ooc'><font color='[ooc_color]'>[sent_message]</font></span>")
 		else
 			receive_communication(A, target, "<span class='ooc'><span class='[ooc_style]'>[sent_message]</span></span>")
+
+/decl/communication_channel/ooc/can_receive_communication(var/datum/receiver)
+	. = ..()
+	if(.)
+		var/client/C = receiver.get_client()
+		if(C && !C.holder && restrict_to_lobby && !istype(C.mob, /mob/dead/new_player))
+			return FALSE

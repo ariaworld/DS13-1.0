@@ -4,6 +4,7 @@
 	flags = COMMUNICATION_NO_GUESTS|COMMUNICATION_LOG_CHANNEL_NAME|COMMUNICATION_ADMIN_FOLLOW
 	show_preference_setting = /datum/client_preference/show_looc
 	allow_admincomm = FALSE
+	restrict_to_lobby = FALSE
 
 /decl/communication_channel/ooc/looc/can_communicate(var/client/C, var/message)
 	. = ..()
