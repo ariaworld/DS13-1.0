@@ -239,10 +239,7 @@
 
 /datum/craft_recipe/proc/carry_over_efficiency(obj/item/gun/energy/cutter/new_cutter)
 	new_cutter.efficiency_upgraded = TRUE
-	if(istype(new_cutter, /obj/item/gun/energy/cutter/rending))
-		new_cutter.charge_cost = 145 // 17 Shots
-	else
-		new_cutter.charge_cost = 165 // 15 Shots
+	new_cutter.charge_cost = 165 // 15 Shots
 	new_cutter.desc += "\n<span class='notice'>Its plasma ammunition cartridge rack seems to be augmented with a power node.</span>"
 
 /datum/craft_recipe/weapon/cutter_efficiency
