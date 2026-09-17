@@ -16,8 +16,8 @@
 	if (isclient(A))
 		var/client/C = A
 		if(!C.holder)
-			if(restrict_to_lobby && !istype(C.mob, /mob/dead/new_player))
-				to_chat(C, "<span class='danger'>OOC is only available while in the lobby.</span>")
+			if(restrict_to_lobby && SSticker && SSticker.current_state == GAME_STATE_PLAYING && !istype(C.mob, /mob/dead/new_player))
+				to_chat(C, "<span class='danger'>OOC is only available while in the lobby or when the round has ended.</span>")
 				return FALSE
 			if(!CONFIG_GET(flag/dooc_allowed) && (C.mob.stat == DEAD))
 				to_chat(C, "<span class='danger'>[name] for dead mobs has been turned off.</span>")
@@ -64,5 +64,5 @@
 	. = ..()
 	if(.)
 		var/client/C = receiver.get_client()
-		if(C && !C.holder && restrict_to_lobby && !istype(C.mob, /mob/dead/new_player))
+		if(C && !C.holder && restrict_to_lobby && SSticker && SSticker.current_state == GAME_STATE_PLAYING && !istype(C.mob, /mob/dead/new_player))
 			return FALSE
