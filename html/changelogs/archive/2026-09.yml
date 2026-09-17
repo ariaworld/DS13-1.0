@@ -42,4 +42,5 @@
   - rscadd: Plasma cutters can be upgraded with a power node to increase their maximum ammo.
   - bugfix: Divider limbs get necromorph abilities tabs (evacuate, help, sightings, etc.).
   - rscadd: Divider puppets (shamblers) show a special icon to necromorphs to avoid friendly fire.
-  - bugfix: Divider head hostile takeover execution.
+  - bugfix: Fixed Divider head hostile takeover execution.
+  - bugfix: Fixed Divider tonguetacle execution.
