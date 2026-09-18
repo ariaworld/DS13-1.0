@@ -51,11 +51,16 @@
 //Set the health of the projectile to the health of the ammo version. This ensures that picked up and reused blades dont get a free repair
 /obj/item/gun/projectile/ripper/consume_next_projectile()
 	.=..()
-	if (.)
-		var/obj/item/projectile/P = .
-		var/obj/item/ammo_casing/sawblade/ammo = chambered
-		if (istype(ammo))
-			P.health = ammo.health
+	if (!.)
+		return
+	var/obj/item/projectile/P = .
+	var/obj/item/ammo_casing/sawblade/ammo = chambered
+	if (ammo)
+		if (istype(ammo, /obj/item/ammo_casing/sawblade/diamond) && istype(P, /obj/item/projectile/sawblade))
+			qdel(P)
+			P = new /obj/item/projectile/sawblade/diamond(src)
+		P.health = ammo.health
+	return P
 
 
 
