@@ -153,20 +153,24 @@
 	if(glove_type)
 		gloves = new glove_type(src)
 		gloves.rig = src
+		verbs |= /obj/item/rig/proc/toggle_gauntlets
 		rig_verbs += /obj/item/rig/proc/toggle_gauntlets
 	if(helm_type)
 		helmet = new helm_type(src)
 		helmet.rig = src
+		verbs |= /obj/item/rig/proc/toggle_helmet_verb
 		rig_verbs += /obj/item/rig/proc/toggle_helmet_verb
 	if(boot_type)
 		boots = new boot_type(src)
 		boots.rig = src
+		verbs |= /obj/item/rig/proc/toggle_boots
 		rig_verbs += /obj/item/rig/proc/toggle_boots
 	if(chest_type)
 		chest = new chest_type(src)
 		chest.rig = src
 		if(allowed)
 			chest.allowed |= allowed
+		verbs |= /obj/item/rig/proc/toggle_chest
 		rig_verbs += /obj/item/rig/proc/toggle_chest
 
 	for(var/obj/item/clothing/piece in list(gloves,helmet,boots,chest))
