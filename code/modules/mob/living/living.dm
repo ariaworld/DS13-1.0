@@ -353,8 +353,17 @@ default behaviour is:
 		return
 
 	var/turf/old_loc = get_turf(src)
+	// Make sure to save dir we're facing while aiming
+	var/datum/click_handler/rmb_aim/aim_handler = GetClickHandlerByType(/datum/click_handler/rmb_aim)
+	var/aiming = aim_handler && aim_handler.is_aiming
+	var/locked_dir = dir
 
 	. = ..()
+
+
+	// Keep the locked dir while aiming
+	if (aiming && .)
+		set_dir(locked_dir)
 
 	if(. && pulling)
 		handle_pulling_after_move(old_loc)

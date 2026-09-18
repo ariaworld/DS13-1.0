@@ -244,7 +244,7 @@
 
 /datum/craft_recipe/weapon/cutter_efficiency
 	name = "Cutter Efficiency Upgrade"
-	desc = "Augment a cutter with a power node, improving its ammunition efficiency and output."
+	desc = "Augment a cutter with a power node, increasing its maximum ammunition."
 	result = /obj/item/gun/energy/cutter/plasma
 	flags = CRAFT_ON_WORKBENCH
 	time = 200

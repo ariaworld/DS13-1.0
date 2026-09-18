@@ -5,6 +5,7 @@
 	var/interval_timer_handle
 	var/last_change = 0
 	flags = CLICK_HANDLER_SUPPRESS_POPUP_MENU
+	var/is_aiming = FALSE
 
 
 
@@ -14,9 +15,16 @@
 		gun.disable_aiming_mode()
 	.=..()
 
+//while RMB is held a left click also reports right=1 and would
+//otherwise be mistaken for a right click (cancelling auto-fire and stopping the aim).
+/datum/click_handler/rmb_aim/proc/is_right_click(var/list/modifiers)
+	if (modifiers["button"])
+		return modifiers["button"] == "right"
+	return modifiers["right"] && !modifiers["left"]
+
 /datum/click_handler/rmb_aim/MouseDown(object,location,control,params)
 	var/list/modifiers = params2list(params)
-	if(modifiers["right"])
+	if(is_right_click(modifiers))
 		object = resolve_world_target(object, params)
 
 		if(object)
@@ -34,7 +42,7 @@
 
 /datum/click_handler/rmb_aim/MouseUp(object,location,control,params)
 	var/list/modifiers = params2list(params)
-	if(modifiers["right"])
+	if(is_right_click(modifiers))
 		object = user.client.resolve_drag(object, params)
 
 
@@ -53,7 +61,7 @@
 
 /datum/click_handler/rmb_aim/MouseDrag(src_object,over_object,src_location,over_location,src_control,over_control,params)
 	over_object = resolve_world_target(over_object, params)
-	user.face_atom(over_object)
+	user.face_atom(over_object, TRUE)
 	return TRUE
 
 
@@ -68,7 +76,9 @@
 /datum/click_handler/rmb_aim/proc/start_aiming()
 	if (gun.enable_aiming_mode())
 		last_change = world.time
+		is_aiming = TRUE
 
 /datum/click_handler/rmb_aim/proc/stop_aiming()
 	if (gun.disable_aiming_mode())
 		last_change = world.time
+		is_aiming = FALSE

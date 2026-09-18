@@ -44,3 +44,6 @@
   - rscadd: Divider puppets (shamblers) show a special icon to necromorphs to avoid friendly fire.
   - bugfix: Fixed Divider head hostile takeover execution.
   - bugfix: Fixed Divider tonguetacle execution.
+2026-09-18:
+  Aria:
+  - code_imp: "Right-click aim mode now supports: Aiming while moving, facing direction you're aiming while moving, and shooting while aiming."
