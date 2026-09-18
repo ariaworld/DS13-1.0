@@ -163,6 +163,14 @@ Botany:
 	build_path = /obj/item/stack/special_node/divet
 	price = 2500
 
+/datum/design/item/weighted_blades
+	name = "Weighted Blades"
+	id = "weighted_blades"
+	materials = list(MATERIAL_STEEL = 1500, MATERIAL_PLASTEEL = 750)
+	build_path = /obj/item/weighted_blades
+	price = 2500
+	build_type = PROTOLATHE | STORE_SCHEMATICS
+
 /datum/design/item/stock_part
 	category = "Parts"
 	build_type = PROTOLATHE | STORE_ROUNDSTART
@@ -414,13 +422,6 @@ Botany:
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_STEEL = 3000, MATERIAL_GLASS = 1000, MATERIAL_DIAMOND = 3750)
 	build_path = /obj/item/tool/pickaxe/xeno/excavationdrill/adv
-
-/datum/design/item/mining/weighted_blades
-	name = "Weighted Blades"
-	id = "weighted_blades"
-	materials = list(MATERIAL_STEEL = 1500, MATERIAL_PLASTEEL = 750)
-	build_path = /obj/item/weighted_blades
-	price = 2500
 
 /datum/design/item/mining/depth_scanner
 	name = "depth scanner"
