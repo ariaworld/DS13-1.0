@@ -8,6 +8,8 @@
 	var/tether_type
 	var/max_range	=	128
 
+	var/vector2/user_last_loc = null
+
 /datum/firemode/remote/fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
 	var/obj/item/projectile/remote/projectile = gun.consume_next_projectile(user)
 	if(!projectile)
@@ -21,6 +23,11 @@
 	register_projectile(projectile)
 	projectile.control_launched(src)
 
+	var/obj/item/gun/projectile/P = gun
+	if (istype(P) && P.chambered)
+		P.chambered.expend()
+		P.chambered = null
+
 	if (!gun.is_firing())
 		gun.started_firing()
 
@@ -30,13 +37,23 @@
 
 /datum/firemode/remote/Process()
 	var/vector2/target_loc = get_clamped_target()
+	if (!target_loc)
+		return
+	var/list/dead = list()
 	for (var/obj/item/projectile/remote/R as anything in projectiles)
+		if (QDELETED(R))
+			dead += R
+			continue
 		R.track_target(target_loc)
 		R.damage_turf()
+	for (var/obj/item/projectile/remote/R as anything in dead)
+		unregister_projectile(R)
 	release_vector(target_loc)
+	update_tethers()
 
 
 /datum/firemode/remote/proc/user_moved()
+	SIGNAL_HANDLER
 	update_tethers()
 
 
@@ -51,29 +68,45 @@
 	if (!tether_type)
 		return
 
-	var/vector2/target_loc = get_clamped_target()
-	for (var/obj/item/projectile/remote/R as anything in projectiles)
-		if (R.tether)
-			R.tether.set_target_coords(target_loc) //The tether points to the cursor, the blade catches up with it
+	if (!user)
+		return
 
-	release_vector(target_loc)
+	var/vector2/user_loc = user.get_global_pixel_loc()
+
+	for (var/obj/item/projectile/remote/R as anything in projectiles)
+		if (QDELETED(R) || !R.tether)
+			continue
+		var/vector2/obj_loc = R.get_global_pixel_loc()
+		R.tether.set_ends(user_loc, obj_loc)
+		release_vector(obj_loc)
+
+	release_vector(user_loc)
 
 
 /datum/firemode/remote/proc/register_projectile(var/obj/item/projectile/remote/R)
 	projectiles |= R
 	if (tether_type)
+		QDEL_NULL(R.tether)
 		R.tether = new tether_type(get_turf(R))
 		R.tether.set_origin(gun)
 
-		update_tethers()
+	if (user)
+		if (user_last_loc)
+			release_vector(user_last_loc)
+		user_last_loc = user.get_global_pixel_loc()
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/user_moved, TRUE)
+
+	update_tethers()
 
 	START_PROCESSING(SSfastprocess, src)
+
 
 /datum/firemode/remote/proc/unregister_projectile(var/obj/item/projectile/remote/R)
 	if ((R in projectiles))
 		projectiles -= R
 		if (!projectiles.len)
 			stop_firing()
+
 
 /datum/firemode/remote/start_firing()
 	do_fire()
@@ -83,6 +116,12 @@
 	.=..()
 	for (var/obj/item/projectile/remote/R as anything in projectiles)
 		R.drop()
+
+	if (user)
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+	if (user_last_loc)
+		release_vector(user_last_loc)
+		user_last_loc = null
 
 	STOP_PROCESSING(SSfastprocess, src)
 

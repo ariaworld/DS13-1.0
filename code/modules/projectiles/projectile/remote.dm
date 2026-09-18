@@ -120,6 +120,7 @@
 	if (firemode)
 		firemode.unregister_projectile(src)
 
+	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 	if (!dropped)
 		drop()
 	grind_atoms = list()

@@ -49,3 +49,5 @@
   - code_imp: "Right-click aim mode now supports: Aiming while moving, facing direction you're aiming while moving, and shooting while aiming."
   - bugfix: Disc Ripper now correctly shoots the correct sawblade type in launch mode.
   - bugfix: Disc Ripper now correctly drops the correct sawblade type when remote control mode stops.
+  - bugfix: Fixed Disc Ripper creating alot of visual glitches when running out of ammo.
+  - code_imp: Disc Ripper remote control now follows user while moving, and the blue tether is attached to the sawblade instead of the mouse.
