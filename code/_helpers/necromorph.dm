@@ -71,6 +71,8 @@
 		for (var/ckey in SSnecromorph.necromorph_players)
 			var/datum/player/P = SSnecromorph.necromorph_players[ckey]
 			var/mob/M = P.get_mob()
+			if (M == H)	//The puppet doesn't need to see an indicator over their own head
+				continue
 			if (M && M.client)
 				M.client.images |= I
 	else
@@ -78,6 +80,8 @@
 		for (var/ckey in SSnecromorph.necromorph_players)
 			var/datum/player/P = SSnecromorph.necromorph_players[ckey]
 			var/mob/M = P.get_mob()
+			if (M == H)
+				continue
 			if (!M || !M.client)
 				continue
 			for (var/image/old in M.client.images.Copy())
@@ -90,4 +94,6 @@
 	if (!M || !M.client)
 		return
 	for (var/mob/living/carbon/human/H in SSnecromorph.shamblers)
+		if (H == M)
+			continue
 		M.client.images |= get_shambler_indicator(H)
