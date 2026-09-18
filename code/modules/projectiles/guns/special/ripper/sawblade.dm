@@ -201,6 +201,8 @@
 	name = "diamond blade"
 	desc = "glittering death approaches"
 	icon_state = "diamond_projectile"
+	ammo_type = /obj/item/ammo_casing/sawblade/diamond
+	trash_type = /obj/item/trash/broken_sawblade/diamond
 
 
 //Only called for blades in saw launcher mode, and only if they fail to penetrate through an object under normal rules.

@@ -48,3 +48,4 @@
   Aria:
   - code_imp: "Right-click aim mode now supports: Aiming while moving, facing direction you're aiming while moving, and shooting while aiming."
   - bugfix: Disc Ripper now correctly shoots the correct sawblade type in launch mode.
+  - bugfix: Disc Ripper now correctly drops the correct sawblade type when remote control mode stops.
