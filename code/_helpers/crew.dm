@@ -6,6 +6,15 @@
 /proc/get_living_crew_total()
 	return GLOB.living_crew.len
 
+//Returns the number of living crewmembers aboard the ship (space turfs are excluded), the rest are considered marooned. Ignores connection status.
+/proc/get_living_crew_aboard_ship()
+	var/count = 0
+	for(var/datum/mind/M in GLOB.living_crew)
+		var/mob/living/L = M.current
+		if(isStationLevel(L.z) && !istype(get_turf(L), /turf/space))
+			count++
+	return count
+
 /*
 	Returns a list of all living crewmembers whose role fits the filter
 	If role type is true, checks special role (AKA, antag status)
