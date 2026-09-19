@@ -154,7 +154,7 @@ var/global/list/sparring_attack_cache = list()
 					if(!H.lying)
 						H.visible_message("<span class='warning'>[H] gives way slightly.</span>")
 						H.apply_effect(attack_damage*3, PAIN, strike.blocked)
-		else if(attack_damage >= 5 && !(H == user) && prob(stun_chance) && strike.blocked < 100) // Chance to get the usual throwdown as well
+		else if(attack_damage >= 5 && !(H == user) && prob(stun_chance) && strike.blocked < 100) // Chance to get the usual throwdown as well (25% standard chance)
 			if(!H.lying)
 				H.visible_message("<span class='danger'>[H] [pick("slumps", "falls", "drops")] down to the ground!</span>")
 			else
