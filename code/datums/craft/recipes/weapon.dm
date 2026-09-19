@@ -247,7 +247,7 @@
 	desc = "Augment a cutter with a power node, increasing its maximum ammunition."
 	result = /obj/item/gun/energy/cutter/plasma
 	flags = CRAFT_ON_WORKBENCH
-	time = 200
+	time = 100
 	steps = list(
 	list(CRAFT_OBJECT, list(/obj/item/gun/energy/cutter, /obj/item/gun/energy/cutter/plasma, /obj/item/gun/energy/cutter/rending) , WORKTIME_NORMAL, FALSE),
 	list(CRAFT_STACK, /obj/item/stack/power_node, 1)
@@ -282,7 +282,7 @@
 	desc = "Fit a cutter with a set of weighted blades, letting it double as a dangerous melee weapon."
 	result = /obj/item/gun/energy/cutter/plasma
 	flags = CRAFT_ON_WORKBENCH
-	time = 200
+	time = 100
 	steps = list(
 	list(CRAFT_OBJECT, list(/obj/item/gun/energy/cutter, /obj/item/gun/energy/cutter/plasma, /obj/item/gun/energy/cutter/rending) , WORKTIME_NORMAL, FALSE),
 	list(CRAFT_OBJECT, /obj/item/weighted_blades)
