@@ -117,7 +117,7 @@ var/global/list/sparring_attack_cache = list()
 		if (H.mob_size > user.mob_size)
 			return
 
-		var/stun_chance = 16 * 5
+		var/stun_chance = attack_damage * 5
 		if (strike.blocker)
 			stun_chance *= 0.5	//Attacks which are blocked are much less likely to have special effects
 
