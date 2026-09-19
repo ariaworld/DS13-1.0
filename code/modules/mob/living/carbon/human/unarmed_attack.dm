@@ -117,11 +117,11 @@ var/global/list/sparring_attack_cache = list()
 		if (H.mob_size > user.mob_size)
 			return
 
-		var/stun_chance = rand(0, 100)
+		var/stun_chance = 16 * 5
 		if (strike.blocker)
-			stun_chance *= 2	//Attacks which are blocked are much less likely to have special effects
+			stun_chance *= 0.5	//Attacks which are blocked are much less likely to have special effects
 
-		if(attack_damage >= 5 && strike.blocked < 100 && !(H == user) && stun_chance <= attack_damage * 5) // 25% standard chance
+		if(attack_damage >= 5 && strike.blocked < 100 && !(H == user) && prob(stun_chance)) // 25% standard chance
 			switch(strike.target_zone) // strong punches can have effects depending on where they hit
 				if(BP_HEAD, BP_EYES, BP_MOUTH)
 					// Induce blurriness
@@ -154,7 +154,7 @@ var/global/list/sparring_attack_cache = list()
 					if(!H.lying)
 						H.visible_message("<span class='warning'>[H] gives way slightly.</span>")
 						H.apply_effect(attack_damage*3, PAIN, strike.blocked)
-		else if(attack_damage >= 5 && !(H == user) && (stun_chance + attack_damage * 5 >= 100) && strike.blocked < 100) // Chance to get the usual throwdown as well (25% standard chance)
+		else if(attack_damage >= 5 && !(H == user) && prob(stun_chance) && strike.blocked < 100) // Chance to get the usual throwdown as well
 			if(!H.lying)
 				H.visible_message("<span class='danger'>[H] [pick("slumps", "falls", "drops")] down to the ground!</span>")
 			else
