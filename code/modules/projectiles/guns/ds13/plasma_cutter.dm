@@ -112,7 +112,7 @@
 	desc = "A light power pack designed for use with high energy cutting tools."
 	origin_tech = list(TECH_POWER = 4)
 	icon = 'icons/obj/ammo.dmi'
-	icon_state = "darts"
+	icon_state = "darts-0"
 	w_class = ITEM_SIZE_SMALL
 	maxcharge = 2500
 	matter = list(MATERIAL_STEEL = 700, MATERIAL_SILVER = 80)
