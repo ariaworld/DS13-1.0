@@ -685,7 +685,7 @@ proc/get_nt_opposed()
 	for (var/datum/mind/M in GLOB.all_crew)
 		if (M && !QDELETED(M.current) && ishuman(M.current))
 			var/mob/living/L = M.current
-			if (L.stat != DEAD) //They're alive!
+			if (L.stat != DEAD && !L.is_necromorph()) //They're alive!
 				GLOB.living_crew |= M
 
 //proc returns the amount of alive active humans onboard Ishimura (space turfs are excluded), the rest are considered marooned
