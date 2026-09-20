@@ -61,7 +61,7 @@
 	pass_flags = PASS_FLAG_TABLE
 	structure_damage_factor = 3.5
 
-	var/dig_power = 600
+	var/dig_power = 900 //good at mining
 
 	muzzle_type = /obj/effect/projectile/trilaser/muzzle
 	tracer_type = null
@@ -80,7 +80,7 @@
 /obj/item/projectile/beam/cutter/plasma
 	damage = 18.5
 	kill_count = 7 //an upgrade over the mining cutter, used for engineering work, but still not a proper firearm
-	dig_power = 900
+	dig_power = 600 //more concentrated damage, less good for mining
 
 /obj/item/projectile/beam/cutter/rending
 	damage = 18.5
@@ -112,13 +112,15 @@
 	desc = "A light power pack designed for use with high energy cutting tools."
 	origin_tech = list(TECH_POWER = 4)
 	icon = 'icons/obj/ammo.dmi'
-	icon_state = "darts"
+	icon_state = "plasmacell"
 	w_class = ITEM_SIZE_SMALL
 	maxcharge = 2500
 	matter = list(MATERIAL_STEEL = 700, MATERIAL_SILVER = 80)
 
 /obj/item/cell/plasmacutter/update_icon()
-	return
+	overlays.Cut()
+	if(charge)
+		overlays += image('icons/obj/ammo.dmi', "plasma-[max(1, round(charge/maxcharge*5))]")
 
 /*--------------------------
 	Attachments
