@@ -25,7 +25,7 @@
 	var/bladed = FALSE
 	var/efficiency_upgraded = FALSE
 	var/icon_base = "miningcutter"
-	var/bladed_icon = "plasmacutter_blades"
+	var/bladed_icon = "miningcutter_blades"
 
 /obj/item/gun/energy/cutter/empty
 	cell_type = null
@@ -39,7 +39,7 @@
 
 /obj/item/gun/energy/cutter/update_icon()
 	icon_state = bladed ? bladed_icon : icon_base
-	item_state = bladed ? bladed_icon : icon_base
+	item_state = bladed ? "plasmacutter_blades" : icon_base
 
 /obj/item/gun/energy/cutter/rending
 	name = "211-S Plasma Cutter"
