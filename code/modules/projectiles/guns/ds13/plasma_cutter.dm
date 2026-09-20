@@ -112,7 +112,7 @@
 	desc = "A light power pack designed for use with high energy cutting tools."
 	origin_tech = list(TECH_POWER = 4)
 	icon = 'icons/obj/ammo.dmi'
-	icon_state = "plasmacell"
+	icon_state = "darts"
 	w_class = ITEM_SIZE_SMALL
 	maxcharge = 2500
 	matter = list(MATERIAL_STEEL = 700, MATERIAL_SILVER = 80)
@@ -120,7 +120,7 @@
 /obj/item/cell/plasmacutter/update_icon()
 	overlays.Cut()
 	if(charge)
-		overlays += image('icons/obj/ammo.dmi', "plasma-[max(1, round(charge/maxcharge*5))]")
+		icon_state = "darts-[max(1, round(charge/maxcharge*5))]"
 
 /*--------------------------
 	Attachments
