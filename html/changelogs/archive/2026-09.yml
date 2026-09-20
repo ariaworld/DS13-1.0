@@ -50,3 +50,4 @@
 2026-09-20:
   Aria:
   - rscadd: Plasma energy cells show their charge level visually depending on remaining charge.
+  - balance: Mining cutter and plasma cutter digging power have been swapped. Mining cutter is now better at mining.
