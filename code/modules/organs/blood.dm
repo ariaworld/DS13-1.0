@@ -311,8 +311,6 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large,var/spra
 /mob/living/carbon/human/proc/get_blood_oxygenation()
 	var/blood_volume = get_blood_circulation()
 	if(blood_carries_oxygen())
-		if(is_asystole()) // Heart is missing or isn't beating and we're not breathing (hardcrit)
-			blood_volume = min(blood_volume, BLOOD_VOLUME_SURVIVE)
 
 		if(!need_breathe())
 			return blood_volume
