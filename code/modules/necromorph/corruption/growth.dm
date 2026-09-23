@@ -13,15 +13,6 @@ GLOBAL_LIST_EMPTY(growth_corruption_nodes)
 	var/limit = null	//Maximum number of tiles it can support
 	var/initially_hidden = FALSE
 
-/obj/structure/corruption_node/growth/Initialize()
-	. = ..()
-	if(!initially_hidden)
-		return
-	GLOB.growth_corruption_nodes += src
-	var/datum/game_mode/marker/GM = SSticker.mode
-	if(GM && GM.nodes_hidden)
-		src.invisibility = INVISIBILITY_MARKER
-
 /obj/structure/corruption_node/growth/debug
 	name = "debug propagator"
 	desc = "you shouldn't see this"
@@ -40,6 +31,12 @@ GLOBAL_LIST_EMPTY(growth_corruption_nodes)
 
 		set_extension(src, /datum/extension/corruption_source, range, speed, falloff, limit)
 		//new /obj/effect/vine/corruption(get_turf(src),GLOB.corruption_seed, start_matured = 1)
+	if(!initially_hidden)
+		return
+	GLOB.growth_corruption_nodes += src
+	var/datum/game_mode/marker/GM = SSticker.mode
+	if(GM && GM.nodes_hidden)
+		src.invisibility = INVISIBILITY_MARKER
 
 /obj/structure/corruption_node/growth/get_blurb()
 	. = "This node acts as a heart for corruption spread, allowing it to extend out up to [range] tiles in all directions from the node. It must be placed on existing corruption from another propagator node, or from the marker."
