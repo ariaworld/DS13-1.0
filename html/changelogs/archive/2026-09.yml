@@ -51,3 +51,6 @@
   Aria:
   - rscadd: Plasma energy cells show their charge level visually depending on remaining charge.
   - balance: Mining cutter and plasma cutter digging power have been swapped. Mining cutter is better at mining.
+2026-09-26:
+  Aria:
+  - rscadd: Wall vents, that Tier 1 necromorphs can break into and traverse through, as well as jumpscare people with.
