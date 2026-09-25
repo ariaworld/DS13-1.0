@@ -410,8 +410,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /obj/effect/catwalk_plated,
 /turf/simulated/floor/plating,
@@ -601,11 +601,6 @@
 /turf/simulated/floor/tiled,
 /area/aegis/colony/hangar/entrance/one)
 "bL" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1;
-	layer = 2.4;
-	level = 2
-	},
 /turf/simulated/floor/tiled,
 /area/aegis/colony/hangar/entrance/one)
 "bM" = (
@@ -998,7 +993,7 @@
 	dir = 4;
 	icon_state = "tube_map"
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/powered/scrubber,
@@ -1309,7 +1304,7 @@
 /turf/simulated/wall/r_wall,
 /area/aegis/outside)
 "dl" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on,
 /turf/simulated/floor/tiled,
 /area/aegis/colony/hangar)
 "dm" = (
@@ -1351,11 +1346,12 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/aegis/colony/airlock)
 "ds" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/aegis/colony/security)
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/turf/simulated/floor/dank/heavy,
+/area/aegis/colony/research/airlock/hallway)
 "dt" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
@@ -1512,7 +1508,6 @@
 "dI" = (
 /obj/structure/table/standard,
 /obj/machinery/microwave,
-/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/monotile,
 /area/aegis/colony/breakroom)
 "dJ" = (
@@ -1567,7 +1562,6 @@
 /turf/simulated/floor/plating,
 /area/aegis/outside)
 "dT" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
 /area/aegis/colony/hangar/entrance/two)
 "dU" = (
@@ -1578,8 +1572,11 @@
 /turf/simulated/floor/tiled,
 /area/aegis/colony/breakroom)
 "dX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled,
+/obj/item/stool/bar/padded,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/aegis/colony/breakroom)
 "dY" = (
 /turf/simulated/floor/tiled/monotile,
@@ -1633,13 +1630,18 @@
 /turf/simulated/floor/tiled/white,
 /area/aegis/colony/medical)
 "ee" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
 /turf/simulated/floor/tiled/white,
 /area/aegis/colony/medical)
 "ef" = (
 /obj/effect/floor_decal/corner/grey{
 	dir = 6;
 	icon_state = "corner_white"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/aegis/colony/medical)
@@ -1769,7 +1771,7 @@
 /area/aegis/colony)
 "eq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
+	dir = 6
 	},
 /turf/simulated/floor/tiled,
 /area/aegis/colony/breakroom)
@@ -1900,6 +1902,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/aegis/colony/hangar/entrance/two)
 "eH" = (
@@ -1931,6 +1936,10 @@
 	dir = 8
 	},
 /obj/random/loot/often,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	layer = 2.4;
+	level = 2
+	},
 /turf/simulated/floor/tiled,
 /area/aegis/colony/hangar/entrance/one)
 "eK" = (
@@ -1985,6 +1994,9 @@
 /area/aegis/colony/maintenance/east)
 "eQ" = (
 /obj/structure/table/steel_reinforced,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 4
+	},
 /turf/simulated/floor/lino,
 /area/aegis/colony/breakroom)
 "eR" = (
@@ -1993,6 +2005,9 @@
 	dir = 4
 	},
 /obj/random/loot/usually/few,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
 /turf/simulated/floor/lino,
 /area/aegis/colony/breakroom)
 "eS" = (
@@ -2503,7 +2518,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /obj/effect/catwalk_plated,
 /turf/simulated/floor/plating,
 /area/aegis/colony/hangar/entrance/two)
@@ -3018,10 +3035,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/catwalk_plated,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
+	dir = 5
 	},
+/obj/effect/catwalk_plated,
 /turf/simulated/floor/plating,
 /area/aegis/colony/security)
 "gP" = (
@@ -3135,7 +3152,7 @@
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/item/gun/energy/cutter,
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/monotile,
@@ -3484,7 +3501,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/aegis/colony)
 "hJ" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
@@ -3832,7 +3849,7 @@
 /turf/simulated/floor/tiled,
 /area/aegis/colony/hangar)
 "io" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
 	dir = 1;
 	layer = 2.4;
 	level = 2
@@ -4340,10 +4357,7 @@
 /turf/simulated/floor/dank/medical,
 /area/aegis/colony/research/storage)
 "jy" = (
-/obj/machinery/alarm/cold{
-	pixel_y = 16
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on,
 /obj/effect/catwalk_plated/dank,
 /turf/simulated/floor,
 /area/aegis/colony/research/storage)
@@ -4363,6 +4377,9 @@
 "jA" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/catwalk_plated/dank,
+/obj/machinery/alarm/cold{
+	pixel_y = 16
+	},
 /turf/simulated/floor,
 /area/aegis/colony/research/storage)
 "jB" = (
@@ -4436,16 +4453,19 @@
 /turf/simulated/floor/dank/medical,
 /area/aegis/colony/research/analysis)
 "jI" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
 /obj/effect/catwalk_plated/dank,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/aegis/colony/research/analysis)
 "jJ" = (
 /obj/machinery/radiocarbon_spectrometer,
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 8
 	},
 /turf/simulated/floor/dank/mono,
 /area/aegis/colony/research/analysis)
@@ -4521,7 +4541,6 @@
 /obj/structure/sign/warning/compressed_gas{
 	pixel_y = 32
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/effect/catwalk_plated/dank,
 /obj/structure/closet/emcloset,
 /turf/simulated/floor,
@@ -4652,7 +4671,7 @@
 /turf/simulated/floor,
 /area/aegis/colony/research/airlock)
 "kn" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on,
 /obj/effect/catwalk_plated/dank,
 /obj/structure/table/steel,
 /obj/machinery/recharger,
@@ -4711,11 +4730,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/structure/cable/green{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/dank/heavy,
 /area/aegis/colony/research/airlock/hallway)
@@ -4898,11 +4919,8 @@
 /turf/simulated/floor/dank/medical,
 /area/aegis/colony/research/lab)
 "kJ" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/effect/catwalk_plated/dank,
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 32
-	},
+/obj/machinery/atmospherics/unary/vent_pump/wall/on,
 /turf/simulated/floor,
 /area/aegis/colony/research/iso1)
 "kK" = (
@@ -4916,6 +4934,9 @@
 "kL" = (
 /obj/machinery/artifact_analyser,
 /obj/effect/floor_decal/industrial/outline/orange,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 32
+	},
 /turf/simulated/floor/dank/mono,
 /area/aegis/colony/research/iso1)
 "kM" = (
@@ -5093,7 +5114,7 @@
 /area/aegis/colony/research/airlock/hallway)
 "lc" = (
 /obj/effect/catwalk_plated/dank,
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
 	dir = 1
 	},
 /turf/simulated/floor,
@@ -5486,7 +5507,7 @@
 /area/aegis/colony/research/locker)
 "lP" = (
 /obj/structure/closet/secure_closet/xenoarchaeologist,
-/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/catwalk_plated/dank,
 /obj/item/clothing/suit/storage/toggle/labcoat,
@@ -5506,9 +5527,6 @@
 	dir = 4;
 	pixel_x = -21
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
 /turf/simulated/floor/wood,
 /area/aegis/colony/research/airlock/breakroom)
 "lS" = (
@@ -5517,10 +5535,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/carpet/purple,
 /area/aegis/colony/research/airlock/breakroom)
 "lT" = (
@@ -5837,9 +5853,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -5848,6 +5861,9 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 32
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
 /turf/simulated/floor/dank/medical,
 /area/aegis/colony/research/iso2)
 "mC" = (
@@ -5855,9 +5871,6 @@
 	dir = 1;
 	name = "north bump";
 	pixel_y = 24
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
 	},
 /obj/structure/cable/green{
 	d2 = 8;
@@ -6013,7 +6026,7 @@
 /area/aegis/colony/research)
 "mT" = (
 /obj/effect/catwalk_plated/dank,
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
 	dir = 4
 	},
 /turf/simulated/floor,
@@ -6079,9 +6092,8 @@
 	dir = 1
 	},
 /obj/effect/catwalk_plated/dank,
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -22
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 1
 	},
 /turf/simulated/floor,
 /area/aegis/colony/research/iso2)
@@ -6092,14 +6104,15 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
 /turf/simulated/floor,
 /area/aegis/colony/research/iso2)
 "na" = (
 /obj/machinery/artifact_scanpad,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -22
+	},
 /turf/simulated/floor,
 /area/aegis/colony/research/iso2)
 "nb" = (
@@ -6216,9 +6229,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/carpet/purple,
 /area/aegis/colony/research/airlock/breakroom)
 "nm" = (
@@ -6226,6 +6237,9 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
 	},
 /turf/simulated/floor/carpet/purple,
 /area/aegis/colony/research/airlock/breakroom)
@@ -6664,17 +6678,37 @@
 	},
 /turf/simulated/floor/plating,
 /area/aegis/outside)
+"yK" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/aegis/colony/hangar/entrance/two)
 "zE" = (
 /obj/machinery/mineral/unloading_machine,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/monotile,
 /area/aegis/colony/refinery)
 "Af" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/aegis/colony/refinery)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/turf/simulated/floor/tiled/monotile,
+/area/aegis/colony/hangar/entrance/one)
 "Ax" = (
 /obj/machinery/light{
 	dir = 1;
@@ -6788,7 +6822,7 @@
 /turf/simulated/floor/plating,
 /area/aegis/colony/refinery)
 "EO" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on,
 /turf/simulated/floor/tiled/steel_grid,
 /area/aegis/colony/refinery)
 "Fk" = (
@@ -6847,6 +6881,12 @@
 	},
 /turf/simulated/floor,
 /area/aegis/colony/charging_station)
+"GM" = (
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/aegis/colony/research/airlock/breakroom)
 "Hz" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -6928,10 +6968,6 @@
 /turf/simulated/floor,
 /area/aegis/colony/charging_station)
 "LH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6;
-	icon_state = "intact-supply"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -6978,7 +7014,7 @@
 /area/aegis/colony)
 "Ob" = (
 /obj/machinery/light,
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
@@ -7112,6 +7148,26 @@
 	},
 /turf/simulated/floor/plating,
 /area/aegis/colony/refinery)
+"QM" = (
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/aegis/colony/security)
+"QO" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/aegis/colony/refinery)
 "RP" = (
 /obj/machinery/light{
 	dir = 8
@@ -7244,6 +7300,12 @@
 /obj/effect/wallframe_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/aegis/colony/refinery)
+"Xa" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/aegis/colony/security)
 "Xf" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/mining/brace{
@@ -35929,8 +35991,8 @@ iT
 CC
 uO
 LH
-EO
-Af
+BC
+BC
 XP
 Om
 tW
@@ -36179,8 +36241,8 @@ iT
 iT
 iT
 CC
-BC
-TD
+EO
+QO
 BC
 IT
 LW
@@ -36951,9 +37013,9 @@ aS
 aS
 hb
 dI
-dX
+dW
 eq
-eM
+dX
 eR
 eX
 hz
@@ -38188,7 +38250,7 @@ fZ
 fZ
 jP
 kn
-ks
+ds
 le
 nn
 lO
@@ -39454,7 +39516,7 @@ cR
 lQ
 mk
 nm
-nr
+GM
 ay
 iR
 yu
@@ -42484,7 +42546,7 @@ hC
 aI
 aR
 eJ
-bj
+Af
 dA
 bQ
 bf
@@ -42495,7 +42557,7 @@ eY
 dw
 bQ
 em
-fF
+yK
 eG
 bC
 ac
@@ -42743,7 +42805,7 @@ bI
 dg
 cZ
 bV
-ds
+bV
 dx
 bQ
 dT
@@ -43247,7 +43309,7 @@ hc
 cs
 bV
 bV
-bV
+Xa
 gm
 bQ
 dU
@@ -43499,7 +43561,7 @@ bX
 bV
 bV
 bV
-bV
+QM
 de
 bQ
 em
@@ -45247,9 +45309,9 @@ al
 aI
 dd
 ae
-ai
-ai
 dl
+hX
+hX
 hX
 hX
 hX
@@ -49054,9 +49116,9 @@ hX
 hX
 hX
 hX
+hX
+hX
 io
-ai
-ai
 ae
 iw
 aN

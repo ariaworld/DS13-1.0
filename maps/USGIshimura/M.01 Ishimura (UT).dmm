@@ -81,7 +81,7 @@
 /turf/simulated/floor,
 /area/ishimura/tramdeck/switchingstation/lower)
 "as" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on,
 /turf/simulated/floor/dank/heavy,
 /area/ishimura/tramdeck/switchingstation/lower)
 "at" = (
@@ -353,7 +353,7 @@
 /turf/simulated/floor/dank/heavy,
 /area/ishimura/tramdeck/tram/undertunnel/utars)
 "br" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on,
 /turf/simulated/floor/dank/heavy,
 /area/ishimura/tramdeck/tram/undertunnel/utars)
 "bs" = (
@@ -1134,7 +1134,7 @@
 /turf/simulated/floor,
 /area/ishimura/tramdeck/tram/undertunnel/undermidmaintenance)
 "df" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
 	dir = 1;
 	layer = 2.4;
 	level = 2
@@ -1888,7 +1888,7 @@
 /turf/simulated/floor/plating,
 /area/ishimura/tramdeck/tram/undertunnel/uttt)
 "ev" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
 	dir = 1;
 	layer = 2.4;
 	level = 2
@@ -1906,7 +1906,7 @@
 /turf/simulated/floor,
 /area/ishimura/tramdeck/tram/undertunnel/uttt)
 "ey" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
 	dir = 1;
 	layer = 2.4;
 	level = 2
@@ -2349,7 +2349,7 @@
 /turf/simulated/floor/plating,
 /area/ishimura/tramdeck/tram/undertunnel/uttt)
 "fy" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on,
 /turf/simulated/floor/plating,
 /area/ishimura/tramdeck/tram/undertunnel/uttt)
 "fz" = (
@@ -2376,7 +2376,7 @@
 /turf/simulated/floor,
 /area/ishimura/tramdeck/tram/undertunnel/uttt)
 "fB" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on,
 /turf/simulated/floor,
 /area/ishimura/tramdeck/tram/undertunnel/uttt)
 "fC" = (
@@ -4161,7 +4161,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/ishimura/tramdeck/tram/undertunnel/undermidmaintenance)
 "iE" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on,
 /turf/simulated/floor/tiled/steel_grid,
 /area/ishimura/tramdeck/tram/undertunnel/undermidmaintenance)
 "iF" = (
@@ -4618,13 +4618,10 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/item/stack/material/glass/fifty,
 /obj/random/loot/often/few,
-/turf/simulated/floor/tiled/dark/monotile,
-/area/ishimura/tramdeck/tram/undertunnel/undermidmaintenance)
-"jK" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/simulated/floor/tiled/dark/monotile,
 /area/ishimura/tramdeck/tram/undertunnel/undermidmaintenance)
 "jL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -44732,7 +44729,7 @@ jp
 ck
 jy
 jF
-jK
+jL
 jV
 ck
 ac
