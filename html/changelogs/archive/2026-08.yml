@@ -1,30 +1,18 @@
 2026-08-03:
   Aria:
-  - code_imp: Fixed signals/callbacks.
-  - bugfix: UIs now work correctly with Blink/Chromium-based browsers.
-  - bugfix: Fixed in-game world render being fully dark except for a tile in the top right.
-  - bugfix: The processing system now actually works.
-  - bugfix: Fixed icons in examines.
-  - bugfix: The new player panel now sizes correctly and refreshes when the game starts.
-  - bugfix: Made game compatible with BYOND 516.
-  - admin: Fixed the admin game panel UI.
+  - bugfix: Made game compatible with BYOND 516 (Includes a ton of bug fixes, from broken web UIs to HUD elements and core game systems, too many fixes to be listed individually).
 2026-08-04:
   Aria:
-  - bugfix: Fixed the Discord button color and text color in the UI.
-  - bugfix: Open blast doors now render above human mobs.
-  - bugfix: Fixed the skill description UI in occupations.
+  - tweak: Open blast doors now render above human mobs.
   - balance: Running while drowsy is no longer slower than walking.
   - bugfix: Fixed certain execution stages (divider + sacrifice) blocking you.
   - code_imp: Optimized turret performance.
 2026-08-05:
   Aria:
   - qol: "Added keybinds: B for resisting, V for resting."
-  - bugfix: Made the sleeper UI scrollable.
   - rscadd: Added a TGUI interface for Necromorph signal/marker abilities and the spawning menu.
-  - bugfix: Fixed the tank dispenser UI.
 2026-08-06:
   Aria:
-  - bugfix: Fixed the headset icon when using a radio.
   - bugfix: Fixed climbing over things.
 2026-08-09:
   Aria:
@@ -33,7 +21,6 @@
 2026-08-11:
   Aria:
   - config: Added a config option to force the HUB address.
-  - bugfix: Fixed the research tech nodes UI.
   - spellcheck: Renamed the loadout laserpick to rocksaw.
 2026-08-12:
   Aria:
@@ -44,14 +31,10 @@
 2026-08-13:
   Aria:
   - rscadd: Foamed metal now has lighting/opacity.
-  - code_imp: Made default theme dark, fixed stat panel theme race condition.
+  - code_imp: Made default theme dark, works as soon as you join.
 2026-08-16:
   Aria:
   - bugfix: Mining merits will now spawn separately instead of all in one global stack.
-2026-08-19:
-  Aria:
-  - bugfix: Fixed firemodes, for example full auto, remote for disc ripper, etc.
-  - bugfix: Fixed seeker rifle aim.
 2026-08-23:
   Aria:
   - rscadd: Growth corruption nodes will now be hidden for 20 minutes after the marker activates. (Excluding Propagators)
