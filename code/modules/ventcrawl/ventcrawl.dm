@@ -165,11 +165,12 @@ var/list/ventcrawl_machinery = list(
 			forceMove(vent_found)
 			add_ventcrawl(vent_found)
 
-			//Necros don't fit. They go through the vent, not into it.
 			if(src.is_necromorph())
-				src.visible_message("<span class='warning'>[src] tears the vent apart getting in!</span>", \
-					"<span class='warning'>You tear the vent apart getting in!</span>")
-				vent_found.break_open(src)
+				var/obj/machinery/atmospherics/unary/vent_pump/wall/torn_vent = vent_found
+				if(istype(torn_vent))
+					src.visible_message("<span class='warning'>[src] tears the vent apart getting in!</span>", \
+						"<span class='warning'>You tear the vent apart getting in!</span>")
+					torn_vent.break_open(src)
 
 		else
 			to_chat(src, "This vent is not connected to anything.")

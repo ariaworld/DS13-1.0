@@ -37,7 +37,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/wall/examine(mob/user)
 	. = ..()
 	if(!cover)
-		to_chat(user, "<span class='warning'>Its cover has been torn away, leaving the duct wide open.</span>")
+		to_chat(user, "<span class='warning'>Its cover has been torn away, leaving the duct wide open.[vent_is_running() ? " It keeps barely pumping air through the gap." : " It isn't moving any air."]</span>")
 	if(locate(/mob) in contents)
 		to_chat(user, "<span class='warning'>There's something lurking inside it...</span>")
 
@@ -69,16 +69,23 @@
 		return TRUE
 	return ..()
 
+/obj/machinery/atmospherics/unary/vent_pump/wall/proc/vent_is_running()
+	if(stat & (NOPOWER|BROKEN) || welded || !use_power)
+		return FALSE
+	if(!powered())
+		return FALSE
+	return TRUE
+
 /obj/machinery/atmospherics/unary/vent_pump/wall/update_icon(var/safety = 0)
 	overlays.Cut()
 	if (!node)
 		use_power = 0
 
 	if(!cover || (stat & BROKEN))
-		icon_state = "broken"
+		icon_state = "broken_[pick(1,2,3)]"
 	else if(welded)
 		icon_state = "weld"
-	else if((stat & NOPOWER) || !powered() || !use_power || !pumping)
+	else if(!vent_is_running() || !pumping)
 		icon_state = "off"
 	else
 		icon_state = pump_direction ? "out" : "in"
@@ -91,17 +98,27 @@
 	icon_pumping = now_pumping
 	update_icon()
 
-/obj/machinery/atmospherics/unary/vent_pump/wall/can_pump()
-	if(!cover)
-		return 0
-	return ..()
+#define TORN_VENT_POWER_FACTOR 0.5
+
+/obj/machinery/atmospherics/unary/vent_pump/wall/proc/break_open(mob/breaker)
+	if(cover)
+		cover = FALSE
+		power_rating = initial(power_rating) * TORN_VENT_POWER_FACTOR
+	update_icon()
+	shake_animation(10)
+	breaker?.shake_animation(2)
+	playsound(src, 'sound/effects/grillehit.ogg', 100, FALSE)
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	s.set_up(5, 0, src)
+	s.start()
 
 /obj/machinery/atmospherics/unary/vent_pump/wall/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	//A burst vent has no cover left to weld shut, so the welder fits a new plate instead.
 	if(!cover && isWelder(W))
-		to_chat(user, "<span class='notice'>You begin welding a new cover onto \the [src]...</span>")
+		to_chat(user, "<span class='notice'>You begin welding a new cover onto \the [src].</span>")
 		if(W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_NORMAL))
 			cover = TRUE
+			power_rating = initial(power_rating) //plate back on, so it can move air properly again
 			update_icon()
 			user.visible_message("<span class='notice'>\The [user] welds a new cover onto \the [src].</span>", \
 				"<span class='notice'>You have welded a new cover onto \the [src].</span>", \
@@ -117,7 +134,6 @@
 		user.shake_animation(2)
 		playsound(src.loc, 'sound/effects/vent_scare.ogg', 100, FALSE)
 		cover = FALSE
-		use_power = FALSE
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 0, src)
 		s.start()
