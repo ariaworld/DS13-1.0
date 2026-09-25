@@ -333,7 +333,23 @@
 	update_icon()
 	return
 
-/obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
+/obj/machinery/atmospherics/unary/vent_pump/examine(mob/user)
+	if(..(user, 1))
+		to_chat(user, "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W")
+	else
+		to_chat(user, "You are too far away to read the gauge.")
+
+	var/state_desc = get_vent_state_desc()
+	if(state_desc)
+		to_chat(user, state_desc)
+
+/obj/machinery/atmospherics/unary/vent_pump/proc/get_vent_state_desc()
+	if(stat & BROKEN)
+		return "<span class='warning'>The housing is split open and the blades are seized.</span>"
+	if(welded)
+		return "It seems welded shut."
+
+/obj/machinery/atmospherics/unary/vent_pump/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(isWelder(W))
 		to_chat(user, "<span class='notice'>Now welding \the [src].</span>")
 		if(W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_NORMAL))
@@ -344,18 +360,6 @@
 				"You hear welding.")
 		return 1
 
-	else
-		..()
-
-/obj/machinery/atmospherics/unary/vent_pump/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W")
-	else
-		to_chat(user, "You are too far away to read the gauge.")
-	if(welded)
-		to_chat(user, "It seems welded shut.")
-
-/obj/machinery/atmospherics/unary/vent_pump/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(!isWrench(W))
 		return ..()
 	if (!(stat & NOPOWER) && use_power)

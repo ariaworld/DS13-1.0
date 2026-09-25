@@ -201,4 +201,13 @@
 	blend_mode = BLEND_ADD
 	show_when_dead = TRUE
 
+/atom/movable/screen/fullscreen/ventcrawl_dark
+	icon = 'icons/hud/screen_gen.dmi'
+	icon_state = "flash"
+	transform = matrix(200, 0, 0, 0, 200, 0)
+	plane = LIGHTING_PLANE
+	blend_mode = BLEND_MULTIPLY
+	color = PIPE_COLOR_BLACK
+	show_when_dead = TRUE
+
 #undef SHOULD_SHOW_TO

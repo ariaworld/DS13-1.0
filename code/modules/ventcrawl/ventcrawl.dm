@@ -1,3 +1,6 @@
+#define VENTCRAWL_PIPE_ALPHA 130
+#define VENTCRAWL_REVEAL_RANGE 2
+
 var/list/ventcrawl_machinery = list(
 	/obj/machinery/atmospherics/unary/vent_scrubber,
 	/obj/machinery/atmospherics/unary/vent_pump
@@ -18,6 +21,7 @@ var/list/ventcrawl_machinery = list(
 	)
 
 /mob/living/var/list/icon/pipes_shown = list()
+/mob/living/var/list/ventcrawl_network_atoms = list()
 /mob/living/var/last_played_vent
 /mob/living/var/is_ventcrawling = 0
 /mob/var/next_play_vent = 0
@@ -91,7 +95,7 @@ var/list/ventcrawl_machinery = list(
 	var/atom/pipe
 	var/list/pipes = list()
 	for(var/obj/machinery/atmospherics/unary/U in range(1))
-		if(is_type_in_list(U,ventcrawl_machinery) && Adjacent(U) && U.can_crawl_through())
+		if(is_type_in_list(U,ventcrawl_machinery) && Adjacent(U) && U.can_crawl_through(src))
 			pipes |= U
 	if(!pipes || !pipes.len)
 		to_chat(src, "There are no pipes that you can ventcrawl into within range!")
@@ -113,7 +117,7 @@ var/list/ventcrawl_machinery = list(
 	var/obj/machinery/atmospherics/unary/vent_found
 	if(clicked_on && Adjacent(clicked_on))
 		vent_found = clicked_on
-		if(!istype(vent_found) || !vent_found.can_crawl_through())
+		if(!istype(vent_found) || !vent_found.can_crawl_through(src))
 			vent_found = null
 
 	if(!vent_found)
@@ -121,7 +125,7 @@ var/list/ventcrawl_machinery = list(
 			if(is_type_in_list(machine, ventcrawl_machinery))
 				vent_found = machine
 
-			if(!vent_found || !vent_found.can_crawl_through())
+			if(!vent_found || !vent_found.can_crawl_through(src))
 				vent_found = null
 
 			if(vent_found)
@@ -161,10 +165,20 @@ var/list/ventcrawl_machinery = list(
 			forceMove(vent_found)
 			add_ventcrawl(vent_found)
 
+			//Necros don't fit. They go through the vent, not into it.
+			if(src.is_necromorph())
+				src.visible_message("<span class='warning'>[src] tears the vent apart getting in!</span>", \
+					"<span class='warning'>You tear the vent apart getting in!</span>")
+				vent_found.break_open(src)
+
 		else
 			to_chat(src, "This vent is not connected to anything.")
 	else
 		to_chat(src, "You must be standing on or beside an air vent to enter it.")
+
+/mob/living/proc/set_ventcrawl_darkness(darkened)
+	set_fullscreen(darkened, "ventcrawl_dark", /atom/movable/screen/fullscreen/ventcrawl_dark)
+
 /mob/living/proc/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
 	is_ventcrawling = 1
 	//candrop = 0
@@ -177,8 +191,30 @@ var/list/ventcrawl_machinery = list(
 				A.pipe_image = image(A, A.loc, dir = A.dir)
 			A.pipe_image.plane = ABOVE_LIGHTING_PLANE
 			A.pipe_image.layer = LIGHTING_SECONDARY_LAYER
-			pipes_shown += A.pipe_image
-			client.images += A.pipe_image
+			A.pipe_image.alpha = VENTCRAWL_PIPE_ALPHA
+			ventcrawl_network_atoms |= A
+
+	update_ventcrawl_visibility()
+
+	set_ventcrawl_darkness(TRUE)
+
+/mob/living/proc/update_ventcrawl_visibility()
+	if(!client)
+		return
+
+	var/list/now_shown = list()
+	for(var/obj/machinery/atmospherics/A in ventcrawl_network_atoms)
+		if(get_dist(A, src) <= VENTCRAWL_REVEAL_RANGE)
+			now_shown += A.pipe_image
+
+	for(var/image/I in pipes_shown)
+		if(!(I in now_shown))
+			client.images -= I
+	for(var/image/I in now_shown)
+		if(!(I in pipes_shown))
+			client.images += I
+
+	pipes_shown = now_shown
 
 /mob/living/proc/remove_ventcrawl()
 	is_ventcrawling = 0
@@ -189,3 +225,5 @@ var/list/ventcrawl_machinery = list(
 		client.eye = src
 
 	pipes_shown.len = 0
+	ventcrawl_network_atoms.len = 0
+	set_ventcrawl_darkness(FALSE)

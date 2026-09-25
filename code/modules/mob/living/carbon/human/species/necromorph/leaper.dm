@@ -31,7 +31,7 @@
 	virus_immune = 1
 	pixel_offset_x = -16
 	pixel_offset_y = -24
-	ventcrawl = FALSE //temporarily disabled until rebalanced.
+	ventcrawl = TRUE //temporarily disabled until rebalanced.
 
 	evasion = 20	//Harder to hit than usual
 	var/stun = 2 //stun duration

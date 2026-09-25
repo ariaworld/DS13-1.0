@@ -3,28 +3,54 @@
 /obj/machinery/atmospherics/unary/vent_pump/wall
 	name = "Wall mounted vent pump"
 	var/cover = TRUE //Is the wall-vent covered?
+	var/pumping = FALSE //Are we actually moving gas right now, as opposed to merely being enabled to?
+	var/icon_pumping = null //What update_icon was last handed, so we only rebuild it on a real change.
 	layer = ABOVE_HUMAN_LAYER //So that the vents stack on top of the necromorphs.
 	icon = 'icons/atmos/wallvent.dmi'
+	icon_state = "off"
+
+/obj/machinery/atmospherics/unary/vent_pump/wall/New(var/atom/location, var/direction, var/nocircuit = FALSE)
+	..()
+	icon = 'icons/atmos/wallvent.dmi'
+	switch(dir)
+		if(NORTH)
+			pixel_y = -32
+		if(SOUTH)
+			pixel_y = 32
+		if(EAST)
+			pixel_x = -32
+		if(WEST)
+			pixel_x = 32
+
+/obj/machinery/atmospherics/unary/vent_pump/wall/on
+	use_power = 1
+	icon_state = "map_vent_out"
+
+/obj/machinery/atmospherics/unary/vent_pump/wall/siphon
+	pump_direction = 0
+
+/obj/machinery/atmospherics/unary/vent_pump/wall/siphon/on
+	use_power = 1
+	pump_direction = 0
+	icon_state = "map_vent_in"
 
 /obj/machinery/atmospherics/unary/vent_pump/wall/examine(mob/user)
 	. = ..()
-	if(!cover && locate(/mob) in contents)
+	if(!cover)
+		to_chat(user, "<span class='warning'>Its cover has been torn away, leaving the duct wide open.</span>")
+	if(locate(/mob) in contents)
 		to_chat(user, "<span class='warning'>There's something lurking inside it...</span>")
 
 /obj/machinery/atmospherics/unary/vent_pump/wall/north
-	pixel_y = 26
 	dir = NORTH
 
 /obj/machinery/atmospherics/unary/vent_pump/wall/south
-	pixel_y = -26
 	dir = SOUTH
 
 /obj/machinery/atmospherics/unary/vent_pump/wall/east
-	pixel_x = 26
 	dir = EAST
 
 /obj/machinery/atmospherics/unary/vent_pump/wall/west
-	pixel_x = -26
 	dir = WEST
 
 /mob/living/proc/necro_burst_vent()
@@ -43,27 +69,62 @@
 		return TRUE
 	return ..()
 
-/*
-/obj/machinery/atmospherics/unary/vent_pump/wall/update_icon(safety)
-	. = ..()
-	//Probably best to do this with a icon state to save CPU.
-	/*
-	//No cover? Expose the necromorph underneath it..
-	vis_contents = list()
+/obj/machinery/atmospherics/unary/vent_pump/wall/update_icon(var/safety = 0)
+	overlays.Cut()
+	if (!node)
+		use_power = 0
+
+	if(!cover || (stat & BROKEN))
+		icon_state = "broken"
+	else if(welded)
+		icon_state = "weld"
+	else if((stat & NOPOWER) || !powered() || !use_power || !pumping)
+		icon_state = "off"
+	else
+		icon_state = pump_direction ? "out" : "in"
+
+/obj/machinery/atmospherics/unary/vent_pump/wall/Process()
+	..()
+	var/now_pumping = (last_flow_rate > 0)
+	if(now_pumping == icon_pumping)
+		return
+	icon_pumping = now_pumping
+	update_icon()
+
+/obj/machinery/atmospherics/unary/vent_pump/wall/can_pump()
 	if(!cover)
-		for(var/mob/living/M in contents)
-			vis_contents |= M
-	*/
-*/
+		return 0
+	return ..()
+
+/obj/machinery/atmospherics/unary/vent_pump/wall/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	//A burst vent has no cover left to weld shut, so the welder fits a new plate instead.
+	if(!cover && isWelder(W))
+		to_chat(user, "<span class='notice'>You begin welding a new cover onto \the [src]...</span>")
+		if(W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_NORMAL))
+			cover = TRUE
+			update_icon()
+			user.visible_message("<span class='notice'>\The [user] welds a new cover onto \the [src].</span>", \
+				"<span class='notice'>You have welded a new cover onto \the [src].</span>", \
+				"You hear welding.")
+		return 1
+	return ..()
 
 /obj/machinery/atmospherics/unary/vent_pump/wall/proc/exit_vent(mob/living/user)
 	//If there's a cover, break that first.
-	if(cover)
+	var/was_covered = cover
+	if(was_covered)
 		shake_animation(10)
 		user.shake_animation(2)
 		playsound(src.loc, 'sound/effects/vent_scare.ogg', 100, FALSE)
 		cover = FALSE
+		use_power = FALSE
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		s.set_up(5, 0, src)
+		s.start()
 		update_icon() //This vent is now burst.
-	(cover) ? user.visible_message("<span class='userdanger'>[user] violently bursts out of [src]!</span>", "<span class='warning'>You burst through [src]!</span>") : user.visible_message("You hear something squeezing through the ducts.", "You climb out the ventilation system.")
+	if(was_covered)
+		user.visible_message("<span class='userdanger'>[user] violently bursts out of [src]!</span>", "<span class='warning'>You burst through [src]!</span>")
+	else
+		user.visible_message("You hear something squeezing through the ducts.", "You climb out the ventilation system.")
 	user.remove_ventcrawl()
 	user.forceMove(get_turf(src)) //handles entering and so on

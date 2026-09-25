@@ -92,3 +92,15 @@
 		update_underlays()
 
 		return null
+
+/obj/machinery/atmospherics/unary/proc/break_open(mob/breaker)
+	if(stat & BROKEN)
+		return
+	stat |= BROKEN
+	update_icon()
+	shake_animation(10)
+	breaker?.shake_animation(2)
+	playsound(src, 'sound/effects/grillehit.ogg', 100, FALSE)
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	s.set_up(5, 0, src)
+	s.start()
