@@ -35,7 +35,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/wall/examine(mob/user)
 	. = ..()
 	if(!cover)
-		to_chat(user, "<span class='warning'>Its cover has been torn away, leaving the duct wide open.[vent_is_running() ? " It keeps barely pumping air through the gap." : " It isn't moving any air."]</span>")
+		to_chat(user, "<span class='warning'>Its cover has been torn away, leaving the duct wide open.[(!powered()) ? " It isn't moving any air." : " It keeps barely pumping air through the gap."]</span>")
 	if(locate(/mob) in contents)
 		to_chat(user, "<span class='warning'>There's something lurking inside it...</span>")
 
@@ -67,13 +67,6 @@
 		return TRUE
 	return ..()
 
-/obj/machinery/atmospherics/unary/vent_pump/wall/proc/vent_is_running()
-	if(stat & (NOPOWER|BROKEN) || welded || !use_power)
-		return FALSE
-	if(!powered())
-		return FALSE
-	return TRUE
-
 /obj/machinery/atmospherics/unary/vent_pump/wall/update_icon(var/safety = 0)
 	overlays.Cut()
 	if (!node)
@@ -83,7 +76,7 @@
 		icon_state = "broken_[pick(1,2,3)]"
 	else if(welded)
 		icon_state = "weld"
-	else if(!vent_is_running())
+	else if(!powered())
 		icon_state = "off"
 	else
 		icon_state = pump_direction ? "out" : "in"
