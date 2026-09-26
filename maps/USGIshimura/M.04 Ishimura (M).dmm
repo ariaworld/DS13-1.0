@@ -12703,6 +12703,9 @@
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/camera/network/research,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/ishimura/upper/research/chemistry)
 "aAS" = (
@@ -12759,6 +12762,9 @@
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/effect/floor_decal/corner/grey/mono,
 /obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/ishimura/upper/research/chemistry)
 "aAX" = (
@@ -13256,7 +13262,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
+	dir = 5
 	},
 /turf/simulated/floor/tiled/white,
 /area/ishimura/upper/research/chemistry)
@@ -15502,16 +15508,10 @@
 /obj/effect/floor_decal/corner/grey{
 	dir = 9
 	},
-/obj/machinery/atmospherics/unary/vent_pump/wall/on{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/white,
 /area/ishimura/upper/research/chemistry)
 "aFO" = (
 /obj/structure/bed/chair/office/dark,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
 /turf/simulated/floor/tiled/white,
 /area/ishimura/upper/research/chemistry)
 "aFP" = (
@@ -15929,6 +15929,9 @@
 "aGE" = (
 /obj/machinery/computer/crew,
 /obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
 /turf/simulated/floor/dank/hardwood/alt,
 /area/ishimura/upper/medical/senior_medical_office)
 "aGF" = (
@@ -15981,6 +15984,9 @@
 /obj/structure/table/standard,
 /obj/machinery/photocopier/faxmachine{
 	department = "Senior Medical Officer's Office"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 8
 	},
 /turf/simulated/floor/dank/hardwood/alt,
 /area/ishimura/upper/medical/senior_medical_office)
@@ -16759,7 +16765,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -25415,9 +25421,6 @@
 /turf/simulated/floor/dank/rivets,
 /area/ishimura/upper/security/checkpoint/medical)
 "aXY" = (
-/obj/machinery/atmospherics/unary/vent_pump/wall/on{
-	dir = 4
-	},
 /obj/structure/table/standard,
 /obj/item/megaphone,
 /obj/item/stamp/denied{
@@ -28685,6 +28688,9 @@
 "bek" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
 	},
 /turf/simulated/floor/carpet/green,
 /area/ishimura/upper/medical/senior_medical_office)
