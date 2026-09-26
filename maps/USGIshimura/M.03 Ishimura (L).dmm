@@ -10413,6 +10413,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 4
+	},
 /turf/simulated/floor/dank/golf_brown,
 /area/ishimura/lower/mining/shuttlebay/port)
 "avq" = (
@@ -11100,12 +11103,6 @@
 	},
 /turf/simulated/floor/dank/rectangles,
 /area/ishimura/lower/misc/hallway/central)
-"awu" = (
-/obj/machinery/atmospherics/unary/vent_pump/wall/on{
-	dir = 4
-	},
-/turf/simulated/floor/dank/golf_brown,
-/area/ishimura/lower/mining/shuttlebay/starboard)
 "awv" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -11227,11 +11224,24 @@
 /turf/simulated/floor/plating,
 /area/ishimura/lower/misc/marker)
 "awJ" = (
-/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/dank/golf_brown,
-/area/ishimura/lower/mining/shuttlebay/port)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/turf/simulated/floor/dank/tech{
+	dir = 8
+	},
+/area/ishimura/lower/misc/hallway/central)
 "awK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -21483,6 +21493,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 4
+	},
 /turf/simulated/floor/dank/golf_brown,
 /area/ishimura/lower/mining/shuttlebay/starboard)
 "aPP" = (
@@ -29520,11 +29533,7 @@
 /turf/simulated/floor/dank/golf_brown,
 /area/ishimura/lower/misc/hallway/central)
 "rNw" = (
-/obj/machinery/atmospherics/unary/vent_pump/wall/on{
-	dir = 1;
-	layer = 2.4;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/dank/tech{
 	dir = 4
 	},
@@ -51665,7 +51674,7 @@ ahT
 bVR
 pAp
 rNw
-bos
+cXh
 adS
 azI
 aAt
@@ -52386,7 +52395,7 @@ abc
 aaE
 abL
 gkQ
-awJ
+awK
 nfn
 aiZ
 amj
@@ -52429,7 +52438,7 @@ ana
 anc
 auq
 vxU
-awu
+aDK
 aus
 oVU
 ana
@@ -53679,8 +53688,8 @@ ajx
 ajx
 ajx
 bVR
-pAp
-rNw
+pmk
+eqo
 bos
 dsB
 adS
@@ -53931,9 +53940,9 @@ awB
 aXO
 ajx
 oma
-bRM
-eqo
-bos
+awJ
+rNw
+cXh
 adS
 adS
 aML
@@ -58721,7 +58730,7 @@ aiK
 bVR
 pAp
 rNw
-bos
+cXh
 adS
 aMz
 aVZ
