@@ -1,5 +1,5 @@
 #define VENTCRAWL_PIPE_ALPHA 130
-#define VENTCRAWL_REVEAL_RANGE 2
+#define VENTCRAWL_REVEAL_RANGE 3
 
 var/list/ventcrawl_machinery = list(
 	/obj/machinery/atmospherics/unary/vent_scrubber,

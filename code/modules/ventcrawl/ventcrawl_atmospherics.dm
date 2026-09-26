@@ -34,7 +34,10 @@
 			if(target_move.return_network(target_move) != return_network(src))
 				user.remove_ventcrawl()
 				user.add_ventcrawl(target_move)
-			user.forceMove(target_move)
+			var/duct_glide = clamp(world.icon_size / max(user.movement_delay(), 0.1), MIN_GLIDE_SIZE, MAX_GLIDE_SIZE)
+			user.set_glide_size(duct_glide)
+			if(!user.Move(target_move, direction))
+				user.forceMove(target_move, glide_size_override = duct_glide)
 			user.client.eye = target_move //if we don't do this, Byond only updates the eye every tick - required for smooth movement
 			user.update_ventcrawl_visibility() //the duct ahead only becomes visible once we've crawled into it
 			if(world.time > user.next_play_vent)
