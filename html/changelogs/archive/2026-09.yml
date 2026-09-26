@@ -53,7 +53,6 @@
   - balance: Mining cutter and plasma cutter digging power have been swapped. Mining cutter is better at mining.
 2026-09-26:
   Aria:
-  - rscadd: Wall vents, that Tier 1 necromorphs can break into and traverse through, as well as jumpscare people with.
+  - rscadd: Wall vents, that Tier 1 necromorphs can break into and traverse through, as well as jumpscare people with. Changes visuals for being in the ventilation system. (Darker pipes, can only see nearby pipes, darker lighting)
   - icon: New icons for Wall vents.
   - rscadd: Detonator mine launcher can now be bought in the store, as well as its new detonator mines ammo bundle.
-  - rscadd: New visuals for being in the ventilation system. (Darker pipes, can only see nearby pipes, darker lighting)
