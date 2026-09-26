@@ -16,6 +16,7 @@ Guns:
 +	T15 Javelin Gun
 +	PFM-100 Industrial Torch
 +	Seeker Rifle
++	Detonator Mine Launcher
 Ammo:
 +	divet magazine
 +	Incendiary Divet Magazine
@@ -33,6 +34,7 @@ S	fuel tank (gasoline)
 S	fuel tank (hydrazine)
 +	ripper blades (steel)
 +	ripper blades (diamond)
++	detonator mines
 +	line racks
 +	force energy
 +	contact energy
@@ -159,6 +161,13 @@ S	fuel tank (hydrazine)
 	build_path = /obj/item/gun/projectile/seeker
 	materials = list(MATERIAL_STEEL = 12500, MATERIAL_PLASTEEL = 10000, MATERIAL_GLASS = 350, MATERIAL_DIAMOND = 800, MATERIAL_PLASTIC = 2000)
 	price = 15000
+
+/datum/design/item/weapon/detonator
+	name = "Detonator Mine Launcher"
+	id = "detonator"
+	build_path = /obj/item/gun/projectile/detonator/loaded
+	materials = list(MATERIAL_STEEL = 9000, MATERIAL_GLASS = 500, MATERIAL_SILVER = 2000, MATERIAL_URANIUM = 2000)
+	price = 9500
 
 /datum/design/item/weapon/forcegun
 	name = "Handheld Graviton Accelerator"
@@ -317,6 +326,13 @@ S	fuel tank (hydrazine)
 	materials = list(MATERIAL_STEEL = 4000, MATERIAL_DIAMOND = 1000)
 	build_path = /obj/item/ammo_magazine/sawblades/diamond
 	price = 2900
+
+/datum/design/item/ammo/tripmines
+	name = "detonator mines"
+	id = "tripmines"
+	materials = list(MATERIAL_STEEL = 5000)
+	build_path = /obj/item/ammo_magazine/tripmines
+	price = 2500
 
 //Support Weapons
 /datum/design/item/ammo/line_rack

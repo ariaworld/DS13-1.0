@@ -84,6 +84,24 @@
 	.=..()
 	transform = transform.Turn(rand(0, 360))
 
+
+/*
+	Speed Loader
+	A bundle of mines that can be emptied into the launcher in one go
+*/
+/obj/item/ammo_magazine/tripmines
+	name = "detonator mines"
+	desc = "A bundle of replacement laser tripmines for the detonator mine launcher."
+	icon = 'icons/obj/weapons/ds13_deployables.dmi'
+	icon_state = "detonator_mines"
+	caliber = "tripmine"
+	ammo_type = /obj/item/ammo_casing/tripmine
+	matter = list(MATERIAL_STEEL = 2500)
+	max_ammo = 6
+	multiple_sprites = 1
+	mag_type = SPEEDLOADER
+	delete_when_empty = TRUE
+
 /*
 	Mount extension
 */
