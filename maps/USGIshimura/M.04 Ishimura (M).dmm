@@ -16378,6 +16378,11 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 4;
+	layer = 2.4;
+	level = 2
+	},
 /turf/simulated/floor/dank/rivets,
 /area/ishimura/upper/security/checkpoint/ladders)
 "aHr" = (
@@ -16392,6 +16397,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
 	},
 /turf/simulated/floor/dank/rivets,
 /area/ishimura/upper/security/checkpoint/ladders)
@@ -16428,7 +16436,7 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
+	dir = 5
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -16485,11 +16493,6 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/ishimura/upper/medical/morgue)
 "aHz" = (
-/obj/machinery/atmospherics/unary/vent_pump/wall/on{
-	dir = 1;
-	layer = 2.4;
-	level = 2
-	},
 /obj/structure/flora/pottedplant,
 /turf/simulated/floor/dank/rivets,
 /area/ishimura/upper/security/checkpoint/ladders)
@@ -17003,10 +17006,6 @@
 	dir = 4
 	},
 /area/ishimura/upper/misc/hangar)
-"aIv" = (
-/obj/effect/catwalk_plated/dark,
-/turf/simulated/floor/tiled/dark,
-/area/ishimura/upper/command/bridge)
 "aIw" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -17645,6 +17644,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/catwalk_plated/dark,
 /turf/simulated/floor/plating,
 /area/ishimura/upper/command/bridge)
 "aJz" = (
@@ -18301,6 +18301,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
+/obj/effect/catwalk_plated/dark,
 /turf/simulated/floor/plating,
 /area/ishimura/upper/command/bridge)
 "aKJ" = (
@@ -31086,6 +31087,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
+/obj/effect/catwalk_plated/dark,
 /turf/simulated/floor/plating,
 /area/ishimura/upper/command/bridge)
 "cWo" = (
@@ -31450,16 +31452,6 @@
 "gPn" = (
 /turf/simulated/floor/dank/cable/start,
 /area/ishimura/upper/engineering/prep)
-"gRj" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/plating,
-/area/ishimura/upper/command/bridge)
 "gVl" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
@@ -84147,7 +84139,7 @@ aJr
 egB
 aJy
 cSh
-gRj
+egB
 aKI
 aLi
 aav
@@ -84397,11 +84389,11 @@ aKD
 aLe
 aZa
 aZa
-aIv
-aIv
-aIv
+aZa
+aZa
+aZa
 aKK
-aIv
+aZa
 aIV
 aKh
 baz
