@@ -12582,10 +12582,8 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/ishimura/upper/research)
 "aAI" = (
-/obj/machinery/atmospherics/unary/vent_pump/wall/on{
-	dir = 1;
-	layer = 2.4;
-	level = 2
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/ishimura/upper/medical)
@@ -22631,6 +22629,11 @@
 /obj/item/storage/box/syringes,
 /obj/item/storage/box/syringes,
 /obj/item/reagent_containers/spray/cleaner,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 4;
+	layer = 2.4;
+	level = 2
+	},
 /turf/simulated/floor/tiled/white/monotile,
 /area/ishimura/upper/medical)
 "aSV" = (
@@ -32009,6 +32012,12 @@
 	dir = 1
 	},
 /area/ishimura/upper/engineering/prep)
+"lZy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/ishimura/upper/medical)
 "mdk" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -32727,6 +32736,16 @@
 	dir = 8
 	},
 /area/ishimura/upper/misc/hallway/fore)
+"rDW" = (
+/obj/machinery/light,
+/obj/effect/floor_decal/corner/grey{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/white,
+/area/ishimura/upper/medical)
 "rEO" = (
 /turf/simulated/floor/dank/slides,
 /area/ishimura/upper/engineering/bay)
@@ -69245,8 +69264,8 @@ axz
 aAm
 aAB
 aAI
-afM
-baZ
+lZy
+rDW
 acf
 aUL
 bcp

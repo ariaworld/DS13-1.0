@@ -3,8 +3,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/wall
 	name = "Wall mounted vent pump"
 	var/cover = TRUE //Is the wall-vent covered?
-	var/pumping = FALSE //Are we actually moving gas right now, as opposed to merely being enabled to?
-	var/icon_pumping = null //What update_icon was last handed, so we only rebuild it on a real change.
 	layer = ABOVE_HUMAN_LAYER //So that the vents stack on top of the necromorphs.
 	icon = 'icons/atmos/wallvent.dmi'
 	icon_state = "off"
@@ -85,18 +83,10 @@
 		icon_state = "broken_[pick(1,2,3)]"
 	else if(welded)
 		icon_state = "weld"
-	else if(!vent_is_running() || !pumping)
+	else if(!vent_is_running())
 		icon_state = "off"
 	else
 		icon_state = pump_direction ? "out" : "in"
-
-/obj/machinery/atmospherics/unary/vent_pump/wall/Process()
-	..()
-	var/now_pumping = (last_flow_rate > 0)
-	if(now_pumping == icon_pumping)
-		return
-	icon_pumping = now_pumping
-	update_icon()
 
 #define TORN_VENT_POWER_FACTOR 0.5
 
