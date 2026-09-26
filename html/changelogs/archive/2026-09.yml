@@ -53,6 +53,6 @@
 2026-09-26:
   Aria:
   - rscadd: Wall vents, that Slashers, Lurkers and Leapers can break into and travel through, as well as jumpscare people with. Changes visuals for being in the ventilation system. (Darker pipes, can only see nearby pipes, darker lighting)
-  - icon: New icons for Wall vents.
+  - imageadd: New icons for Wall vents.
   - rscadd: Detonator mine launcher can now be bought in the store, as well as its new detonator mines ammo bundle.
   - tweak: PFM-100 Industrial Torch in the Store is now sold with a full fuel tank.
