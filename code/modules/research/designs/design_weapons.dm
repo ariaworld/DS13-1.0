@@ -153,7 +153,14 @@ S	fuel tank (hydrazine)
 	id = "flamethrower"
 	build_path = /obj/item/gun/spray/hydrazine_torch
 	materials = list(MATERIAL_STEEL = 2500, MATERIAL_GLASS = 100, MATERIAL_GOLD = 4000, MATERIAL_SILVER = 4000)
-	price = 10000 //Due to spawning without a fuel tank
+	price = 13000
+
+//Store-only, don't want science to print infinite fuel
+/datum/design/item/weapon/flamethrower/CreatedInStore(store_ref)
+	. = ..()
+	var/obj/item/gun/spray/hydrazine_torch/torch = .
+	torch.tank.reagents.add_reagent(/datum/reagent/fuel, torch.tank.reagents.maximum_volume)
+	torch.update_fuel()
 
 /datum/design/item/weapon/seeker
 	name = "Seeker Rifle"

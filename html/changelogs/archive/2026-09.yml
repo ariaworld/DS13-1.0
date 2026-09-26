@@ -35,7 +35,6 @@
   Aria:
   - balance: "Changed Root health: 210 -> 90."
   - balance: "Changed Enhanced Branch health: 550 -> 225, cooldown: 10 Minutes -> 5 Minutes."
-  - balance: "Changed PFM-100 Industrial Torch store price: 13000 -> 10000. (Due to spawning with an empty fuel tank)"
 2026-09-16:
   Aria:
   - rscadd: Plasma cutters can be upgraded with a power node to increase their maximum ammo to 15.
@@ -56,3 +55,4 @@
   - rscadd: Wall vents, that Tier 1 necromorphs can break into and traverse through, as well as jumpscare people with. Changes visuals for being in the ventilation system. (Darker pipes, can only see nearby pipes, darker lighting)
   - icon: New icons for Wall vents.
   - rscadd: Detonator mine launcher can now be bought in the store, as well as its new detonator mines ammo bundle.
+  - tweak: PFM-100 Industrial Torch in the Store is now sold with a full fuel tank.
