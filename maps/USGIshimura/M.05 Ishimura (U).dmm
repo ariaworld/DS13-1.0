@@ -964,9 +964,6 @@
 "bQ" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/machinery/atmospherics/unary/vent_pump/wall/on{
-	dir = 4
-	},
 /obj/item/stack/material/glass/fifty,
 /obj/item/radio/intercom{
 	pixel_y = 24
@@ -2188,6 +2185,8 @@
 /turf/simulated/floor/dank/mono,
 /area/ishimura/eva)
 "eu" = (
+/obj/structure/table/standard,
+/obj/machinery/recharger,
 /obj/machinery/atmospherics/unary/vent_pump/wall/on{
 	dir = 1
 	},
@@ -18886,8 +18885,8 @@ dm
 dx
 dS
 eg
+eg
 eu
-eI
 aw
 YJ
 ai
