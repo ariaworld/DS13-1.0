@@ -4085,9 +4085,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -4095,6 +4092,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
 	},
 /turf/simulated/floor/dank/golf_brown,
 /area/ishimura/lower/mining/mining_bay)
@@ -9431,9 +9431,6 @@
 /turf/simulated/floor/tiled/dark/monotile,
 /area/ishimura/lower/crew/messhall/executive)
 "atj" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
@@ -9447,6 +9444,9 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
 /turf/simulated/floor/dank/hardwood,
@@ -10812,12 +10812,12 @@
 /area/ishimura/lower/crew/hydroponics)
 "avV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/dank/golf_brown,
 /area/ishimura/lower/mining/mining_bay)
 "avW" = (
@@ -17364,10 +17364,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/dank/hardwood,
 /area/ishimura/lower/crew/sleepblock/commons)
 "aHz" = (
@@ -22949,14 +22949,14 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
 	},
 /turf/simulated/floor/dank/golf_brown,
 /area/ishimura/lower/mining/mining_bay)
@@ -23061,6 +23061,11 @@
 /area/ishimura/lower/mining/mining_bay)
 "aTu" = (
 /obj/machinery/vending/cigarette,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 1;
+	layer = 2.4;
+	level = 2
+	},
 /turf/simulated/floor/dank/rectangles,
 /area/ishimura/lower/mining/mining_bay)
 "aTv" = (
@@ -26056,6 +26061,9 @@
 /obj/machinery/camera/network/crew{
 	dir = 1
 	},
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 1
+	},
 /turf/simulated/floor/dank/hardwood,
 /area/ishimura/lower/crew/sleepblock/commons)
 "baD" = (
@@ -26557,11 +26565,15 @@
 	},
 /area/ishimura/lower/crew/sleepblock/commons)
 "bcj" = (
+/obj/structure/closet/secure_closet/planet_cracker,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 8
+	},
+/turf/simulated/floor/dank/slides{
 	dir = 1
 	},
-/turf/simulated/floor/dank/hardwood,
-/area/ishimura/lower/crew/sleepblock/commons)
+/area/ishimura/lower/mining/locker_room)
 "bck" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/dank/rectangles,
@@ -26673,11 +26685,6 @@
 /turf/simulated/floor/dank/rectangles,
 /area/ishimura/lower/mining/mining_bay)
 "bcx" = (
-/obj/machinery/atmospherics/unary/vent_pump/wall/on{
-	dir = 1;
-	layer = 2.4;
-	level = 2
-	},
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -26
@@ -27430,11 +27437,20 @@
 /turf/simulated/floor/plating,
 /area/ishimura/lower/mining/processing_room)
 "beg" = (
-/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /turf/simulated/floor/dank/golf_brown,
-/area/ishimura/lower/mining/locker_room)
+/area/ishimura/lower/mining/mining_bay)
 "beh" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -27455,8 +27471,8 @@
 /turf/simulated/floor/dank/golf_brown,
 /area/ishimura/lower/mining/locker_room)
 "bej" = (
-/obj/machinery/atmospherics/unary/vent_pump/wall/on{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/dank/golf_brown,
 /area/ishimura/lower/mining/locker_room)
@@ -30292,6 +30308,14 @@
 	},
 /turf/simulated/floor/dank/rivets,
 /area/ishimura/lower/engineering/bay)
+"xrx" = (
+/obj/structure/closet/secure_closet/planet_cracker,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 4
+	},
+/turf/simulated/floor/dank/slides,
+/area/ishimura/lower/mining/locker_room)
 "xuZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -53676,8 +53700,8 @@ asm
 asm
 adE
 adn
-avM
-fvJ
+aiO
+awx
 aTu
 ajx
 ajx
@@ -54684,9 +54708,9 @@ aty
 aty
 aEx
 bcr
-bcs
-awx
-bct
+beg
+fvJ
+ahP
 aEq
 ajJ
 alr
@@ -56700,8 +56724,8 @@ pWY
 aJZ
 acV
 bcr
-bcs
-awx
+beg
+fvJ
 bcx
 acV
 bbM
@@ -56953,8 +56977,8 @@ aLs
 acV
 ahP
 aiO
-fvJ
-ahP
+awx
+bct
 acV
 aJc
 adX
@@ -57716,7 +57740,7 @@ bdC
 bdK
 bdC
 bdC
-bdC
+xrx
 fwZ
 aiK
 pWY
@@ -57968,7 +57992,7 @@ lQK
 lQK
 lQK
 lQK
-beg
+bej
 bek
 aiK
 hhT
@@ -59480,7 +59504,7 @@ oiy
 bdL
 oiy
 oiy
-oiy
+bcj
 fwZ
 aiK
 oma
@@ -68541,7 +68565,7 @@ aak
 aGp
 arL
 aHy
-bcj
+lMR
 aqz
 arY
 pLC

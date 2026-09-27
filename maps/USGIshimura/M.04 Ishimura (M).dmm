@@ -11763,6 +11763,9 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
 /turf/simulated/floor/tiled/white,
 /area/ishimura/upper/research/virology/entrance)
 "azm" = (
@@ -12182,9 +12185,6 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/obj/machinery/atmospherics/unary/vent_pump/wall/on{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/white,
 /area/ishimura/upper/research/virology/entrance)
 "aAa" = (
@@ -12196,9 +12196,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/ishimura/upper/research/virology/entrance)
 "aAb" = (
@@ -26644,6 +26642,9 @@
 	icon_state = "0-4"
 	},
 /obj/structure/closet/crate/secure/biohazard,
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/ishimura/upper/research/virology/entrance)
 "bag" = (

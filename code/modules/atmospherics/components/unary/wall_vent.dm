@@ -110,6 +110,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/unary/vent_pump/wall/proc/exit_vent(mob/living/user)
+	remove_verb(user, /mob/living/proc/necro_burst_vent)
 	//If there's a cover, break that first.
 	var/was_covered = cover
 	if(was_covered)
