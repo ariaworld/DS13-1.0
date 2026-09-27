@@ -2,7 +2,6 @@
 
 /obj/machinery/atmospherics/Destroy()
 	for(var/mob/living/M in src) //ventcrawling is serious business
-		remove_verb(M, /mob/living/proc/necro_burst_vent)
 		M.remove_ventcrawl()
 		M.forceMove(get_turf(src))
 	if(pipe_image)
@@ -52,8 +51,6 @@
 		//Jumpscare time...
 		to_chat(user, "<span class='warning'>You are now lurking inside of [target_move]. Use the break-out verb to burst out of it... </span>")
 		user.forceMove(target_move)
-		if(user.is_necromorph())
-			add_verb(user, /mob/living/proc/necro_burst_vent)
 		return FALSE
 	user.remove_ventcrawl()
 	user.forceMove(target_move.loc) //handles entering and so on
