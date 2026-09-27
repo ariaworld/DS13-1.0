@@ -56,3 +56,6 @@
   - imageadd: New icons for Wall vents.
   - rscadd: Detonator mine launcher can now be bought in the store, as well as its new detonator mines ammo bundle.
   - tweak: PFM-100 Industrial Torch in the Store is now sold with a full fuel tank.
+2026-09-28:
+  Aria:
+  - bugfix: Fix people in containers not being able to hear themselves or others.

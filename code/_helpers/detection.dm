@@ -185,7 +185,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 					mobs |= M
 			else if(M.stat == DEAD && M.get_preference_value(checkghosts) != GLOB.PREF_NEARBY)
 				mobs |= M
-		else if(get_turf(M) in hearturfs)
+		if(get_turf(M) in hearturfs)
 			mobs |= M
 
 	for(var/obj/O in GLOB.listening_objects)
