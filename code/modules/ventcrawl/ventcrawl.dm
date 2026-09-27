@@ -1,5 +1,4 @@
-#define VENTCRAWL_PIPE_ALPHA 130
-#define VENTCRAWL_REVEAL_RANGE 2
+#define VENTCRAWL_REVEAL_RANGE 3
 
 var/list/ventcrawl_machinery = list(
 	/obj/machinery/atmospherics/unary/vent_scrubber,
@@ -177,9 +176,6 @@ var/list/ventcrawl_machinery = list(
 	else
 		to_chat(src, "You must be standing on or beside an air vent to enter it.")
 
-/mob/living/proc/set_ventcrawl_darkness(darkened)
-	set_fullscreen(darkened, "ventcrawl_dark", /atom/movable/screen/fullscreen/ventcrawl_dark)
-
 /mob/living/proc/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
 	is_ventcrawling = 1
 	//candrop = 0
@@ -192,12 +188,9 @@ var/list/ventcrawl_machinery = list(
 				A.pipe_image = image(A, A.loc, dir = A.dir)
 			A.pipe_image.plane = ABOVE_LIGHTING_PLANE
 			A.pipe_image.layer = LIGHTING_SECONDARY_LAYER
-			A.pipe_image.alpha = VENTCRAWL_PIPE_ALPHA
 			ventcrawl_network_atoms |= A
 
 	update_ventcrawl_visibility()
-
-	set_ventcrawl_darkness(TRUE)
 
 /mob/living/proc/update_ventcrawl_visibility()
 	if(!client)
@@ -227,4 +220,3 @@ var/list/ventcrawl_machinery = list(
 
 	pipes_shown.len = 0
 	ventcrawl_network_atoms.len = 0
-	set_ventcrawl_darkness(FALSE)
