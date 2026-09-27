@@ -58,4 +58,4 @@
   - tweak: PFM-100 Industrial Torch in the Store is now sold with a full fuel tank.
 2026-09-28:
   Aria:
-  - bugfix: Fix people in containers not being able to hear themselves or others.
+  - bugfix: Fix people in containers (closets, sleepers, etc.) not being able to hear themselves or others.
