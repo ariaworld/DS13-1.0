@@ -97,7 +97,9 @@
 
 	//TODO Future:
 		//View restricting
-
+	// Got you fam ^
+	if (!can_see(sourceturf, T, range))
+		return FALSE
 
 	return TRUE
 

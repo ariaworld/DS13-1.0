@@ -58,4 +58,5 @@
   - tweak: PFM-100 Industrial Torch in the Store is now sold with a full fuel tank.
 2026-09-28:
   Aria:
-  - bugfix: Fix people in containers (closets, sleepers, etc.) not being able to hear themselves or others.
+  - bugfix: Fixed people in containers (closets, sleepers, etc.) not being able to hear themselves or others.
+  - tweak: Corrupted vines that lose their source node can no longer reconnect to a different node through walls, they now need a clear line of sight to a growth node to survive.
