@@ -4472,7 +4472,6 @@
 /turf/simulated/floor/dank/grater,
 /area/ishimura/lower/misc/storagesmall)
 "ajz" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
 	d1 = 1;
@@ -4485,6 +4484,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/dank/hardwood,
 /area/ishimura/lower/security/checkpoint/crew)
 "ajB" = (
@@ -11564,10 +11564,8 @@
 /turf/simulated/floor/dank/hardwood,
 /area/ishimura/lower/security/checkpoint/crew)
 "axr" = (
-/obj/machinery/atmospherics/unary/vent_pump/wall/on{
-	dir = 4;
-	layer = 2.4;
-	level = 2
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/dank/hardwood,
 /area/ishimura/lower/security/checkpoint/crew)
@@ -11821,6 +11819,11 @@
 /obj/machinery/camera/network/security{
 	dir = 4
 	},
+/obj/machinery/atmospherics/unary/vent_pump/wall/on{
+	dir = 4;
+	layer = 2.4;
+	level = 2
+	},
 /turf/simulated/floor/dank/hardwood,
 /area/ishimura/lower/security/checkpoint/crew)
 "axQ" = (
@@ -11996,15 +11999,13 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/dank/hardwood,
 /area/ishimura/lower/security/checkpoint/crew)
 "ayl" = (
@@ -12038,7 +12039,6 @@
 /area/ishimura/lower/crew/sleepblock/commons)
 "ayo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -12048,6 +12048,9 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/dank/hardwood,
 /area/ishimura/lower/security/checkpoint/crew)
@@ -12531,12 +12534,12 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/dank/hardwood,
 /area/ishimura/lower/security/checkpoint/crew)
@@ -28337,6 +28340,16 @@
 	},
 /turf/simulated/floor/dank/hardwood/alt,
 /area/ishimura/lower/security/escape/lounge)
+"gOF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/dank/hardwood,
+/area/ishimura/lower/security/checkpoint/crew)
 "gZr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -63526,11 +63539,11 @@ ryW
 ahj
 avl
 axK
-axr
+aDu
 aDu
 azc
 aDu
-aDu
+axr
 axB
 aDu
 avm
@@ -63781,7 +63794,7 @@ bcG
 ayk
 ajz
 azb
-aDd
+gOF
 ayo
 aAB
 aCU
