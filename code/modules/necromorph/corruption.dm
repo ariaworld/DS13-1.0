@@ -132,12 +132,12 @@ GLOBAL_DATUM_INIT(corruption_seed, /datum/seed/corruption, new())
 /obj/effect/vine/corruption/proc/find_corruption_host()
 	//Search our alternatives list first
 	if (LAZYLEN(alternatives))
-		var/alternative = get_viable_alternative(src)
+		var/alternative = get_viable_alternative(src, TRUE)
 		if (alternative)
 			return alternative
 
 	for (var/datum/extension/corruption_source/CS in GLOB.corruption_sources)
-		if (CS.can_support(src))
+		if (CS.can_adopt(src))
 			return CS
 
 	return null
@@ -170,6 +170,7 @@ GLOBAL_DATUM_INIT(corruption_seed, /datum/seed/corruption, new())
 		return
 	if (CS.register(src))
 		calculate_growth()
+		update_neighbors()
 
 
 
@@ -248,7 +249,7 @@ GLOBAL_DATUM_INIT(corruption_seed, /datum/seed/corruption, new())
 
 //Alternative Handling
 //This attempts to find an alternative source to fit a target turf
-/obj/effect/vine/corruption/proc/get_viable_alternative(var/turf/T)
+/obj/effect/vine/corruption/proc/get_viable_alternative(var/turf/T, var/require_los = FALSE)
 	if (!LAZYLEN(alternatives))
 		return null
 	var/best_multiplier = INFINITY
@@ -265,7 +266,7 @@ GLOBAL_DATUM_INIT(corruption_seed, /datum/seed/corruption, new())
 		if (!CS.enabled)
 			continue
 
-		if (!CS.can_support(T))
+		if (require_los ? !CS.can_adopt(T) : !CS.can_support(T))
 			continue
 
 		//Okay it can support us, lets see how well

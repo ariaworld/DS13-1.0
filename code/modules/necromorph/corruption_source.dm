@@ -97,12 +97,21 @@
 
 	//TODO Future:
 		//View restricting
-	// Got you fam ^
-	if (!can_see(sourceturf, T, range))
-		return FALSE
+	// No it's bad to do it here ^
 
 	return TRUE
 
+//Stricter. Used when a vine would be taken on by a source it has no chain to
+/datum/extension/corruption_source/proc/can_adopt(var/atom/A)
+	if (!can_support(A))
+		return FALSE
+	var/turf/T = get_turf(A)
+	var/turf/from = sourceturf
+	if (from.z != T.z)
+		from = locate(from.x, from.y, T.z)	//can_see never leaves its starting z-level
+		if (!from)
+			return FALSE
+	return can_see(from, T, range)
 
 /datum/extension/corruption_source/proc/source_moved(atom/movable/mover, old_loc, dir)
 	SIGNAL_HANDLER
@@ -132,6 +141,8 @@
 /datum/extension/corruption_source/proc/evaluate_existing()
 
 	for (var/obj/effect/vine/corruption/C as anything in get_reachable())
+		if (!can_adopt(C))
+			continue
 		//We'll take control of any that lack a source regardless of anything else
 		if (!C.source)
 			register(C)
