@@ -117,7 +117,7 @@ var/global/list/sparring_attack_cache = list()
 		if (H.mob_size > user.mob_size)
 			return
 
-		var/stun_chance = attack_damage * 5
+		var/stun_chance = clamp(attack_damage * 5, 0, 30) //human random damage is between 4 +- 2, which means max 30 chance, should feel good with necromorphs too
 		if (strike.blocker)
 			stun_chance *= 0.5	//Attacks which are blocked are much less likely to have special effects
 
