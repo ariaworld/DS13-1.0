@@ -1453,6 +1453,8 @@ About the new airlock wires panel:
 		to_chat(usr, "The bolt cover has been cut open.")
 	if (lock_cut_state == BOLTS_CUT)
 		to_chat(usr, "The door bolts have been cut.")
+	if(welded)
+		to_chat(usr, text("It's welded shut."))
 	if(brace)
 		to_chat(usr, "\The [brace] is installed on \the [src], preventing it from opening.")
 		to_chat(usr, brace.examine_health())
