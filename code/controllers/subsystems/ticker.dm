@@ -505,10 +505,7 @@ SUBSYSTEM_DEF(ticker)
 
 	to_chat(world, SPAN_BOLDANNOUNCE("Rebooting World in [DisplayTimeText(delay)]. [reason]"))
 
-	var/start_wait = world.time
-	while(!((world.time - start_wait) > (delay * 2))) //don't wait forever
-		stoplag()
-	sleep(delay - (world.time - start_wait))
+	sleep(delay)
 
 	if(delay_end && !skip_delay)
 		to_chat(world, SPAN_BOLDANNOUNCE("Reboot was cancelled by an admin."))
