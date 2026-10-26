@@ -4,4 +4,4 @@
   - tweak: Reduced light fixtures' light range from 8 to 5. (Pre-2022 light range)
 2026-10-26:
   Aria:
-  - rscdel: Removed damage/disabling of RIGsuit modules.
+  - rscdel: Removed damage/disabling of RIGsuit modules, since they cannot be repaired as of now.
