@@ -762,7 +762,8 @@
 	return FALSE
 
 /obj/item/rig/proc/take_hit(damage, source, is_emp=0)
-
+	return //disable this for now, can't repair RIG modules
+/*
 	if(!installed_modules.len)
 		return
 
@@ -809,6 +810,7 @@
 		else
 			to_chat(wearer, "<span class='warning'>The [source] has damaged your [dam_module.interface_name]!</span>")
 	dam_module.deactivate()
+	*/
 
 /obj/item/rig/proc/malfunction_check(var/mob/living/carbon/human/user)
 	if(malfunction_delay)
